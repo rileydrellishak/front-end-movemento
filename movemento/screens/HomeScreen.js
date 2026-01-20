@@ -3,10 +3,13 @@ import { useNavigation } from '@react-navigation/native'
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  return(
+
+  return (
     <View>
       <Text>HOME</Text>
-      <Pressable><Text>CREATE!</Text></Pressable>
+      <Pressable onPress={() => navigation.navigate('SelectMovements')}>
+        <Text>Create an entry and go to the select movements screen</Text>
+      </Pressable>
     </View>
   )
 }
