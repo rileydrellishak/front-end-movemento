@@ -5,9 +5,19 @@ import SelectMovementsScreen from "../screens/SelectMovementsScreen";
 import SelectMoodsBeforeScreen from "../screens/SelectMoodsBeforeScreen";
 import SelectMoodsAfterScreen from "../screens/SelectMoodsAfterScreen";
 import ReflectionScreen from "../screens/ReflectionScreen";
-import { Pressable } from "react-native";
+import { Pressable, Button } from "react-native";
 
 const Stack = createNativeStackNavigator();
+
+const goHomeButton = () => {
+  return (
+    <View>
+      <Pressable onPress={() => alert('pressable worked')}>
+        <Text>hey</Text>
+      </Pressable>
+    </View>
+  )
+}
 
 const RootStack = () => {
   return (
@@ -22,7 +32,7 @@ const RootStack = () => {
       <Stack.Screen
         name='Home'
         component={HomeScreen}
-        options={{ title: 'Home Page!' }}
+        options={{ title: 'Home' }}
       />
       <Stack.Screen
         name='SelectMovements'

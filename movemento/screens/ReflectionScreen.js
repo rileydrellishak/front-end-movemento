@@ -1,14 +1,14 @@
 import { View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import ReflectionTextInput from '../components/ReflectionTextInput';
+import SaveEntryButton from '../components/buttons/SaveEntryButton';
 
 const ReflectionScreen = () => {
   const navigation = useNavigation();
   return(
     <View>
-      <Text>reflection</Text>
-      <Pressable onPress={() => navigation.popTo('Home')}>
-        <Text>save!</Text>
-      </Pressable>
+      <ReflectionTextInput/>
+      <SaveEntryButton navigation={navigation}/>
     </View>
   )
 }
