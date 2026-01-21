@@ -1,6 +1,7 @@
 import { Pressable, Text } from "react-native"
 import { Alert } from 'react-native'
 import ButtonStyles from "../../styles/Buttons"
+import TextStyles from "../../styles/Text"
 
 const SaveEntryButton = ({ navigation }) => {
   const confirmSave = () => {
@@ -22,7 +23,7 @@ const SaveEntryButton = ({ navigation }) => {
 
   return (
     <Pressable style={ButtonStyles.save} onPress={saveEntry}>
-      <Text>Save Entry</Text>
+      <Text style={TextStyles.save}>Save Entry</Text>
     </Pressable>
   )
 }

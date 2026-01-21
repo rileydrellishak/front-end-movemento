@@ -15,6 +15,19 @@ const ContainerStyles = StyleSheet.create({
     flex: 5,
     flexDirection: 'row',
     flexWrap: 'wrap'
+  },
+
+  debugging: {
+    borderColor: 'red',
+    borderWidth: 3,
+  },
+
+  reflection: {
+    borderColor: 'red',
+    borderWidth: 3,
+    padding: 5,
+    margin: 5,
+    height: 300,
   }
 })
 

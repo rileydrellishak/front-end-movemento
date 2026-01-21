@@ -7,11 +7,16 @@ const ButtonStyles = StyleSheet.create({
   },
 
   debugging: {
-    backgroundColor: 'coral'
+    backgroundColor: '#fb6f92',
+    margin: 5
   },
 
   save: {
-    backgroundColor: '#a3b18a'
+    backgroundColor: '#a3b18a',
+    maxWidth: 150,
+    alignSelf: 'center',
+    padding: 10,
+    margin: 10
   },
 
   movements: {
