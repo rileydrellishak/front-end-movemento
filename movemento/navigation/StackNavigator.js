@@ -25,7 +25,7 @@ const RootStack = () => {
       initialRouteName='Home'
       screenOptions={ 
         {
-          headerStyle: { backgroundColor: 'green' }
+          headerStyle: { backgroundColor: '#8FB8ED' }
         }
       }
     >
