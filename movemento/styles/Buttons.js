@@ -15,11 +15,15 @@ const ButtonStyles = StyleSheet.create({
   },
 
   movements: {
-    backgroundColor: '#C2BBF0'
+    backgroundColor: '#C2BBF0',
+    margin: 5,
+    maxWidth: 150
   },
 
   moods: {
-    backgroundColor: 'pink'
+    backgroundColor: 'pink',
+    margin: 5,
+    maxWidth: 130
   }
 });
 

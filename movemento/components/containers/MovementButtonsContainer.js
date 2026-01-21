@@ -1,5 +1,6 @@
 import { ScrollView, View, Text } from 'react-native'
 import ContainerStyles from '../../styles/Containers';
+import ButtonStyles from '../../styles/Buttons';
 import MovementButton from '../buttons/MovementButton';
 import { useContext } from 'react';
 import { useData } from '../../context/DataContext';
@@ -18,8 +19,7 @@ const MovementButtonsContainer = () => {
   })
 
   return (
-    <View style={ContainerStyles.movement}>
-      <Text>Movement buttons container</Text>
+    <View style={ContainerStyles.movements}>
       {movementButtons}
     </View>
   )

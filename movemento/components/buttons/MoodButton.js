@@ -4,7 +4,7 @@ import ButtonStyles from '../../styles/Buttons';
 const MoodButton = ({ name }) => {
   return (
     <Pressable style={ButtonStyles.moods}>
-      <Text>{name}</Text>
+      <Text style={ButtonStyles.moods}>{name}</Text>
     </Pressable>
   )
 }

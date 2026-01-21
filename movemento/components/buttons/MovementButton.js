@@ -4,7 +4,7 @@ import ButtonStyles from '../../styles/Buttons';
 const MovementButton = ({ name }) => {
   return (
     <Pressable style={ButtonStyles.movements}>
-      <Text>{name}</Text>
+      <Text style={ButtonStyles.movements}>{name}</Text>
     </Pressable>
   )
 }

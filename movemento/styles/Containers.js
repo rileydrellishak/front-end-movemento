@@ -1,14 +1,20 @@
 import { StyleSheet } from "react-native";
 
 const ContainerStyles = StyleSheet.create({
-  movement: {
+  movements: {
     borderColor: 'red',
-    borderWidth: 3
+    borderWidth: 3,
+    flex: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
 
-  mood: {
+  moods: {
     borderColor: 'red',
-    borderWidth: 3
+    borderWidth: 3,
+    flex: 5,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 })
 

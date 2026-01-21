@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { ScrollView, View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
 import MoodButtonsContainer from '../components/containers/MoodButtonsContainer'
@@ -6,7 +6,7 @@ import MoodButtonsContainer from '../components/containers/MoodButtonsContainer'
 const SelectMoodsAfterScreen = () => {
   const navigation = useNavigation();
   return(
-    <View>
+    <ScrollView>
       <Text>select moods after</Text>
       <MoodButtonsContainer/>
       <Pressable
@@ -15,7 +15,7 @@ const SelectMoodsAfterScreen = () => {
       >
         <Text>go to the type your reflection screen</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   )
 }
 

@@ -4,7 +4,7 @@ import MoodButton from '../buttons/MoodButton';
 import { useData } from '../../context/DataContext';
 
 const MoodButtonsContainer = () => {
-  const {moods, loading} = useData()
+  const { moods, loading } = useData()
 
   if (loading) {
     return <Text>Loading...</Text>
@@ -17,8 +17,7 @@ const MoodButtonsContainer = () => {
   })
   
   return (
-    <View style={ContainerStyles.mood}>
-      <Text>the mood buttons</Text>
+    <View style={ContainerStyles.moods}>
       {moodButtons}
     </View>
   )
