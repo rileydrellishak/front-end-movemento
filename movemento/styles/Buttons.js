@@ -16,6 +16,10 @@ const ButtonStyles = StyleSheet.create({
 
   movements: {
     backgroundColor: '#C2BBF0'
+  },
+
+  moods: {
+    backgroundColor: 'pink'
   }
 });
 
