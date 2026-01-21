@@ -1,10 +1,10 @@
 import { Pressable, Text } from 'react-native';
 import ButtonStyles from '../../styles/Buttons';
 
-const MoodButton = () => {
+const MoodButton = ({ name }) => {
   return (
     <Pressable style={ButtonStyles.moods}>
-      <Text>Mood button</Text>
+      <Text>{name}</Text>
     </Pressable>
   )
 }

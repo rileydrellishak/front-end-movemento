@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { ScrollView, View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
 import MovementButtonsContainer from '../components/containers/MovementButtonsContainer';
@@ -6,7 +6,7 @@ import MovementButtonsContainer from '../components/containers/MovementButtonsCo
 const SelectMovementsScreen = () => {
   const navigation = useNavigation();
   return(
-    <View>
+    <ScrollView>
       <Text>pick movements</Text>
       <MovementButtonsContainer/>
       <Pressable
@@ -15,7 +15,7 @@ const SelectMovementsScreen = () => {
       >
         <Text>go to moods before screen</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   )
 }
 

@@ -1,10 +1,10 @@
 import { Pressable, Text } from 'react-native'
 import ButtonStyles from '../../styles/Buttons';
 
-const MovementButton = () => {
+const MovementButton = ({ name }) => {
   return (
     <Pressable style={ButtonStyles.movements}>
-      <Text>Movement name</Text>
+      <Text>{name}</Text>
     </Pressable>
   )
 }
