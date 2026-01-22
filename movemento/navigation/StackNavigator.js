@@ -2,7 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import SelectMovementsScreen from "../screens/SelectMovementsScreen";
-import SelectMoodsScreen from '../screens/SelectMoodsScreen';
+import SelectMoodsBeforeScreen from '../screens/SelectMoodsBeforeScreen';
+import SelectMoodsAfterScreen from "../screens/SelectMoodsAfterScreen";
 import ReflectionScreen from "../screens/ReflectionScreen";
 import { Pressable, Button } from "react-native";
 
@@ -39,11 +40,11 @@ const RootStack = () => {
       />
       <Stack.Screen 
         name='SelectMoodsBefore'
-        component={SelectMoodsScreen}
+        component={SelectMoodsBeforeScreen}
       />
     <Stack.Screen
       name='SelectMoodsAfter'
-      component={SelectMoodsScreen}
+      component={SelectMoodsAfterScreen}
     />
     <Stack.Screen
       name='Reflection'
