@@ -13,7 +13,7 @@ const SelectMoodsScreen = () => {
       <Text>the before moods</Text>
       <SelectableButtonsContainer variant='moods' data={moods} style={ContainerStyles.moods}/>
       <Pressable
-        onPress={() => navigation.navigate('SelectMoodsAfter')}
+        onPress={() => navigation.navigate('Reflection')}
         style={ButtonStyles.next}
       >
         <Text>go to the moods after screen</Text>

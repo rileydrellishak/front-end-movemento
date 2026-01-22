@@ -34,7 +34,7 @@ const DataProvider = ({ children }) => {
   }, [])
 
   return (
-    <DataContext.Provider value={ {movements, moods, loading, users  } }>
+    <DataContext.Provider value={ {movements, moods, loading, users } }>
       {children}
     </DataContext.Provider>
   )

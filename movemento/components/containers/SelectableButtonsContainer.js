@@ -13,7 +13,7 @@ const SelectableButtonsContainer = ({ variant, data }) => {
   })
   
   return (
-    <View style={ContainerStyles.movements}>
+    <View style={ContainerStyles.base}>
       {buttons}
     </View>
   )

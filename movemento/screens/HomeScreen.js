@@ -5,7 +5,7 @@ import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
 import SelectUserContainer from '../components/containers/SelectUserContainer';
-import { useState, useEffect } from 'react';
+
 import { useData } from '../context/DataContext';
 import TextStyles from '../styles/Text';
 
