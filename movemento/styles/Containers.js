@@ -6,7 +6,8 @@ const ContainerStyles = StyleSheet.create({
     borderWidth: 3,
     flex: 5,
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    // justifyContent: 'start'
   },
 
   debugging: {

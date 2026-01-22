@@ -22,17 +22,25 @@ const ButtonStyles = StyleSheet.create({
 
   base: {
     margin: 5,
-    maxWidth: 150,
+    maxWidth: 160,
     padding: 5,
-    borderRadius: 10
+    borderRadius: 10,
   },
 
   movements: {
-    backgroundColor: '#C2BBF0',
+    backgroundColor:'#C2BBF0'
+  },
+
+  selectedMovements: {
+    backgroundColor: '#8678e6'
   },
 
   moods: {
     backgroundColor: 'pink',
+  },
+
+  selectedMoods: {
+    backgroundColor: '#e99ef3'
   }
 });
 

@@ -12,6 +12,10 @@ const TextStyles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  
+  button: {
+    fontSize: 18,
   }
 })
 
