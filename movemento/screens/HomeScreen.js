@@ -4,10 +4,23 @@ import EntryCalendar from '../components/EntryCalendar';
 import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
-import SelectUsersContainer from '../components/containers/SelectUserContainer';
+import SelectUserContainer from '../components/containers/SelectUserContainer';
+import { useState, useEffect } from 'react';
+import { useData } from '../context/DataContext';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const { loading, users, selectedUser, setSelectedUser } = useData();
+
+  if (loading) {
+    return <Text>loading...</Text>
+  }
+
+  useEffect(() => {
+    if (users && users.length > 0 && !selectedUser) {
+      setSelectedUser(users[0].name);
+    }
+  }, [users]);
 
   return (
     <ScrollView>
@@ -41,9 +54,10 @@ const HomeScreen = () => {
           <Text>Quick jump to REFLECTION for debugging</Text>
         </Pressable>
       </View>
-      <EntriesContainer/>
-      <SelectUsersContainer/>
-      <EntryCalendar></EntryCalendar>
+      {/* <EntriesContainer/> */}
+      <SelectUserContainer users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
+      <Text>The current selected user is {selectedUser}</Text>
+      {/* <EntryCalendar></EntryCalendar> */}
     </ScrollView>
   )
 }
