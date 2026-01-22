@@ -5,19 +5,38 @@ import SelectableButtonsContainer from '../components/containers/SelectableButto
 import { useData } from '../context/DataContext';
 import ContainerStyles from '../styles/Containers';
 import { useJournalEntry } from '../context/JournalEntryContext';
+import { useState, useEffect } from 'react';
 
 const SelectMovementsScreen = () => {
   const navigation = useNavigation();
   const { movements } = useData();
   const { updateEntry } = useJournalEntry();
+
+  const [selectedIds, setSelectedIds] = useState([])
+
+  useEffect(() => {
+      if (selectedIds) {
+        updateEntry({ movementIds: selectedIds })
+      }
+    }, [selectedIds]);
   
+  const handleNext = () => {
+    navigation.navigate('SelectMoodsBefore')
+  }
+
   return(
     <ScrollView>
+      <Text>{}</Text>
       <Text>pick movements</Text>
-      <SelectableButtonsContainer variant='movements' data={movements}/>
+      <SelectableButtonsContainer
+        data={movements}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
+        variant='movements'
+      />
       <Pressable
-        onPress={() => navigation.navigate('SelectMoodsBefore')}
-        style={ButtonStyles.next}
+        onPress={handleNext}
+        style={[ButtonStyles.base, ButtonStyles.next]}
       >
         <Text>go to moods before screen</Text>
       </Pressable>

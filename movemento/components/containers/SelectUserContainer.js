@@ -30,9 +30,3 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
 };
 
 export default SelectUserContainer;
-
-// const movementButtons = movements.map(({ id, name }) => {
-  //   return (
-  //     <MovementButton key={id} name={name}/>
-  //   )
-  // })

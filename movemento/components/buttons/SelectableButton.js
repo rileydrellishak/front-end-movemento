@@ -3,12 +3,7 @@ import ButtonStyles from '../../styles/Buttons';
 import TextStyles from '../../styles/Text';
 import { useState } from 'react'
 
-const SelectableButton = ({ variant, name }) => {
-  const [isSelected, setIsSelected] = useState(false)
-
-  const handleSelect = () => {
-    setIsSelected(previousState => !previousState)
-  }
+const SelectableButton = ({ variant, name, onSelect, isSelected }) => {
 
   return (
     <Pressable style={
@@ -18,7 +13,7 @@ const SelectableButton = ({ variant, name }) => {
         isSelected && variant === 'moods' && ButtonStyles.selectedMoods,
         isSelected && variant === 'movements' && ButtonStyles.selectedMovements,
       ]}
-      onPress={handleSelect}
+      onPress={onSelect}
     >
       <Text style={ButtonStyles.variant}>{name}</Text>
     </Pressable>

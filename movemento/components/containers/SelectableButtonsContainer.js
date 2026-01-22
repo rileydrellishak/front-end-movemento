@@ -3,12 +3,26 @@ import SelectableButton from '../buttons/SelectableButton';
 import { useData } from '../../context/DataContext';
 import { View } from 'react-native'
 import ButtonStyles from '../../styles/Buttons';
+import { useState } from 'react'
 
-const SelectableButtonsContainer = ({ variant, data }) => {
+const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
+
+  const handleSelect = (id) => {
+    setSelectedIds((prev) => 
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    )
+  }
 
   const buttons = data.map(({ id, name }) => {
     return (
-      <SelectableButton key={id} name={name} variant={variant}/>
+      <SelectableButton
+        key={id}
+        id={id}
+        name={name}
+        variant={variant}
+        isSelected={selectedIds.includes(id)}
+        onSelect={() => handleSelect(id)}
+      />
     )
   })
   

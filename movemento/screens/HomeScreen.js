@@ -64,7 +64,11 @@ const HomeScreen = () => {
         </Pressable>
       </View>
       {/* <EntriesContainer/> */}
-      <SelectUserContainer users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
+      <SelectUserContainer
+        users={users}
+        selectedUser={selectedUser}
+        setSelectedUser={setSelectedUser}
+      />
       <Text>The current selected user is {selectedUser.name}</Text>
       {/* <EntryCalendar></EntryCalendar> */}
     </ScrollView>
