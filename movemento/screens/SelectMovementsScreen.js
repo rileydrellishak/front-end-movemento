@@ -4,10 +4,13 @@ import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useData } from '../context/DataContext';
 import ContainerStyles from '../styles/Containers';
+import { useJournalEntry } from '../context/JournalEntryContext';
 
 const SelectMovementsScreen = () => {
   const navigation = useNavigation();
   const { movements } = useData();
+  const { updateEntry } = useJournalEntry();
+  
   return(
     <ScrollView>
       <Text>pick movements</Text>

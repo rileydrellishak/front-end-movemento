@@ -2,14 +2,15 @@ import { createContext, useState, useEffect, useContext } from "react";
 
 const JournalEntryContext = createContext();
 
-const JournalEntryProvider = ({ children }) => {
-  const initialJournalEntry = {
+const initialJournalEntry = {
     userId: null,
     movementIds: [],
     moodsBeforeIds: [],
     moodsAfterIds: [],
     reflection: ''
   }
+
+const JournalEntryProvider = ({ children }) => {
 
   const [entry, setEntry] = useState(initialJournalEntry)
   

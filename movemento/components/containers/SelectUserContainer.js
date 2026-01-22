@@ -8,7 +8,7 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
   const pickerItems = 
     users.map(({ id, name }) => {
       return (
-        <Picker.Item key={id} label={name} value={name}/>
+        <Picker.Item key={id} label={name} value={id}/>
       )
     })
   
@@ -17,8 +17,11 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
       <Text>Select user</Text>
       <Picker
         style={[ContainerStyles.debugging, ContainerStyles.picker]}
-        selectedValue={selectedUser}
-        onValueChange={(itemValue) => setSelectedUser(itemValue)}
+        selectedValue={selectedUser?.id}
+        onValueChange={(itemValue) => {
+          const user = users.find(user => user.id === itemValue);
+          setSelectedUser(user);
+        }}
       >
         {pickerItems}
       </Picker>

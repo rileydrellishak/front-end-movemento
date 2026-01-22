@@ -5,7 +5,7 @@ import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
 import SelectUserContainer from '../components/containers/SelectUserContainer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
@@ -17,13 +17,19 @@ const HomeScreen = () => {
   const { loading, users, selectedUser, setSelectedUser } = useData();
   const { updateEntry } = useJournalEntry();
 
+  
+  useEffect(() => {
+    if (selectedUser?.id) {
+      updateEntry({ userId: selectedUser.id })
+    }
+  }, [selectedUser]);
+  
   if (loading) {
     return <Text style={TextStyles.title}>loading...</Text>
   }
-
+  
   const handleNext = () => {
-    updateEntry({userId: selectedUser});
-    navigation.navigate('SelectMovements')
+    navigation.navigate('SelectMovements');
   }
 
   return (
@@ -59,7 +65,7 @@ const HomeScreen = () => {
       </View>
       {/* <EntriesContainer/> */}
       <SelectUserContainer users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
-      <Text>The current selected user is {selectedUser}</Text>
+      <Text>The current selected user is {selectedUser.name}</Text>
       {/* <EntryCalendar></EntryCalendar> */}
     </ScrollView>
   )
