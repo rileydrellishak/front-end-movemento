@@ -4,6 +4,7 @@ import EntryCalendar from '../components/EntryCalendar';
 import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
+import SelectUsersContainer from '../components/containers/SelectUserContainer';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -41,6 +42,7 @@ const HomeScreen = () => {
         </Pressable>
       </View>
       <EntriesContainer/>
+      <SelectUsersContainer/>
       <EntryCalendar></EntryCalendar>
     </ScrollView>
   )

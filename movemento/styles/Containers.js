@@ -28,6 +28,13 @@ const ContainerStyles = StyleSheet.create({
     padding: 5,
     margin: 5,
     height: 300,
+  },
+
+  picker: {
+    borderColor: 'green',
+    borderWeight: 3, 
+    width: 200,
+    alignSelf: 'center'
   }
 })
 
