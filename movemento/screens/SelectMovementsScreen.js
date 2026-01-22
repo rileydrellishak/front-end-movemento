@@ -16,7 +16,7 @@ const SelectMovementsScreen = () => {
 
   useEffect(() => {
       if (selectedIds) {
-        updateEntry({ movementIds: selectedIds })
+        updateEntry({ movements: selectedIds })
       }
     }, [selectedIds]);
   

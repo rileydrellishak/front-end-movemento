@@ -16,7 +16,7 @@ const SelectMoodsScreen = () => {
 
   useEffect(() => {
       if (selectedIds) {
-        updateEntry({ moodsBeforeIds: selectedIds })
+        updateEntry({ moods_before: selectedIds })
       }
     }, [selectedIds]);
   

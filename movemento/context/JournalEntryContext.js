@@ -3,10 +3,10 @@ import { createContext, useState, useEffect, useContext } from "react";
 const JournalEntryContext = createContext();
 
 const initialJournalEntry = {
-    userId: null,
-    movementIds: [],
-    moodsBeforeIds: [],
-    moodsAfterIds: [],
+    user_id: null,
+    movements: [],
+    moods_before: [],
+    moods_after: [],
     reflection: ''
   }
 

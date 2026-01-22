@@ -20,7 +20,7 @@ const HomeScreen = () => {
   
   useEffect(() => {
     if (selectedUser?.id) {
-      updateEntry({ userId: selectedUser.id })
+      updateEntry({ user_id: selectedUser.id })
     }
   }, [selectedUser]);
   

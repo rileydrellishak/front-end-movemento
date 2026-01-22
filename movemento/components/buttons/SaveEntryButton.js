@@ -2,8 +2,9 @@ import { Pressable, Text } from "react-native"
 import { Alert } from 'react-native'
 import ButtonStyles from "../../styles/Buttons"
 import TextStyles from "../../styles/Text"
+import { createJournalEntryAPI } from "../../api/utilities"
 
-const SaveEntryButton = ({ navigation }) => {
+const SaveEntryButton = ({ navigation, entry }) => {
   const confirmSave = () => {
     Alert.alert(
       'Entry Saved',
@@ -18,6 +19,7 @@ const SaveEntryButton = ({ navigation }) => {
   }
 
   const saveEntry = () => {
+    createJournalEntryAPI(entry)
     confirmSave()
   }
 

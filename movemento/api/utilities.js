@@ -26,4 +26,9 @@ const convertUserFromAPI = (userAPI) => {
   return newUser;
 }
 
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI };
+const createJournalEntryAPI = (newEntry) => {
+  return axios.post(`${kBaseURL}/users/${newEntry.user_id}/entries`, newEntry)
+  .catch(error => console.log(error))
+}
+
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI };
