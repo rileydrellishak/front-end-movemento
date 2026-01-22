@@ -1,14 +1,17 @@
 import { ScrollView, View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
-import MoodButtonsContainer from '../components/containers/MoodButtonsContainer'
+import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
+import { useData } from '../context/DataContext';
+import ContainerStyles from '../styles/Containers';
 
-const SelectMoodsBeforeScreen = () => {
+const SelectMoodsScreen = () => {
   const navigation = useNavigation();
+  const { moods } = useData();
   return(
     <ScrollView>
       <Text>the before moods</Text>
-      <MoodButtonsContainer/>
+      <SelectableButtonsContainer variant='moods' data={moods} style={ContainerStyles.moods}/>
       <Pressable
         onPress={() => navigation.navigate('SelectMoodsAfter')}
         style={ButtonStyles.next}
@@ -19,4 +22,4 @@ const SelectMoodsBeforeScreen = () => {
   )
 }
 
-export default SelectMoodsBeforeScreen
+export default SelectMoodsScreen

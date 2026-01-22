@@ -19,16 +19,20 @@ const ButtonStyles = StyleSheet.create({
     margin: 10
   },
 
+
+  base: {
+    margin: 5,
+    maxWidth: 150,
+    padding: 5,
+    borderRadius: 10
+  },
+
   movements: {
     backgroundColor: '#C2BBF0',
-    margin: 5,
-    maxWidth: 150
   },
 
   moods: {
     backgroundColor: 'pink',
-    margin: 5,
-    maxWidth: 130
   }
 });
 

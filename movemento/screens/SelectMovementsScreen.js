@@ -1,14 +1,17 @@
 import { ScrollView, View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
-import MovementButtonsContainer from '../components/containers/MovementButtonsContainer';
+import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
+import { useData } from '../context/DataContext';
+import ContainerStyles from '../styles/Containers';
 
 const SelectMovementsScreen = () => {
   const navigation = useNavigation();
+  const { movements } = useData();
   return(
     <ScrollView>
       <Text>pick movements</Text>
-      <MovementButtonsContainer/>
+      <SelectableButtonsContainer variant='movements' data={movements}/>
       <Pressable
         onPress={() => navigation.navigate('SelectMoodsBefore')}
         style={ButtonStyles.next}
