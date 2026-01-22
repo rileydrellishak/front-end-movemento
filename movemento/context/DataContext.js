@@ -8,6 +8,7 @@ const DataProvider = ({ children }) => {
   const [moods, setMoods] = useState([]);
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
+  const [selectedUser, setSelectedUser] = useState('')
 
   const fetchData = async () => {
     try {
@@ -19,8 +20,9 @@ const DataProvider = ({ children }) => {
       const newUsers = users.map(convertUserFromAPI)
 
       setMovements(newMovements);
-      setUsers(newUsers)
-      setMoods(moods)
+      setUsers(newUsers);
+      setMoods(moods);
+      setSelectedUser(users[0]);
 
     } catch (error) {
         console.error('err fetch', error)
@@ -34,7 +36,7 @@ const DataProvider = ({ children }) => {
   }, [])
 
   return (
-    <DataContext.Provider value={ {movements, moods, loading, users } }>
+    <DataContext.Provider value={ {movements, moods, loading, users, selectedUser, setSelectedUser } }>
       {children}
     </DataContext.Provider>
   )

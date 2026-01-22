@@ -1,20 +1,29 @@
 import { ScrollView, View, Text, Pressable } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useLinkBuilder, useNavigation } from '@react-navigation/native'
 import EntryCalendar from '../components/EntryCalendar';
 import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
 import SelectUserContainer from '../components/containers/SelectUserContainer';
+import { useState } from 'react';
 
 import { useData } from '../context/DataContext';
+import { useJournalEntry } from '../context/JournalEntryContext'
+
 import TextStyles from '../styles/Text';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const { loading, users } = useData();
+  const { loading, users, selectedUser, setSelectedUser } = useData();
+  const { updateEntry } = useJournalEntry();
 
   if (loading) {
     return <Text style={TextStyles.title}>loading...</Text>
+  }
+
+  const handleNext = () => {
+    updateEntry({userId: selectedUser});
+    navigation.navigate('SelectMovements')
   }
 
   return (
@@ -22,7 +31,7 @@ const HomeScreen = () => {
       <Text style={TextStyles.title}>HOME</Text>
       <View style={ContainerStyles.debugging}>
         <Pressable
-          onPress={() => navigation.navigate('SelectMovements')}
+          onPress={handleNext}
           style={[ButtonStyles.base, ButtonStyles.next]}
         >
           <Text>Create an entry and go to the select movements screen</Text>
@@ -49,8 +58,8 @@ const HomeScreen = () => {
         </Pressable>
       </View>
       {/* <EntriesContainer/> */}
-      <SelectUserContainer users={users}/>
-      <Text>The current selected user is</Text>
+      <SelectUserContainer users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
+      <Text>The current selected user is {selectedUser}</Text>
       {/* <EntryCalendar></EntryCalendar> */}
     </ScrollView>
   )
