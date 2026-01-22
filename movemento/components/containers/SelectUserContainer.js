@@ -3,7 +3,7 @@ import { Picker } from '@react-native-picker/picker'
 import ContainerStyles from '../../styles/Containers';
 
 
-const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {  
+const SelectUserContainer = ({ users}) => {  
   const pickerItems = 
     users.map(({ id, name }) => {
       return (
@@ -16,8 +16,6 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
       <Text>Select user</Text>
       <Picker
         style={[ContainerStyles.debugging, ContainerStyles.picker]}
-        selectedValue={selectedUser}
-        onValueChange={(itemValue) => setSelectedUser(itemValue)}
       >
         {pickerItems}
       </Picker>

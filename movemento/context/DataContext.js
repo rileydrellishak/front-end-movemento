@@ -1,45 +1,27 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { getAllMovementsAPI } from "../api/movements";
-import { getAllMoodsAPI } from "../api/moods";
-import { getAllUsersAPI } from "../api/users";
+import { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI } from '../api/utilities.js'
 
 const DataContext = createContext();
-
-const convertMovementFromAPI = (movementAPI) => {
-  const newMovement = {
-    ...movementAPI,
-    isOutdoor: movementAPI.is_outdoor
-  };
-  delete movementAPI.is_outdoor;
-  return newMovement;
-}
-
-const convertUserFromAPI = (userAPI) => {
-  const newUser = {
-    ...userAPI,
-    journalEntries: userAPI.journal_entries
-  };
-  delete userAPI.journal_entries;
-  return newUser;
-}
 
 const DataProvider = ({ children }) => {
   const [movements, setMovements] = useState([]);
   const [moods, setMoods] = useState([]);
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
-  const [selectedUser, setSelectedUser] = useState('')
 
   const fetchData = async () => {
     try {
-      const movements = await getAllMovementsAPI()
-      const moods = await getAllMoodsAPI()
-      const users = await getAllUsersAPI()
+      const movements = await getAllModelsAPI('movements')
+      const moods = await getAllModelsAPI('moods')
+      const users = await getAllModelsAPI('users')
+
       const newMovements = movements.map(convertMovementFromAPI);
       const newUsers = users.map(convertUserFromAPI)
+
       setMovements(newMovements);
       setUsers(newUsers)
       setMoods(moods)
+
     } catch (error) {
         console.error('err fetch', error)
     } finally {
@@ -52,7 +34,7 @@ const DataProvider = ({ children }) => {
   }, [])
 
   return (
-    <DataContext.Provider value={ {movements, moods, loading, users, selectedUser, setSelectedUser } }>
+    <DataContext.Provider value={ {movements, moods, loading, users } }>
       {children}
     </DataContext.Provider>
   )

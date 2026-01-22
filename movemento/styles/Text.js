@@ -7,6 +7,11 @@ const TextStyles = StyleSheet.create({
 
   reflection: {
     verticalAlign: 'top'
+  },
+
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 })
 

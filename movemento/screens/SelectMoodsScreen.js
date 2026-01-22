@@ -5,21 +5,21 @@ import SelectableButtonsContainer from '../components/containers/SelectableButto
 import { useData } from '../context/DataContext';
 import ContainerStyles from '../styles/Containers';
 
-const SelectMovementsScreen = () => {
+const SelectMoodsScreen = () => {
   const navigation = useNavigation();
-  const { movements } = useData();
+  const { moods } = useData();
   return(
     <ScrollView>
-      <Text>pick movements</Text>
-      <SelectableButtonsContainer variant='movements' data={movements}/>
+      <Text>the before moods</Text>
+      <SelectableButtonsContainer variant='moods' data={moods} style={ContainerStyles.moods}/>
       <Pressable
-        onPress={() => navigation.navigate('SelectMoodsBefore')}
+        onPress={() => navigation.navigate('Reflection')}
         style={ButtonStyles.next}
       >
-        <Text>go to moods before screen</Text>
+        <Text>go to the moods after screen</Text>
       </Pressable>
     </ScrollView>
   )
 }
 
-export default SelectMovementsScreen
+export default SelectMoodsScreen

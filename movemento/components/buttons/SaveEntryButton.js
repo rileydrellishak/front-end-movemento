@@ -22,7 +22,7 @@ const SaveEntryButton = ({ navigation }) => {
   }
 
   return (
-    <Pressable style={ButtonStyles.save} onPress={saveEntry}>
+    <Pressable style={[ButtonStyles.base, ButtonStyles.save]} onPress={saveEntry}>
       <Text style={TextStyles.save}>Save Entry</Text>
     </Pressable>
   )
