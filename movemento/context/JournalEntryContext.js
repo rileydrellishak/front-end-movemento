@@ -2,17 +2,19 @@ import { createContext, useState, useEffect, useContext } from "react";
 
 const JournalEntryContext = createContext();
 
-const initialJournalEntry = {
+const getInitialJournalEntry = () => {
+  return {
     user_id: null,
     movements: [],
     moods_before: [],
     moods_after: [],
     reflection: ''
   }
+}
 
 const JournalEntryProvider = ({ children }) => {
 
-  const [entry, setEntry] = useState(initialJournalEntry)
+  const [entry, setEntry] = useState(getInitialJournalEntry)
   
   const updateEntry = (updates) => {
     setEntry(prev => ({
@@ -22,7 +24,7 @@ const JournalEntryProvider = ({ children }) => {
   };
 
   const resetEntry = () => {
-    setEntry(initialJournalEntry);
+    setEntry(getInitialJournalEntry());
   }
 
   return (

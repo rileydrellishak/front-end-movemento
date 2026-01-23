@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 const ReflectionScreen = () => {
   const navigation = useNavigation();
-  const { entry, updateEntry } = useJournalEntry();
+  const { entry, updateEntry, resetEntry } = useJournalEntry();
 
   const [reflectionText, setReflectionText] = useState('')
 
@@ -27,7 +27,7 @@ const ReflectionScreen = () => {
         reflectionText={reflectionText}
         setReflectionText={setReflectionText}
       />
-      <SaveEntryButton navigation={navigation} entry={entry}/>
+      <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry}/>
     </View>
   )
 }

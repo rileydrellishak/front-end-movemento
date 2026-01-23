@@ -4,7 +4,7 @@ import ButtonStyles from "../../styles/Buttons"
 import TextStyles from "../../styles/Text"
 import { createJournalEntryAPI } from "../../api/utilities"
 
-const SaveEntryButton = ({ navigation, entry }) => {
+const SaveEntryButton = ({ navigation, entry, resetEntry }) => {
   const confirmSave = () => {
     Alert.alert(
       'Entry Saved',
@@ -12,7 +12,10 @@ const SaveEntryButton = ({ navigation, entry }) => {
       [
         {
           text: 'Go Home',
-          onPress: () => navigation.popToTop()
+          onPress: () => {
+            resetEntry();
+            navigation.popToTop()
+          }
         }
       ]
     )
