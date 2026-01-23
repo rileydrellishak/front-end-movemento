@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "jsEngine": "jsc"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,6 +31,13 @@
         "projectId": "8a347ed8-cc6f-4823-b163-61b2c697b84d"
       }
     },
-    "owner": "rileydrellishak"
+    "owner": "rileydrellishak",
+    "jsEngine": "hermes",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/8a347ed8-cc6f-4823-b163-61b2c697b84d"
+    }
   }
 }
