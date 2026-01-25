@@ -1,0 +1,9 @@
+{
+    "javascript.validate.enable": false,
+    "typescript.validate.enable": true,
+    "files.exclude": {
+        "**/node_modules": true
+    },
+    "jest.runMode": "on-demand",
+    "jest.rootPath": "movemento"
+}

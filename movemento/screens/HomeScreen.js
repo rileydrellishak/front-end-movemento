@@ -6,6 +6,7 @@ import ContainerStyles from '../styles/Containers';
 import EntriesContainer from '../components/containers/EntriesContainer';
 import SelectUserContainer from '../components/containers/SelectUserContainer';
 import { useEffect, useState } from 'react';
+import CreateEntryButton from '../components/buttons/CreateEntryButton';
 
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
@@ -36,12 +37,7 @@ const HomeScreen = () => {
     <ScrollView>
       <Text style={TextStyles.title}>HOME</Text>
       <View style={ContainerStyles.debugging}>
-        <Pressable
-          onPress={handleNext}
-          style={[ButtonStyles.base, ButtonStyles.next]}
-        >
-          <Text>Create an entry and go to the select movements screen</Text>
-        </Pressable>
+        <CreateEntryButton onPress={handleNext}/>
 
         <Pressable
           onPress={() => navigation.navigate('SelectMoodsBefore')}
