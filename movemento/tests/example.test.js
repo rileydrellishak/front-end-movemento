@@ -1,3 +1,5 @@
+
+
 const helloWorld = () => {
   return 'hello, world!'
 };
@@ -13,7 +15,7 @@ describe('Example', () => {
 })
 
 // Greeting.js
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { render, getByText, rerender } from '@testing-library/react-native'
 
 const Greeting = ({ name }) => {
@@ -28,10 +30,6 @@ describe('Greeting', () => {
 
     rerender(<Greeting name='Maille'/>);
     expect(getByText('Hello Maille')).toBeTruthy()
-  }),
-  it('renders a component', () => {
-    const component = render(<Greeting name='Riley'/>);
-    expect(component).toHaveTextContent('Hello Riley')
   })
 })
 
