@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState, useEffect } from 'react'
-import { getAllJournalEntriesForUserAPI } from '../api/utilities';
+import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI } from '../api/utilities';
 import { useData } from '../context/DataContext';
 
 const EntriesScreen = () => {
@@ -24,7 +24,14 @@ const EntriesScreen = () => {
 
   useEffect(() => {
     fetchEntries();
-  }, [selectedUser, entries])
+  }, [selectedUser])
+
+  const deleteEntry = (user_id, id) => {
+    return deleteJournalEntryAPI(user_id, id)
+      .then(() => {
+        return setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id))
+      });
+  }
 
   if (loading) {
     return (
@@ -34,9 +41,10 @@ const EntriesScreen = () => {
 
   return(
     <View>
-      <EntriesContainer data={entries}/>
+      <EntriesContainer data={entries} deleteEntry={deleteEntry}/>
     </View>
   )
 }
 
-export default EntriesScreen
+
+export default EntriesScreen;

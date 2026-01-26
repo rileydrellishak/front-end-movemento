@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import ContainerStyles from '../../styles/Containers'
 import ButtonStyles from '../../styles/Buttons'
 
-const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at }) => {
+const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, onDeleteEntry }) => {
   
   const objectNames = (obj) => {
     return obj.name
@@ -12,9 +12,14 @@ const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, 
   const moods_before_names = moods_before.map(objectNames)
   const moods_after_names = moods_after.map(objectNames)
 
+  const handleDeleteEntry = () => {
+    onDeleteEntry(user_id, id)
+  }
+
   return (
     <View style={[ContainerStyles.debugging, ContainerStyles.entry]}>
-      <Text>{user_id}</Text>
+      <Text>entry id is {id}</Text>
+      <Text>user id is {user_id}</Text>
       <Text>{created_at}</Text>
       <Text>{movement_names}</Text>
       <Text>{moods_before_names}</Text>
@@ -23,7 +28,8 @@ const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, 
       <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
         <Text>edit entry</Text>
       </Pressable>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
+      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}
+      onPress={handleDeleteEntry}>
         <Text>delete entry</Text>
       </Pressable>
     </View>
