@@ -1,5 +1,6 @@
 import { Pressable, Text } from 'react-native'
 import ButtonStyles from '../../styles/Buttons'
+import TextStyles from '../../styles/Text';
 
 const CreateEntryButton = ({ onPress }) => {
   return (
@@ -7,7 +8,7 @@ const CreateEntryButton = ({ onPress }) => {
       onPress={onPress}
       style={[ButtonStyles.base, ButtonStyles.next]}
     >
-      <Text>Create an entry and go to the select movements screen</Text>
+      <Text style={[TextStyles.button, TextStyles.title]}>Create Entry</Text>
     </Pressable>
   )
 };
