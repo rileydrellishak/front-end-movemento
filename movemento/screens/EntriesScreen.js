@@ -24,7 +24,7 @@ const EntriesScreen = () => {
 
   useEffect(() => {
     fetchEntries();
-  }, [selectedUser])
+  }, [selectedUser, entries])
 
   if (loading) {
     return (
