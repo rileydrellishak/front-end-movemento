@@ -16,11 +16,17 @@ const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, 
     onDeleteEntry(user_id, id)
   }
 
+  const dateObj = new Date(created_at)
+  const displayDate = dateObj.toLocaleDateString()
+
+  const displayTime = dateObj.toLocaleString(undefined, {hour: 'numeric', minute: 'numeric'})
+
   return (
     <View style={[ContainerStyles.debugging, ContainerStyles.entry]}>
       <Text>entry id is {id}</Text>
       <Text>user id is {user_id}</Text>
-      <Text>{created_at}</Text>
+      <Text>{displayDate}</Text>
+      <Text>{displayTime}</Text>
       <Text>{movement_names}</Text>
       <Text>{moods_before_names}</Text>
       <Text>{moods_after_names}</Text>

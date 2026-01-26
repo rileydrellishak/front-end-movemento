@@ -24,7 +24,7 @@ const EntriesScreen = () => {
 
   useEffect(() => {
     fetchEntries();
-  }, [selectedUser])
+  }, [selectedUser, entries])
 
   const deleteEntry = (user_id, id) => {
     return deleteJournalEntryAPI(user_id, id)
