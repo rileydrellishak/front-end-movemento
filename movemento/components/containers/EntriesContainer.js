@@ -1,12 +1,24 @@
 import { ScrollView, Text } from 'react-native'
 import ContainerStyles from '../../styles/Containers';
+import Entry from './Entry';
 
-const EntriesContainer = () => {
+const EntriesContainer = ({ data }) => {
+  const renderEntries = data.map((entry) => {
+    return (
+      <Entry 
+        key={entry.id}
+        reflection={entry.reflection}
+        user_id={entry.user_id}
+        movements={entry.movements}
+        created_at={entry.created_at}
+        moods_before={entry.moods_before}
+        moods_after={entry.moods_after}
+        />
+    )
+  })
   return (
     <ScrollView style={ContainerStyles.debugging}>
-      <Text>entry</Text>
-      <Text>entry</Text>
-      <Text>entry</Text>
+      {renderEntries}
     </ScrollView>
   )
 };

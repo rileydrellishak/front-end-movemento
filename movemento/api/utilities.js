@@ -31,4 +31,10 @@ const createJournalEntryAPI = (newEntry) => {
   .catch(error => console.log(error))
 }
 
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI };
+const getAllJournalEntriesForUserAPI = (user_id) => {
+  return axios.get(`${kBaseURL}/users/${user_id}/entries`)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI };

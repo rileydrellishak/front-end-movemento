@@ -1,11 +1,40 @@
 import { View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import EntriesContainer from '../components/containers/EntriesContainer';
+import { useState, useEffect } from 'react'
+import { getAllJournalEntriesForUserAPI } from '../api/utilities';
+import { useData } from '../context/DataContext';
 
 const EntriesScreen = () => {
   const navigation = useNavigation();
+  const [entries, setEntries] = useState([])
+  const [loading, setLoading] = useState(true)
+  const 
+
+  const fetchEntries = async () => {
+    try {
+      const entries = await getAllJournalEntriesForUserAPI(3)
+      setEntries(entries)
+    } catch (error) {
+      console.error('error fetch', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchEntries();
+  }, [])
+
+  if (loading) {
+    return (
+      <Text>Loading entries...</Text>
+    )
+  }
+
   return(
     <View>
-      <Text>the screen where you will see entries</Text>
+      <EntriesContainer data={entries}/>
     </View>
   )
 }

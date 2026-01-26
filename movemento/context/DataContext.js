@@ -9,6 +9,7 @@ const DataProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState('')
+  const [entries, setEntries] = useState([])
 
   const fetchData = async () => {
     try {

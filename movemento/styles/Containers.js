@@ -28,6 +28,11 @@ const ContainerStyles = StyleSheet.create({
     borderWeight: 3, 
     width: 200,
     alignSelf: 'center'
+  },
+
+  entry: {
+    margin: 5,
+    padding: 5
   }
 })
 
