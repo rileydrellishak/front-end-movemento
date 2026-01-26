@@ -9,11 +9,11 @@ const EntriesScreen = () => {
   const navigation = useNavigation();
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
-  const 
+  const { selectedUser } = useData();
 
   const fetchEntries = async () => {
     try {
-      const entries = await getAllJournalEntriesForUserAPI(3)
+      const entries = await getAllJournalEntriesForUserAPI(selectedUser.id)
       setEntries(entries)
     } catch (error) {
       console.error('error fetch', error)
@@ -24,7 +24,7 @@ const EntriesScreen = () => {
 
   useEffect(() => {
     fetchEntries();
-  }, [])
+  }, [selectedUser])
 
   if (loading) {
     return (
