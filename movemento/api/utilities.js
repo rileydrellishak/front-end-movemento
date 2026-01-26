@@ -43,4 +43,9 @@ const deleteJournalEntryAPI = (user_id, entry_id) => {
   .catch(error => console.log(error))
 }
 
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI };
+const updateJournalEntryAPI = (user_id, entry_id, updates) => {
+  return axios.patch(`${kBaseURL}/users/${user_id}/entries/${entry_id}`, updates)
+  .catch(error => console.log(error))
+}
+
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI };

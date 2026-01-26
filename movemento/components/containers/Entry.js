@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import ContainerStyles from '../../styles/Containers'
 import ButtonStyles from '../../styles/Buttons'
 
-const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, onDeleteEntry }) => {
+const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, onDeleteEntry, onEditEntry }) => {
   
   const objectNames = (obj) => {
     return obj.name
@@ -31,7 +31,7 @@ const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, 
       <Text>{moods_before_names}</Text>
       <Text>{moods_after_names}</Text>
       <Text>{reflection}</Text>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
+      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={onEditEntry}>
         <Text>edit entry</Text>
       </Pressable>
       <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}

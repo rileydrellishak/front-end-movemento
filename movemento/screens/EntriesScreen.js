@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState, useEffect } from 'react'
-import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI } from '../api/utilities';
+import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI } from '../api/utilities';
 import { useData } from '../context/DataContext';
 
 const EntriesScreen = () => {
@@ -33,6 +33,10 @@ const EntriesScreen = () => {
       });
   }
 
+  const handleEditEntryButton = () => {
+    navigation.navigate('EditEntryModal')
+  }
+
   if (loading) {
     return (
       <Text>Loading entries...</Text>
@@ -41,7 +45,7 @@ const EntriesScreen = () => {
 
   return(
     <View>
-      <EntriesContainer data={entries} deleteEntry={deleteEntry}/>
+      <EntriesContainer handleEditEntryButton={handleEditEntryButton} data={entries} deleteEntry={deleteEntry}/>
     </View>
   )
 }
