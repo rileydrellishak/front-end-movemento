@@ -1,14 +1,13 @@
 import { View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-const ViewEntryScreen = () => {
+const EntriesScreen = () => {
   const navigation = useNavigation();
   return(
     <View>
-      <Text>HOME</Text>
-      <Pressable><Text>CREATE!</Text></Pressable>
+      <Text>the screen where you will see entries</Text>
     </View>
   )
 }
 
-export default ViewEntryScreen
+export default EntriesScreen

@@ -26,7 +26,6 @@ const SelectMovementsScreen = () => {
 
   return(
     <ScrollView>
-      <Text>{}</Text>
       <Text>pick movements</Text>
       <SelectableButtonsContainer
         data={movements}
@@ -44,4 +43,4 @@ const SelectMovementsScreen = () => {
   )
 }
 
-export default SelectMovementsScreen
+export default SelectMovementsScreen;

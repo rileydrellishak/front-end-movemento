@@ -14,15 +14,15 @@ const SaveEntryButton = ({ navigation, entry, resetEntry }) => {
           text: 'Go Home',
           onPress: () => {
             resetEntry();
-            navigation.popToTop()
+            navigation.getParent()?.goBack();
           }
         }
       ]
     )
   }
 
-  const saveEntry = () => {
-    createJournalEntryAPI(entry)
+  const saveEntry = async () => {
+    await createJournalEntryAPI(entry)
     confirmSave()
   }
 

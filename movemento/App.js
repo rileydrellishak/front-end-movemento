@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
-import RootStack from './navigation/StackNavigator';
 import { useEffect, useState } from 'react';
 import { DataProvider } from './context/DataContext';
 import { JournalEntryProvider } from './context/JournalEntryContext'
+import RootNavigator from './navigation/RootStack';
 
 export default function App() {
 
@@ -10,7 +10,7 @@ export default function App() {
     <DataProvider>
       <JournalEntryProvider>
         <NavigationContainer>
-          <RootStack />
+          <RootNavigator />
         </NavigationContainer>
       </JournalEntryProvider>
     </DataProvider>

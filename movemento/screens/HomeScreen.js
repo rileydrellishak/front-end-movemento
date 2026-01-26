@@ -30,7 +30,7 @@ const HomeScreen = () => {
   }
   
   const handleNext = () => {
-    navigation.navigate('SelectMovements');
+    navigation.navigate('CreateEntryModal');
   }
 
   return (
@@ -39,7 +39,7 @@ const HomeScreen = () => {
       <View style={ContainerStyles.debugging}>
         <CreateEntryButton onPress={handleNext}/>
 
-        <Pressable
+        {/* <Pressable
           onPress={() => navigation.navigate('SelectMoodsBefore')}
           style={[ButtonStyles.base, ButtonStyles.debugging]}
         >
@@ -57,7 +57,7 @@ const HomeScreen = () => {
           style={[ButtonStyles.base, ButtonStyles.debugging]}
         >
           <Text>Quick jump to REFLECTION for debugging</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
       {/* <EntriesContainer/> */}
       <SelectUserContainer
@@ -71,4 +71,4 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomeScreen;
