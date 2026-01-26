@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 const EntriesStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Entries' component={EntriesScreen}/>
+      <Stack.Screen name='Entries' component={EntriesScreen} options={{headerShown: false}}/>
       <Stack.Screen name='EditEntryStack' component={EditEntryStack} options={{ headerShown: false, unmountOnBlur: true}}/>
     </Stack.Navigator>
   )

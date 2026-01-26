@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='HomeScreen' component={HomeScreen}/>
+      <Stack.Screen name='HomeScreen' component={HomeScreen} options={{headerShown: false}}/>
       <Stack.Screen name='CreateEntryStack' component={CreateEntryStack} options={{ headerShown: false, unmountOnBlur: true}}/>
     </Stack.Navigator>
   )

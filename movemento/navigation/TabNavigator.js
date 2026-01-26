@@ -10,7 +10,7 @@ const TabNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name='Home' component={HomeStack} options={{title: 'Home'}}/>
       <Tab.Screen name='EntriesTab' component={EntriesStack} options={{title: 'Entries'}}/>
-      <Tab.Screen name='CalendarTab' component={CalendarStack}/>
+      <Tab.Screen name='CalendarTab' component={CalendarStack} options={{headerShown: false}}/>
     </Tab.Navigator>
   )
 }
