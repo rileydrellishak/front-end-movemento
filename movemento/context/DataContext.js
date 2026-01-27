@@ -22,7 +22,7 @@ const DataProvider = ({ children }) => {
       setMovements(newMovements);
       setUsers(newUsers);
       setMoods(moods);
-      setSelectedUser(users[0]);
+      setSelectedUser(prevUser => prevUser || users[0])
 
     } catch (error) {
         console.error('err fetch', error)
