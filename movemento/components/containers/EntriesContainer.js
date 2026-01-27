@@ -2,7 +2,7 @@ import { ScrollView, Text } from 'react-native'
 import ContainerStyles from '../../styles/Containers';
 import Entry from './Entry';
 
-const EntriesContainer = ({ handleEditEntryButton, deleteEntry, data }) => {
+const EntriesContainer = ({ handleEditEntryButton, handleDeleteEntry, data }) => {
 
   const renderEntries = data.map((entry) => {
     return (
@@ -15,8 +15,8 @@ const EntriesContainer = ({ handleEditEntryButton, deleteEntry, data }) => {
         created_at={entry.created_at}
         moods_before={entry.moods_before}
         moods_after={entry.moods_after}
-        onDeleteEntry={deleteEntry}
         onEditEntry={handleEditEntryButton}
+        onDeleteEntry={handleDeleteEntry}
         />
     )
   })

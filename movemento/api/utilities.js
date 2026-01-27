@@ -39,7 +39,6 @@ const getAllJournalEntriesForUserAPI = (user_id) => {
 
 const deleteJournalEntryAPI = (user_id, entry_id) => {
   return axios.delete(`${kBaseURL}/users/${user_id}/entries/${entry_id}`)
-  .then(response => response.data)
   .catch(error => console.log(error))
 }
 

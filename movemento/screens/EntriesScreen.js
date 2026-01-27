@@ -24,13 +24,10 @@ const EntriesScreen = () => {
 
   useEffect(() => {
     fetchEntries();
-  }, [selectedUser, entries])
+  }, [selectedUser.id])
 
-  const deleteEntry = (user_id, id) => {
-    return deleteJournalEntryAPI(user_id, id)
-      .then(() => {
-        return setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id))
-      });
+  const handleDeleteEntry = (entry_id) => {
+    setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entry_id))
   }
 
   const handleEditEntryButton = () => {
@@ -45,7 +42,10 @@ const EntriesScreen = () => {
 
   return(
     <View>
-      <EntriesContainer handleEditEntryButton={handleEditEntryButton} data={entries} deleteEntry={deleteEntry}/>
+      <EntriesContainer
+        handleEditEntryButton={handleEditEntryButton}
+        handleDeleteEntry={handleDeleteEntry}
+        data={entries}/>
     </View>
   )
 }
