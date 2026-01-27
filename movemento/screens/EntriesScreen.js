@@ -9,12 +9,14 @@ const EntriesScreen = () => {
   const navigation = useNavigation();
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
+  const [entriesCache, setEntriesCache] = useState({})
   const { selectedUser } = useData();
 
   const fetchEntries = async () => {
     try {
-      const entries = await getAllJournalEntriesForUserAPI(selectedUser.id)
-      setEntries(entries)
+      const newEntries = await getAllJournalEntriesForUserAPI(selectedUser.id)
+      setEntries(newEntries)
+      setEntriesCache(prev => ({...prev, [selectedUser.id]: newEntries}))
     } catch (error) {
       console.error('error fetch', error)
     } finally {
@@ -23,11 +25,20 @@ const EntriesScreen = () => {
   }
 
   useEffect(() => {
-    fetchEntries();
-  }, [selectedUser.id])
+    if (entriesCache[selectedUser.id]) {
+      setEntries(entriesCache[selectedUser.id]);
+      setLoading(false);
+      return;
+    } 
+    fetchEntries()
+  }, [selectedUser.id, entriesCache])
 
   const handleDeleteEntry = (entry_id) => {
     setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entry_id))
+    setEntriesCache(prev => ({
+      ...prev,
+      [selectedUser.id]: entries.filter(entry => entry.id !== entry_id)
+    }))
   }
 
   const handleEditEntryButton = () => {
