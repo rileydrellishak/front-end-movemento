@@ -4,7 +4,6 @@ import TextStyles from '../styles/Text';
 
 const ReflectionTextInput = ({ reflectionText, setReflectionText}) => {
   
-
   return (
     <TextInput style={ContainerStyles.reflection}
       placeholder='Enter your reflection here'
