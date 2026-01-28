@@ -22,6 +22,13 @@ describe('Select movements screen', () => {
   it('calls the update entry when a movement is selected', () => {
     render(<SelectMovementsScreen/>);
     fireEvent.press(screen.getByText('Badminton'));
-    expect(mockUpdateEntry).toHaveBeenCalled()
+    expect(mockUpdateEntry).toHaveBeenCalledWith({'movements': ['1']})
+  })
+
+  it('renders the go to next screen button', () => {
+    render(<SelectMovementsScreen/>)
+    fireEvent.press(screen.getByText('go to moods before screen'))
   })
 })
+
+// go to moods before screen

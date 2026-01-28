@@ -22,6 +22,6 @@ describe('Select moods before screen', () => {
   it('calls the update entry when a movement is selected', () => {
     render(<SelectMoodsBeforeScreen/>);
     fireEvent.press(screen.getByText('Happy'));
-    expect(mockUpdateEntry).toHaveBeenCalled()
+    expect(mockUpdateEntry).toHaveBeenCalledWith({'moods_before': ['1']})
   })
 })
