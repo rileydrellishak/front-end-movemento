@@ -1,7 +1,7 @@
 import { render, screen, rerender, fireEvent } from '@testing-library/react-native';
 import SelectableButton from '../../components/buttons/SelectableButton'
-import SelectMovementsScreen from '../../screens/SelectMovementsScreen';
-import movements from '../../data/movements';
+import SelectMoodsBeforeScreen from '../../screens/SelectMoodsBeforeScreen';
+import moods from '../../data/moods';
 
 const mockUpdateEntry = jest.fn()
 
@@ -11,17 +11,17 @@ jest.mock("../../context/JournalEntryContext", () => ({
   }),
 }));
 
-describe('Select movements screen', () => {
-  it('renders movement buttons', () => {
-    render(<SelectMovementsScreen/>);
-    for (const m of movements) {
+describe('Select moods before screen', () => {
+  it('renders mood buttons', () => {
+    render(<SelectMoodsBeforeScreen/>);
+    for (const m of moods) {
       expect(screen.getByText(m.name)).toBeTruthy()
     }
   })
 
   it('calls the update entry when a movement is selected', () => {
-    render(<SelectMovementsScreen/>);
-    fireEvent.press(screen.getByText('Badminton'));
+    render(<SelectMoodsBeforeScreen/>);
+    fireEvent.press(screen.getByText('Happy'));
     expect(mockUpdateEntry).toHaveBeenCalled()
   })
 })
