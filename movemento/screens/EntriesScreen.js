@@ -8,11 +8,11 @@ import { useData } from '../context/DataContext';
 const EntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
-  const [entriesCache, setEntriesCache] = useState({})
-  const { selectedUser } = useData();
+  const { selectedUser, entriesCache, setEntriesCache } = useData();
 
   const fetchEntries = async () => {
     try {
+      setLoading(true)
       const newEntries = await getAllJournalEntriesForUserAPI(selectedUser.id)
       setEntries(newEntries)
       setEntriesCache(prev => ({...prev, [selectedUser.id]: newEntries}))
@@ -27,10 +27,10 @@ const EntriesScreen = ({ navigation }) => {
     if (entriesCache[selectedUser.id]) {
       setEntries(entriesCache[selectedUser.id]);
       setLoading(false);
-      return;
-    } 
-    fetchEntries()
-  }, [selectedUser.id, entriesCache])
+    } else {
+      fetchEntries()
+    }
+  }, [selectedUser.id, entriesCache[selectedUser.id]])
 
   const handleDeleteEntry = (entry_id) => {
     setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entry_id))
@@ -40,8 +40,8 @@ const EntriesScreen = ({ navigation }) => {
     }))
   }
 
-  const handleEditEntryButton = () => {
-    navigation.navigate('EditEntryModal')
+  const handleEditEntryButton = (entryId) => {
+    navigation.navigate('EditEntryScreen', { entryId })
   }
 
   if (loading) {

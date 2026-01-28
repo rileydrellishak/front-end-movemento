@@ -28,6 +28,7 @@ const convertUserFromAPI = (userAPI) => {
 
 const createJournalEntryAPI = (newEntry) => {
   return axios.post(`${kBaseURL}/users/${newEntry.user_id}/entries`, newEntry)
+  .then(response => response.data)
   .catch(error => console.log(error))
 }
 

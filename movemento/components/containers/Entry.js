@@ -2,8 +2,10 @@ import { View, Text, Pressable } from 'react-native'
 import ContainerStyles from '../../styles/Containers'
 import ButtonStyles from '../../styles/Buttons';
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
+import { useState } from 'react'
 
-const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, onEditEntry, onDeleteEntry }) => {
+const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, handleEditEntryButton, onDeleteEntry }) => {
+  const [entryId, setEntryId] = useState(id)
   
   const objectNames = (obj) => {
     return obj.name
@@ -28,7 +30,7 @@ const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, 
       <Text>{moods_before_names}</Text>
       <Text>{moods_after_names}</Text>
       <Text>{reflection}</Text>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={onEditEntry}>
+      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => handleEditEntryButton(id)}>
         <Text>edit entry</Text>
       </Pressable>
       <DeleteEntryButton user_id={user_id} entry_id={id} onDeleteEntry={onDeleteEntry}/>

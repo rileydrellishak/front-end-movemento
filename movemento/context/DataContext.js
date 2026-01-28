@@ -7,6 +7,7 @@ const DataProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState('')
+  const [entriesCache, setEntriesCache] = useState({})
 
   const fetchData = async () => {
     try {
@@ -26,8 +27,25 @@ const DataProvider = ({ children }) => {
     fetchData();
   }, [])
 
+  const addEntryToCache = (userId, newEntry) => {
+    setEntriesCache(
+      prev => ({
+        ...prev,
+        [userId]: [...(prev[userId] || []), newEntry]
+      })
+    )
+  }
+
   return (
-    <DataContext.Provider value={ { loading, users, selectedUser, setSelectedUser } }>
+    <DataContext.Provider value={ { 
+      loading, 
+      users,
+      selectedUser,
+      setSelectedUser,
+      entriesCache,
+      setEntriesCache,
+      addEntryToCache
+      } }>
       {children}
     </DataContext.Provider>
   )

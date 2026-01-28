@@ -3,9 +3,11 @@ import { Alert } from 'react-native'
 import ButtonStyles from "../../styles/Buttons"
 import TextStyles from "../../styles/Text"
 import { createJournalEntryAPI } from "../../api/utilities"
+import { useData } from "../../context/DataContext"
 
 const SaveEntryButton = ({ navigation, entry, resetEntry }) => {
-  const confirmSave = () => {
+  const { addEntryToCache } = useData()
+  const confirmSave = (newEntry) => {
     Alert.alert(
       'Entry Saved',
       '',
@@ -22,8 +24,9 @@ const SaveEntryButton = ({ navigation, entry, resetEntry }) => {
   }
 
   const saveEntry = async () => {
-    await createJournalEntryAPI(entry)
-    confirmSave()
+    const newEntry = await createJournalEntryAPI(entry)
+    addEntryToCache(entry.user_id, newEntry)
+    confirmSave(newEntry)
   }
 
   return (

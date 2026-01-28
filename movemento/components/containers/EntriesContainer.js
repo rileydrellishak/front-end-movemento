@@ -15,7 +15,7 @@ const EntriesContainer = ({ handleEditEntryButton, handleDeleteEntry, data }) =>
         created_at={entry.created_at}
         moods_before={entry.moods_before}
         moods_after={entry.moods_after}
-        onEditEntry={handleEditEntryButton}
+        handleEditEntryButton={handleEditEntryButton}
         onDeleteEntry={handleDeleteEntry}
         />
     )
