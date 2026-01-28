@@ -13,8 +13,7 @@ import { useJournalEntry } from '../context/JournalEntryContext'
 
 import TextStyles from '../styles/Text';
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
+const HomeScreen = ({ navigation }) => {
   const { loading, users, selectedUser, setSelectedUser } = useData();
   const { updateEntry } = useJournalEntry();
 

@@ -6,8 +6,7 @@ import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react'
 import moods from '../data/moods'
 
-const SelectMoodsAfterScreen = () => {
-  const navigation = useNavigation();
+const SelectMoodsAfterScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();
 
   const [selectedIds, setSelectedIds] = useState([])

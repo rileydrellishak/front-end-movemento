@@ -1,31 +1,10 @@
 import { render, screen, rerender, fireEvent } from '@testing-library/react-native';
 import SelectableButton from '../../components/buttons/SelectableButton'
+import SelectMovementsScreen from '../../screens/SelectMovementsScreen';
 
-const testMovements = [
-  {
-    id: 1,
-    name: 'barre'
-  },
-  {
-    id: 2,
-    name: 'ballet'
-  },
-  {
-    id: 3,
-    name: 'pilates'
-  }
-]
-
-describe('MovementButtons', () => {
-  it('shows movement name when passed in', () => {
-    const button = <SelectableButton name='barre' isSelected={false}/>
-    render(button)
-    expect(screen.getByText('barre')).toBeTruthy()
-    expect(screen.getByText('barre')).toBeOnTheScreen()
-  });
-  it('changes color when clicked', () => {
-    const button = <SelectableButton name='barre' isSelected={false}/>
-    render(button)
-    expect(screen.getByText('barre')).toBeTruthy();
+describe('Select movements screen', () => {
+  it('renders movement buttons', () => {
+    render(<SelectMovementsScreen/>);
+    expect(screen.getByText('Badminton')).toBeTruthy()
   })
 })

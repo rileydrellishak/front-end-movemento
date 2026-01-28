@@ -5,8 +5,7 @@ import SaveEntryButton from '../components/buttons/SaveEntryButton';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 
-const ReflectionScreen = () => {
-  const navigation = useNavigation();
+const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
 
   const [reflectionText, setReflectionText] = useState('')

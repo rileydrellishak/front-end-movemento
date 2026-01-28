@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react'
 import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI } from '../api/utilities';
 import { useData } from '../context/DataContext';
 
-const EntriesScreen = () => {
-  const navigation = useNavigation();
+const EntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
   const [entriesCache, setEntriesCache] = useState({})

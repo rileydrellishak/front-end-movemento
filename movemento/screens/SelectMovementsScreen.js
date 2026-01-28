@@ -7,8 +7,7 @@ import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
 
-const SelectMovementsScreen = () => {
-  const navigation = useNavigation();
+const SelectMovementsScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();
 
   const [selectedIds, setSelectedIds] = useState([])
