@@ -6,6 +6,7 @@ import ContainerStyles from '../styles/Containers';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
+import FilterMovements from '../components/FilterMovements';
 
 const SelectMovementsScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();
@@ -25,6 +26,7 @@ const SelectMovementsScreen = ({ navigation }) => {
   return(
     <ScrollView>
       <Text>pick movements</Text>
+      <FilterMovements />
       <SelectableButtonsContainer
         data={movements}
         selectedIds={selectedIds}
