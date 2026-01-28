@@ -2,14 +2,13 @@ import { ScrollView, View, Text, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
-import { useData } from '../context/DataContext';
 import ContainerStyles from '../styles/Containers';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
+import movements from '../data/movements'
 
 const SelectMovementsScreen = () => {
   const navigation = useNavigation();
-  const { movements } = useData();
   const { updateEntry } = useJournalEntry();
 
   const [selectedIds, setSelectedIds] = useState([])

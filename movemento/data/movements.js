@@ -352,4 +352,4 @@ const movements =
   }
 ]
 
-export default movements
+export default movements;

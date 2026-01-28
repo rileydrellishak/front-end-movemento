@@ -13,10 +13,10 @@ const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelected
     )
   }
 
-  const buttons = data.map(({ id, name }) => {
+  const buttons = data.map(({ id, name, slug }) => {
     return (
       <SelectableButton
-        key={id}
+        key={slug}
         id={id}
         name={name}
         variant={variant}

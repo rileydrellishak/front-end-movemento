@@ -5,10 +5,10 @@ import SelectableButtonsContainer from '../components/containers/SelectableButto
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react'
+import moods from '../data/moods'
 
 const SelectMoodsBeforeScreen = () => {
   const navigation = useNavigation();
-  const { moods } = useData();
   const { updateEntry } = useJournalEntry();
 
   const [selectedIds, setSelectedIds] = useState([])
