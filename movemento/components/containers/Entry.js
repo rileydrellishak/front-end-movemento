@@ -2,38 +2,36 @@ import { View, Text, Pressable } from 'react-native'
 import ContainerStyles from '../../styles/Containers'
 import ButtonStyles from '../../styles/Buttons';
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
-import { useState } from 'react'
+import { useState } from 'react';
+import EditEntryButton from '../buttons/EditEntryButton';
 
-const Entry = ({ id, user_id, reflection, moods_before, moods_after, movements, created_at, handleEditEntryButton, onDeleteEntry }) => {
-  const [entryId, setEntryId] = useState(id)
+const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
   
   const objectNames = (obj) => {
     return obj.name
   }
 
-  const movement_names = movements.map(objectNames)
-  const moods_before_names = moods_before.map(objectNames)
-  const moods_after_names = moods_after.map(objectNames)
+  const movement_names = entry.movements.map(objectNames)
+  const moods_before_names = entry.moods_before.map(objectNames)
+  const moods_after_names = entry.moods_after.map(objectNames)
 
-  const dateObj = new Date(created_at)
+  const dateObj = new Date(entry.created_at)
   const displayDate = dateObj.toLocaleDateString()
 
   const displayTime = dateObj.toLocaleString(undefined, {hour: 'numeric', minute: 'numeric'})
 
   return (
     <View style={[ContainerStyles.debugging, ContainerStyles.entry]}>
-      <Text>entry id is {id}</Text>
-      <Text>user id is {user_id}</Text>
+      <Text>entry id is {entry.id}</Text>
+      <Text>user id is {entry.user_id}</Text>
       <Text>{displayDate}</Text>
       <Text>{displayTime}</Text>
       <Text>{movement_names}</Text>
       <Text>{moods_before_names}</Text>
       <Text>{moods_after_names}</Text>
-      <Text>{reflection}</Text>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => handleEditEntryButton(id)}>
-        <Text>edit entry</Text>
-      </Pressable>
-      <DeleteEntryButton user_id={user_id} entry_id={id} onDeleteEntry={onDeleteEntry}/>
+      <Text>{entry.reflection}</Text>
+      <EditEntryButton entry={entry}/>
+      <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
     </View>
   )
 }

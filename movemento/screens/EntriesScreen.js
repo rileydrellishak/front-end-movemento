@@ -40,8 +40,8 @@ const EntriesScreen = ({ navigation }) => {
     }))
   }
 
-  const handleEditEntryButton = (entryId) => {
-    navigation.navigate('EditEntryScreen', { entryId })
+  const handleEditEntryButton = (entry) => {
+    navigation.navigate('EditEntryScreen', { entry: editingEntry })
   }
 
   if (loading) {

@@ -8,15 +8,7 @@ const EntriesContainer = ({ handleEditEntryButton, handleDeleteEntry, data }) =>
     return (
       <Entry 
         key={entry.id}
-        id={entry.id}
-        reflection={entry.reflection}
-        user_id={entry.user_id}
-        movements={entry.movements}
-        created_at={entry.created_at}
-        moods_before={entry.moods_before}
-        moods_after={entry.moods_after}
-        handleEditEntryButton={handleEditEntryButton}
-        onDeleteEntry={handleDeleteEntry}
+        entry={entry}
         />
     )
   })
