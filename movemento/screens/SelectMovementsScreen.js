@@ -7,6 +7,7 @@ import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
 import FilterMovements from '../components/FilterMovements';
+import FilteringButtonsContainer from '../components/containers/FilteringButtonsContainer';
 
 const SelectMovementsScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();
@@ -35,10 +36,13 @@ const SelectMovementsScreen = ({ navigation }) => {
     }
   })
 
+  const movementCategories = [... new Set(movements.map(m => m.category))]
+
   return(
     <ScrollView>
       <Text>pick movements</Text>
       <FilterMovements search={search} setSearch={setSearch} />
+      <FilteringButtonsContainer categories={movementCategories}/>
       <SelectableButtonsContainer
         data={filteredMovements}
         selectedIds={selectedIds}

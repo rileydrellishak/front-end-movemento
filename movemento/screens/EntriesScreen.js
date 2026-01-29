@@ -6,6 +6,7 @@ import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEnt
 import { useData } from '../context/DataContext';
 import TextStyles from '../styles/Text'
 import ContainerStyles from '../styles/Containers'
+import EntryCalendar from '../components/EntryCalendar';
 
 const EntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([])
@@ -63,6 +64,7 @@ const EntriesScreen = ({ navigation }) => {
 
   return(
     <View>
+      <EntryCalendar />
       <EntriesContainer
         handleEditEntryButton={handleEditEntryButton}
         handleDeleteEntry={handleDeleteEntry}
