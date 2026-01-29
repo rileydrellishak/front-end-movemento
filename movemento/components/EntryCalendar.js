@@ -1,14 +1,12 @@
-import { Calendar } from 'react-native-calendars'
-
+import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
+import { View } from 'react-native'
 const EntryCalendar = () => {
   return (
-    <Calendar
-      markedDates={{
-        '2026-01-20': {selected: true, selectedColor: 'orange'},
-        '2026-01-21': {selected: true, selectedColor: 'orange'},
-        '2026-01-22': {selected: true, selectedColor:'orange'}
-      }}
-    />
+    <CalendarProvider date={new Date().toISOString()} onDayPress={(day) => console.log('Day pressed:', day)}>
+      <View>
+        <WeekCalendar firstDay={1}/>
+      </View>
+    </CalendarProvider>
   )
 }
 
