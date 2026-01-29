@@ -36,13 +36,10 @@ const SelectMovementsScreen = ({ navigation }) => {
     }
   })
 
-  const movementCategories = [... new Set(movements.map(m => m.category))]
-
   return(
     <ScrollView>
       <Text>pick movements</Text>
       <FilterMovements search={search} setSearch={setSearch} />
-      <FilteringButtonsContainer categories={movementCategories}/>
       <SelectableButtonsContainer
         data={filteredMovements}
         selectedIds={selectedIds}

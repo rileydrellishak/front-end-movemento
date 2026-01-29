@@ -12,6 +12,7 @@ import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
 
 import TextStyles from '../styles/Text';
+import ScreenStyles from '../styles/Screens';
 
 const HomeScreen = ({ navigation }) => {
   const { loading, users, selectedUser, setSelectedUser } = useData();
@@ -33,40 +34,16 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <Text style={TextStyles.title}>HOME</Text>
+    <View style={ScreenStyles.home}>
       <View style={ContainerStyles.debugging}>
         <CreateEntryButton onPress={handleNext}/>
-
-        {/* <Pressable
-          onPress={() => navigation.navigate('SelectMoodsBefore')}
-          style={[ButtonStyles.base, ButtonStyles.debugging]}
-        >
-          <Text>Quick jump to SELECT MOODS BEFORE for debugging</Text>
-        </Pressable>
-
-        <Pressable
-          onPress={() => navigation.navigate('SelectMoodsAfter')}
-          style={[ButtonStyles.base, ButtonStyles.debugging]}>
-          <Text>Quick jump to SELECT MOODS AFTER for debugging</Text>
-        </Pressable>
-
-        <Pressable
-          onPress={() => navigation.navigate('Reflection')}
-          style={[ButtonStyles.base, ButtonStyles.debugging]}
-        >
-          <Text>Quick jump to REFLECTION for debugging</Text>
-        </Pressable> */}
       </View>
-      {/* <EntriesContainer/> */}
       <SelectUserContainer
         users={users}
         selectedUser={selectedUser}
         setSelectedUser={setSelectedUser}
       />
-      <Text>The current selected user is {selectedUser.name}</Text>
-      {/* <EntryCalendar></EntryCalendar> */}
-    </ScrollView>
+    </View>
   )
 }
 

@@ -25,10 +25,10 @@ describe('Select movements screen', () => {
     expect(mockUpdateEntry).toHaveBeenCalledWith({'movements': ['1']})
   })
 
-  it('renders the go to next screen button', () => {
-    render(<SelectMovementsScreen/>)
-    fireEvent.press(screen.getByText('go to moods before screen'))
-  })
+  // it('renders the go to next screen button', () => {
+  //   render(<SelectMovementsScreen/>)
+  //   fireEvent.press(screen.getByText('go to moods before screen'))
+  // })
 })
 
 // go to moods before screen

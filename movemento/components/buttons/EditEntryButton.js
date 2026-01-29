@@ -11,7 +11,7 @@ const EditEntryButton = ({ entry }) => {
   }
 
   return (
-    <Pressable style={[ButtonStyles.base, ButtonStyles.edit]} onPress={handlePress}>
+    <Pressable style={[ButtonStyles.base, ButtonStyles.edit, ButtonStyles.debugging]} onPress={handlePress}>
       <Text style={TextStyles.edit}>Edit</Text>
     </Pressable>
   )

@@ -13,6 +13,7 @@ const ContainerStyles = StyleSheet.create({
   debugging: {
     borderColor: 'red',
     borderWidth: 3,
+    flex: 1,
   },
 
   reflection: {
@@ -31,8 +32,15 @@ const ContainerStyles = StyleSheet.create({
   },
 
   entry: {
-    margin: 5,
-    padding: 5
+    margin: 10,
+    padding: 20, 
+    borderRadius: 20,
+    backgroundColor: '#F1E3F3'
+  },
+
+  entries: {
+    flex: 1,
+    backgroundColor: 'pink'
   },
 
   loading: {

@@ -21,15 +21,13 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
   const displayTime = dateObj.toLocaleString(undefined, {hour: 'numeric', minute: 'numeric'})
 
   return (
-    <View style={[ContainerStyles.debugging, ContainerStyles.entry]}>
-      <Text>entry id is {entry.id}</Text>
-      <Text>user id is {entry.user_id}</Text>
+    <View style={[ContainerStyles.entry]}>
       <Text>{displayDate}</Text>
       <Text>{displayTime}</Text>
       <Text>{movement_names}</Text>
-      <Text>{moods_before_names}</Text>
-      <Text>{moods_after_names}</Text>
-      <Text>{entry.reflection}</Text>
+      <Text>Moods before: {moods_before_names}</Text>
+      <Text>Moods after: {moods_after_names}</Text>
+      <Text>Reflection: {entry.reflection}</Text>
       <EditEntryButton entry={entry}/>
       <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
     </View>

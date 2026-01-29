@@ -13,7 +13,7 @@ const EntriesContainer = ({ handleEditEntryButton, handleDeleteEntry, data }) =>
     )
   })
   return (
-    <ScrollView style={ContainerStyles.debugging}>
+    <ScrollView style={ContainerStyles.entries}>
       {renderEntries}
     </ScrollView>
   )

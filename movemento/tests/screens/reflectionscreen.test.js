@@ -2,12 +2,19 @@ import { render, screen, rerender, fireEvent } from '@testing-library/react-nati
 import ReflectionScreen from '../../screens/ReflectionScreen';
 
 const mockUpdateEntry = jest.fn()
+const mockAddEntryToCache = jest.fn()
 
 jest.mock("../../context/JournalEntryContext", () => ({
   useJournalEntry: () => ({
     updateEntry: mockUpdateEntry,
   }),
 }));
+
+jest.mock('../../context/DataContext', () => ({
+  useData: () => ({
+    addEntryToCache: mockAddEntryToCache,
+  })
+}))
 
 describe('Reflection screen', () => {
   it('has a text input component on the screen', () => {

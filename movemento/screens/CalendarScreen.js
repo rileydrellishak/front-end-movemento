@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 const CalendarScreen = ({ navigation }) => {
   return(
     <View>
-      <Text>the screen where you will see a cakebdar</Text>
+      <Text>the screen where you will see a calendar</Text>
     </View>
   )
 }
