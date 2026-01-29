@@ -1,5 +1,4 @@
 import { View, Text, Pressable } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import ReflectionTextInput from '../components/ReflectionTextInput';
 import SaveEntryButton from '../components/buttons/SaveEntryButton';
 import { useJournalEntry } from '../context/JournalEntryContext';

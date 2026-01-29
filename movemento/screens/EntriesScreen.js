@@ -1,5 +1,5 @@
 import { View, Text, Pressable, SafeAreaView } from 'react-native'
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState, useEffect, useCallback } from 'react'
 import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI } from '../api/utilities';

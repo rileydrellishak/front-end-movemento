@@ -3,9 +3,6 @@ import HomeStack from './HomeStack';
 import EntriesStack from './EntriesStack';
 import CalendarStack from './CalendarStack';
 import Entypo from '@expo/vector-icons/Entypo';
-// <Entypo name="home" size={24} color="black" />
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
-// <SimpleLineIcons name="pencil" size={24} color="black" />
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();

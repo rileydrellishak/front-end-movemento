@@ -1,5 +1,4 @@
 import { ScrollView, View, Text, Pressable } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import ContainerStyles from '../styles/Containers';
@@ -7,7 +6,6 @@ import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
 import FilterMovements from '../components/FilterMovements';
-import FilteringButtonsContainer from '../components/containers/FilteringButtonsContainer';
 
 const SelectMovementsScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();

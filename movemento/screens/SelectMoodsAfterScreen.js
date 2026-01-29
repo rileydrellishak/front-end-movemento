@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native'
 import { ScrollView, View, Text, Pressable } from 'react-native'
 import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';

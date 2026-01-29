@@ -13,10 +13,10 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
     })
   
   return (
-    <View style={ContainerStyles.debugging}>
+    <View style={ContainerStyles}>
       <Text>Select user</Text>
       <Picker
-        style={[ContainerStyles.debugging, ContainerStyles.picker]}
+        style={[ContainerStyles.picker]}
         selectedValue={selectedUser?.id}
         onValueChange={(itemValue) => {
           const user = users.find(user => user.id === itemValue);
