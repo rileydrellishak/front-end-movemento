@@ -10,7 +10,7 @@ import FilterMovements from '../components/FilterMovements';
 
 const SelectMovementsScreen = ({ navigation }) => {
   const { updateEntry } = useJournalEntry();
-
+  const [search, setSearch] = useState('')
   const [selectedIds, setSelectedIds] = useState([])
 
   useEffect(() => {
@@ -23,12 +23,24 @@ const SelectMovementsScreen = ({ navigation }) => {
     navigation.navigate('SelectMoodsBefore')
   }
 
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value.toLowerCase())
+  }
+
+  const filteredMovements = movements.filter(m => {
+    if (search === '') {
+      return m
+    } if (m.slug.includes(search.toLowerCase())) {
+      return m
+    }
+  })
+
   return(
     <ScrollView>
       <Text>pick movements</Text>
-      <FilterMovements />
+      <FilterMovements search={search} setSearch={setSearch} />
       <SelectableButtonsContainer
-        data={movements}
+        data={filteredMovements}
         selectedIds={selectedIds}
         setSelectedIds={setSelectedIds}
         variant='movements'

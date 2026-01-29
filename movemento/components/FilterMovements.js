@@ -1,8 +1,7 @@
 import { SearchBar } from '@rneui/themed'
-import {useState} from 'react'
+import { useState } from 'react'
 
-const FilterMovements = () => {
-  const [search, setSearch] = useState('')
+const FilterMovements = ({ search, setSearch }) => {
   return (
     <SearchBar placeholer='Search for movements' onChangeText={setSearch} value={search} lightTheme={true} round={true}/>
   )
