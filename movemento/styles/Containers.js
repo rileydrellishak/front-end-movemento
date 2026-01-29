@@ -33,6 +33,10 @@ const ContainerStyles = StyleSheet.create({
   entry: {
     margin: 5,
     padding: 5
+  },
+
+  loading: {
+    alignItems: 'center'
   }
 })
 

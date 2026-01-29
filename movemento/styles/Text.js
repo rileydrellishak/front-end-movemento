@@ -17,6 +17,13 @@ const TextStyles = StyleSheet.create({
   button: {
     fontSize: 18,
     textAlign: 'center'
+  },
+
+  loading: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    verticalAlign: 'center'
   }
 })
 
