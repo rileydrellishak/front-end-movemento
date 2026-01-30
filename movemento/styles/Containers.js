@@ -45,6 +45,13 @@ const ContainerStyles = StyleSheet.create({
 
   loading: {
     alignItems: 'center'
+  },
+
+  calendar: {
+    margin: 0,
+    padding: 0,
+    backgroundColor: 'red',
+    height: 75
   }
 })
 
