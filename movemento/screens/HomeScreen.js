@@ -11,8 +11,14 @@ import TextStyles from '../styles/Text';
 import ScreenStyles from '../styles/Screens';
 
 const HomeScreen = ({ navigation }) => {
-  const { loading } = useData();
+  const { loading, users, selectedUser, setSelectedUser } = useData();
   const { updateEntry } = useJournalEntry();
+  
+  useEffect(() => {
+    if (selectedUser?.id) {
+      updateEntry({ user_id: selectedUser.id })
+    }
+  }, [selectedUser]);
   
   if (loading) {
     return <Text style={TextStyles.title}>loading...</Text>
@@ -32,6 +38,7 @@ const HomeScreen = ({ navigation }) => {
       <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={handleGoBack}>
         <Text>go back and change user</Text>
       </Pressable>
+      <Text>The currently selected user is {selectedUser.name}</Text>
     </View>
   )
 }

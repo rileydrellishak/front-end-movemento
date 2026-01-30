@@ -8,7 +8,7 @@ const RootStack = createNativeStackNavigator();
 const RootNavigator = () => {
   return (
     <RootStack.Navigator>
-      <RootStack.Screen name='Login' component={SelectUserScreen}/>
+      {/* <RootStack.Screen name='Login' component={SelectUserScreen}/> */}
       <RootStack.Screen name='Main' component={TabNavigator} options={{ headerShown: false }}/>
       <RootStack.Screen name='CreateEntryModal' component={CreateEntryStack} options={{ presentation: 'modal', headerShown: false}}/>
     </RootStack.Navigator>
