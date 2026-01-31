@@ -36,6 +36,9 @@ const SelectMovementsScreen = ({ navigation }) => {
 
   return(
     <ScrollView>
+      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => navigation.navigate('Reflection')}>
+        <Text>jump to reflection page</Text>
+      </Pressable>
       <Text>pick movements</Text>
       <FilterMovements search={search} setSearch={setSearch} />
       <SelectableButtonsContainer

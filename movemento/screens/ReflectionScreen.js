@@ -3,6 +3,7 @@ import ReflectionTextInput from '../components/ReflectionTextInput';
 import SaveEntryButton from '../components/buttons/SaveEntryButton';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
+import ButtonStyles from '../styles/Buttons'
 
 const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
@@ -14,10 +15,6 @@ const ReflectionScreen = ({ navigation }) => {
         updateEntry({ reflection: reflectionText })
       }
     }, [reflectionText]);
-
-  const handleSave = () => {
-    //make the api post request
-  }
   
   return(
     <View>
@@ -25,6 +22,9 @@ const ReflectionScreen = ({ navigation }) => {
         reflectionText={reflectionText}
         setReflectionText={setReflectionText}
       />
+      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
+        <Text>Add photo</Text>
+      </Pressable>
       <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry}/>
     </View>
   )

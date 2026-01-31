@@ -14,7 +14,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "jsEngine": "jsc"
+      "jsEngine": "jsc",
+      "infoPlist": {"NSCameraUsageDescription": "This app uses the camera to add photos to journal entries."}
     },
     "android": {
       "adaptiveIcon": {
@@ -38,6 +39,13 @@
     },
     "updates": {
       "url": "https://u.expo.dev/8a347ed8-cc6f-4823-b163-61b2c697b84d"
-    }
+    },
+    "plugins": [[
+      "expo-media-library",
+      {
+        "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+        "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos."
+      }
+    ]]
   }
 }
