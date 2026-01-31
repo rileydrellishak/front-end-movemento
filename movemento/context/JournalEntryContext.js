@@ -8,7 +8,8 @@ const getInitialJournalEntry = () => {
     movements: [],
     moods_before: [],
     moods_after: [],
-    reflection: ''
+    reflection: '',
+    photoURI: ''
   }
 }
 
