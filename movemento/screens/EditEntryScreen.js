@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from 'react-native'
+import { useState } from 'react'
 import ButtonStyles from '../styles/Buttons'
 import ContainerStyles from '../styles/Containers'
 import { useData } from '../context/DataContext'
@@ -10,16 +11,41 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
   const { useJournalEntry } = useData();
+  const [expanded, setExpanded] = useState(true)
+
+  const handlePress = () => {
+    setExpanded(!expanded);
+  }
 
   return (
     <SafeAreaView style={[ScreenStyles.editEntries]}>
       <Text>the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}</Text>
-
-      <ReflectionTextInput/>
+      <List.Section title='Accordions'>
+        <List.Accordion title='Select Movements'
+          left={props => <List.Icon {...props} icon='dumbbell'/>}
+          expanded={expanded}
+          onPress={handlePress}
+        >
+          <List.Item title='first'/>
+        </List.Accordion>
+        <List.Accordion title='Select Moods'
+          left={props => <List.Icon {...props} icon='emoticon-happy-outline'/>}
+          expanded={expanded}
+          onPress={handlePress}
+        >
+          <List.Item title='moods'/>
+        </List.Accordion>
+        <List.Accordion title='Reflection'
+          left={props => <List.Icon {...props} icon='thought-bubble'/>}
+          expanded={expanded}
+          onPress={handlePress}>
+            <List.Item title='type'/>
+            <ReflectionTextInput reflectionText={entry.reflection}/>
+        </List.Accordion>
+      </List.Section>
       <Pressable style={[ButtonStyles.base, ButtonStyles.save]}>
         <Text>save changes</Text>
       </Pressable>
-      <Text>{entry.reflection}</Text>
     </SafeAreaView>
   )
 }
