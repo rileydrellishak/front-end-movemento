@@ -3,16 +3,19 @@ import { useEffect, useState } from 'react';
 import { DataProvider } from './context/DataContext';
 import { JournalEntryProvider } from './context/JournalEntryContext'
 import RootNavigator from './navigation/RootStack';
+import { PaperProvider } from 'react-native-paper'
+import LightTheme from './styles/LightTheme'
 
 export default function App() {
-
   return (
-    <DataProvider>
-      <JournalEntryProvider>
-        <NavigationContainer>
-          <RootNavigator />
-        </NavigationContainer>
-      </JournalEntryProvider>
-    </DataProvider>
+  <PaperProvider theme={LightTheme}>
+      <DataProvider>
+        <JournalEntryProvider>
+          <NavigationContainer theme={LightTheme}>
+            <RootNavigator />
+          </NavigationContainer>
+        </JournalEntryProvider>
+      </DataProvider>
+  </PaperProvider>
   );
 }

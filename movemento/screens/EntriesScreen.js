@@ -1,4 +1,4 @@
-import { View, Text, Pressable, SafeAreaView } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState, useEffect, useCallback } from 'react'
@@ -8,6 +8,8 @@ import TextStyles from '../styles/Text'
 import ContainerStyles from '../styles/Containers'
 import EntryCalendar from '../components/EntryCalendar';
 import ScreenStyles from '../styles/Screens';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const EntriesScreen = ({ navigation }) => {
   const [entries, setEntries] = useState([])
@@ -70,13 +72,13 @@ const EntriesScreen = ({ navigation }) => {
   }
 
   return(
-    <SafeAreaView style={ScreenStyles.entries}>
+    <View style={ScreenStyles.entries}>
       <EntryCalendar />
       <EntriesContainer
         handleEditEntryButton={handleEditEntryButton}
         handleDeleteEntry={handleDeleteEntry}
         data={entries}/>
-    </SafeAreaView>
+    </View>
   )
 }
 

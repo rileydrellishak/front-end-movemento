@@ -1,10 +1,11 @@
-import { View, Text, Pressable, SafeAreaView } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
 import ButtonStyles from '../styles/Buttons'
 import ContainerStyles from '../styles/Containers'
 import { useData } from '../context/DataContext'
 import ReflectionTextInput from '../components/ReflectionTextInput'
 import ScreenStyles from '../styles/Screens'
 import { List } from 'react-native-paper'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
