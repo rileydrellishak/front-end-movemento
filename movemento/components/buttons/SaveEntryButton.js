@@ -6,7 +6,7 @@ import { createJournalEntryAPI } from "../../api/utilities"
 import { useData } from "../../context/DataContext"
 
 const SaveEntryButton = ({ navigation, entry, resetEntry }) => {
-  const { addEntryToCache } = useData()
+  const { addEntryToCache, selectedUser, setEntriesCache, entriesCache } = useData();
   const confirmSave = (newEntry) => {
     Alert.alert(
       'Entry Saved',

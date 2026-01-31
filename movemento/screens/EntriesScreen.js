@@ -40,6 +40,12 @@ const EntriesScreen = ({ navigation }) => {
     }, [selectedUser.id, fetched])
   )
 
+  useEffect(() => {
+    if (entriesCache[selectedUser.id]) {
+      setEntries(entriesCache[selectedUser.id])
+    }
+  }, [entriesCache, selectedUser.id])
+
   const handleDeleteEntry = (entry_id) => {
     setEntries(prevEntries => {
       const updated = prevEntries.filter(entry => entry.id !== entry_id)

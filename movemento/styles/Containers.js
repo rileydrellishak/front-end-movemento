@@ -52,6 +52,11 @@ const ContainerStyles = StyleSheet.create({
     padding: 0,
     backgroundColor: 'red',
     height: 75
+  },
+
+  image: {
+    width: 120,
+    height: 120
   }
 })
 
