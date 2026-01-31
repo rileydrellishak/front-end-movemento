@@ -3,7 +3,7 @@ import ButtonStyles from '../styles/Buttons';
 import ContainerStyles from '../styles/Containers';
 import { useEffect, useState } from 'react';
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
 
