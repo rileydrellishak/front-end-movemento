@@ -16,7 +16,7 @@ const ReflectionScreen = ({ navigation }) => {
         updateEntry({ reflection: reflectionText })
       }
       if (photoURI) {
-        updateEntry({ photoURI: photoURI })
+        updateEntry({ img_path: photoURI })
       }
     }, [reflectionText, photoURI]);
 
@@ -44,7 +44,7 @@ const ReflectionScreen = ({ navigation }) => {
         <Text>{photoURI ? 'change photo': 'add photo'}</Text>
       </Pressable>
       {photoURI && (
-        <Image source={{ uri: photoURI}} style={{ width: 120, height: 120, borderRadius: 8}}/>
+        <Image source={{ uri: photoURI }} style={{ width: 120, height: 120, borderRadius: 8}}/>
       )}
       <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry}/>
     </View>

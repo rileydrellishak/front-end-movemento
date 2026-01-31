@@ -9,7 +9,7 @@ const getInitialJournalEntry = () => {
     moods_before: [],
     moods_after: [],
     reflection: '',
-    photoURI: ''
+    img_path: null
   }
 }
 

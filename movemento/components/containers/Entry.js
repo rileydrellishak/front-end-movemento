@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, Image } from 'react-native'
 import ContainerStyles from '../../styles/Containers'
 import ButtonStyles from '../../styles/Buttons';
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
@@ -28,6 +28,9 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
       <Text>Moods before: {moods_before_names}</Text>
       <Text>Moods after: {moods_after_names}</Text>
       <Text>Reflection: {entry.reflection}</Text>
+      {entry.img_path &&
+        <Image source={{ uri: entry.img_path }} style={{ width: 120, height: 120}}/>
+      }
       <EditEntryButton entry={entry}/>
       <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
     </View>
