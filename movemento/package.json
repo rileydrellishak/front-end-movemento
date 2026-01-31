@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-picker/picker": "^2.11.4",
+    "@react-native-vector-icons/material-design-icons": "^12.4.0",
     "@react-native-vector-icons/material-icons": "^12.4.0",
     "@react-navigation/bottom-tabs": "^7.10.1",
     "@react-navigation/elements": "^2.9.5",
