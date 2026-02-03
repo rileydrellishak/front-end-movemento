@@ -1,15 +1,18 @@
-import { View, Text, Pressable, Image } from 'react-native'
+import { View, Text, Pressable, Image, Alert } from 'react-native'
 import ReflectionTextInput from '../components/ReflectionTextInput';
 import SaveEntryButton from '../components/buttons/SaveEntryButton';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import ButtonStyles from '../styles/Buttons';
 import * as ImagePicker from 'expo-image-picker'
+import { useData } from '../context/DataContext'
+import { createJournalEntryAPI } from '../api/utilities'
 
 const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
   const [photoURI, setPhotoURI] = useState('')
   const [reflectionText, setReflectionText] = useState('')
+  const { addEntryToCache, selectedUser, setEntriesCache, entriesCache } = useData();
 
   useEffect(() => {
       if (reflectionText) {
@@ -31,6 +34,28 @@ const ReflectionScreen = ({ navigation }) => {
       setPhotoURI(result.assets[0].uri);
     }
   }
+
+  const confirmSave = (newEntry) => {
+      Alert.alert(
+        'Entry Saved',
+        '',
+        [
+          {
+            text: 'Go Home',
+            onPress: () => {
+              resetEntry();
+              navigation.getParent()?.goBack();
+            }
+          }
+        ]
+      )
+    }
+
+  const saveEntry = async () => {
+    const newEntry = await createJournalEntryAPI(entry)
+    addEntryToCache(entry.user_id, newEntry)
+    confirmSave(newEntry)
+  }
   
   return(
     <View>
@@ -51,7 +76,7 @@ const ReflectionScreen = ({ navigation }) => {
         <Image source={{ uri: photoURI }} style={{ width: 120, height: 120, borderRadius: 8}}/>
         </>
       )}
-      <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry}/>
+      <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry} saveEntry={saveEntry}/>
     </View>
   )
 }
