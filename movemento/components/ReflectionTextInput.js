@@ -8,6 +8,7 @@ const ReflectionTextInput = ({ reflectionText, setReflectionText}) => {
     <TextInput style={ContainerStyles.reflection}
       placeholder='Enter your reflection here'
       onChangeText={setReflectionText}
+      value={reflectionText}
     />
   )
 }

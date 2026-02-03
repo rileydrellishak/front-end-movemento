@@ -44,7 +44,12 @@ const ReflectionScreen = ({ navigation }) => {
         <Text>{photoURI ? 'change photo': 'add photo'}</Text>
       </Pressable>
       {photoURI && (
+        <>
+        <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => setPhotoURI('')}>
+          <Text>remove photo</Text>
+        </Pressable>
         <Image source={{ uri: photoURI }} style={{ width: 120, height: 120, borderRadius: 8}}/>
+        </>
       )}
       <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry}/>
     </View>
