@@ -48,4 +48,9 @@ const updateJournalEntryAPI = (user_id, entry_id, updates) => {
   .catch(error => console.log(error))
 }
 
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI };
+const postPhotoForJournalEntryAPI = (entry_id, file) => {
+  return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, postPhotoForJournalEntryAPI };
