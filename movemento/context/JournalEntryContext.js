@@ -4,7 +4,7 @@ const JournalEntryContext = createContext();
 
 const getInitialJournalEntry = () => {
   return {
-    user_id: null,
+    user_id: 1,
     movements: [],
     moods_before: [],
     moods_after: [],
