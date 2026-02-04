@@ -65,7 +65,7 @@ const photoPostRequest = (photoURI, entry_id) => {
 
 const postPhotoForJournalEntryAPI = (entry_id, file) => {
   console.log(file['_parts'][0][1])
-  return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file['_parts'][0][1], {
+  return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'multipart/form-data'
