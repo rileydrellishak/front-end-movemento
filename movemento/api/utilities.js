@@ -53,28 +53,28 @@ const photoPostRequest = (photoURI, entry_id) => {
       const formData = new FormData();
       formData.append('photo', {
         uri: photoURI,
-        name: '',
+        name: `entry_${entry_id}`,
         type: 'image/jpeg'
-      });
-      try {
-        return postPhotoForJournalEntryAPI(entry_id, formData)
-      } catch (error) {
-        console.error('Upload failed: ', error)
-        throw error;
-      }
+      })
+      return postPhotoForJournalEntryAPI(entry_id, formData)
     } else {
       console.log('no photo added')
+      return Promise.resolve(null)
     }
   }
 
 const postPhotoForJournalEntryAPI = (entry_id, file) => {
-  return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file, {
+  console.log(file['_parts'][0][1])
+  return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file['_parts'][0][1], {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'multipart/form-data'
     }
   })
   .then(response => response.data)
-  .catch(error => console.log(error))
+  .catch(error => {
+    console.error('Photo upload failed:', error.response?.status, error.response?.data)
+    throw error
+  })
 }
 export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest };

@@ -13,13 +13,11 @@ const ReflectionScreen = ({ navigation }) => {
   const [photoURI, setPhotoURI] = useState('')
   const [reflectionText, setReflectionText] = useState('')
   const { addEntryToCache, selectedUser, setEntriesCache, entriesCache } = useData();
+  const [newEntryId, setNewEntryId] = useState(null)
 
   useEffect(() => {
       if (reflectionText) {
         updateEntry({ reflection: reflectionText })
-      }
-      if (photoURI) {
-        updateEntry({ img_path: photoURI })
       }
     }, [reflectionText, photoURI]);
 
@@ -53,7 +51,7 @@ const ReflectionScreen = ({ navigation }) => {
 
   const saveEntry = async () => {
     const newEntry = await createJournalEntryAPI(entry)
-    const postedPhoto = await photoPostRequest(photoURI, entry.id)
+    const postedPhoto = await photoPostRequest(photoURI, newEntry.id)
     addEntryToCache(entry.user_id, newEntry)
     confirmSave(newEntry)
   }
