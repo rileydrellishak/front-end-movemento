@@ -9,6 +9,8 @@ const EntriesContainer = ({ handleEditEntryButton, handleDeleteEntry, data }) =>
       <Entry 
         key={entry.id}
         entry={entry}
+        handleEditEntryButton={handleEditEntryButton}
+        onDeleteEntry={handleDeleteEntry}
         />
     )
   })
