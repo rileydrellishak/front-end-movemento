@@ -12,41 +12,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const EntriesScreen = ({ navigation }) => {
-  const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
-  const { selectedUser, entriesCache, setEntriesCache } = useData();
+  const { selectedUser, entriesCache, setEntriesCache, entries, setEntries } = useData();
   const [fetched, setFetched] = useState(new Set())
-
-  const fetchEntries = async () => {
-    try {
-      setLoading(true)
-      if (fetched.has(selectedUser.id)) {
-        setEntries(entriesCache[selectedUser.id])
-        setLoading(false)
-        return
-      }
-      const newEntries = await getAllJournalEntriesForUserAPI(selectedUser.id)
-      setEntries(newEntries)
-      setEntriesCache(prev => ({...prev, [selectedUser.id]: newEntries}))
-      setFetched(prev => new Set([...prev, selectedUser.id]))
-    } catch (error) {
-      console.error('error fetch', error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useFocusEffect(
-    useCallback(() => {
-      fetchEntries()
-    }, [selectedUser.id, fetched])
-  )
-
-  useEffect(() => {
-    if (entriesCache[selectedUser.id]) {
-      setEntries(entriesCache[selectedUser.id])
-    }
-  }, [entriesCache, selectedUser.id])
 
   const handleDeleteEntry = (entry_id) => {
     setEntries(prevEntries => {
@@ -63,13 +31,13 @@ const EntriesScreen = ({ navigation }) => {
     navigation.navigate('EditEntryScreen', { entry: entry })
   }
 
-  if (loading) {
-    return (
-      <View style={[ContainerStyles.base, ContainerStyles.loading]}>
-        <Text style={TextStyles.loading}>Loading entries...</Text>
-      </View>
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <View style={[ContainerStyles.base, ContainerStyles.loading]}>
+  //       <Text style={TextStyles.loading}>Loading entries...</Text>
+  //     </View>
+  //   )
+  // }
 
   return(
     <View style={ScreenStyles.entries}>

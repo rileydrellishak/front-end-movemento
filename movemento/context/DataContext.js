@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { convertUserFromAPI, getAllModelsAPI } from '../api/utilities.js'
+import { convertUserFromAPI, getAllJournalEntriesForUserAPI, getAllModelsAPI } from '../api/utilities.js'
 
 const DataContext = createContext();
 
@@ -8,20 +8,40 @@ const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState('')
   const [entriesCache, setEntriesCache] = useState({})
+  const [entries, setEntries] = useState([])
 
   const fetchData = async () => {
     try {
       const users = await getAllModelsAPI('users')
       const newUsers = users.map(convertUserFromAPI)
       setUsers(newUsers);
-      setSelectedUser(prevUser => prevUser || users[8])
+      
+      const userToSelect = users[8]
+      setSelectedUser(userToSelect)
 
+      const entries = await getAllJournalEntriesForUserAPI(userToSelect.id)
+      setEntries(entries)
     } catch (error) {
         console.error('err fetch', error)
     } finally {
       setLoading(false)
     }
   }
+
+  const fetchEntries = async () => {
+    if (selectedUser) {
+      try {
+        const entries = await getAllJournalEntriesForUserAPI(selectedUser.id)
+        setEntries(entries)
+      } catch (error) {
+        console.error('err fetching entries', error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    fetchEntries();
+  }, [selectedUser])
 
   useEffect(() => {
     fetchData();
@@ -44,7 +64,9 @@ const DataProvider = ({ children }) => {
       setSelectedUser,
       entriesCache,
       setEntriesCache,
-      addEntryToCache
+      addEntryToCache,
+      entries,
+      setEntries
       } }>
       {children}
     </DataContext.Provider>
