@@ -14,7 +14,7 @@ const DataProvider = ({ children }) => {
       const users = await getAllModelsAPI('users')
       const newUsers = users.map(convertUserFromAPI)
       setUsers(newUsers);
-      setSelectedUser(prevUser => prevUser || users[0])
+      setSelectedUser(prevUser => prevUser || users[8])
 
     } catch (error) {
         console.error('err fetch', error)

@@ -64,7 +64,6 @@ const photoPostRequest = (photoURI, entry_id) => {
   }
 
 const postPhotoForJournalEntryAPI = (entry_id, file) => {
-  console.log(file['_parts'][0][1])
   return axios.post(`${kBaseURL}/entries/${entry_id}/photo`, file, {
     headers: {
       'Accept': 'application/json',
@@ -77,4 +76,5 @@ const postPhotoForJournalEntryAPI = (entry_id, file) => {
     throw error
   })
 }
+
 export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest };
