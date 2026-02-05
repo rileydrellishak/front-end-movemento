@@ -4,8 +4,12 @@ import ButtonStyles from '../../styles/Buttons';
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
 import { useState } from 'react';
 import EditEntryButton from '../buttons/EditEntryButton';
+import { getPhotoForJournalEntryAPI } from '../../api/utilities';
+import EntryImage from './EntryImage';
 
 const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
+  const OCI_READ_PAR_URL = process.env.EXPO_PUBLIC_ORI_READ_PAR_URL
+  const imageURL = `${OCI_READ_PAR_URL}/${entry.img_path}`
   
   const objectNames = (obj) => {
     return obj.name
@@ -20,6 +24,7 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
 
   const displayTime = dateObj.toLocaleString(undefined, {hour: 'numeric', minute: 'numeric'})
 
+
   return (
     <View style={[ContainerStyles.entry]}>
       <Text>{displayDate}</Text>
@@ -28,9 +33,7 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
       <Text>Moods before: {moods_before_names}</Text>
       <Text>Moods after: {moods_after_names}</Text>
       <Text>Reflection: {entry.reflection}</Text>
-      {entry.img_path &&
-        <Image source={{ uri: entry.img_path }} style={{ width: 120, height: 120}}/>
-      }
+      <EntryImage url={entry.img_path}/>
       <EditEntryButton entry={entry}/>
       <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
     </View>
