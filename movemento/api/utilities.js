@@ -22,7 +22,7 @@ const convertUserFromAPI = (userAPI) => {
     ...userAPI,
     journalEntries: userAPI.journal_entries
   };
-  delete userAPI.journal_entries;
+  delete newUser.journal_entries;
   return newUser;
 }
 

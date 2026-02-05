@@ -19,7 +19,8 @@ const DataProvider = ({ children }) => {
       setSelectedUser(userToSelect)
 
       const entries = await getAllJournalEntriesForUserAPI(userToSelect.id)
-      setEntries(entries)
+      const newEntries = entries.map(convertEntryFromAPI)
+      setEntries(newEntries)
     } catch (error) {
         console.error('err fetch', error)
     } finally {
@@ -27,11 +28,34 @@ const DataProvider = ({ children }) => {
     }
   }
 
+  const convertEntryFromAPI = (entryAPI) => {
+    const newEntry = {
+      ...entryAPI,
+      movements: entryAPI.movements.map(movement => movement.id),
+      moodsBefore: entryAPI.moods_before.map(moodBefore => moodBefore.id),
+      moodsAfter: entryAPI.moods_after.map(moodAfter => moodAfter.id),
+    }
+    delete newEntry['moods_before'];
+    delete newEntry['moods_after'];
+
+    return newEntry
+  }
+
+//   const convertUserFromAPI = (userAPI) => {
+//   const newUser = {
+//     ...userAPI,
+//     journalEntries: userAPI.journal_entries
+//   };
+//   delete userAPI.journal_entries;
+//   return newUser;
+// }
+
   const fetchEntries = async () => {
     if (selectedUser) {
       try {
         const entries = await getAllJournalEntriesForUserAPI(selectedUser.id)
-        setEntries(entries)
+        const newEntries = entries.map(convertEntryFromAPI)
+        setEntries(newEntries)
       } catch (error) {
         console.error('err fetching entries', error)
       }

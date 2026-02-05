@@ -19,8 +19,8 @@ const EditEntryScreen = ({ route }) => {
   const [moodsExpanded, setMoodsExpanded] = useState(true)
   const [reflectionExpanded, setReflectionExpanded] = useState(true)
   const [selectedMovements, setSelectedMovements] = useState(entry.movements)
-  const [selectedMoodsBefore, setSelectedMoodsBefore] = useState(entry.moods_before)
-  const [selectedMoodsAfter, setSelectedMoodsAfter] = useState(entry.moods_after)
+  const [selectedMoodsBefore, setSelectedMoodsBefore] = useState(entry.moodsBefore)
+  const [selectedMoodsAfter, setSelectedMoodsAfter] = useState(entry.moodsAfter)
   const [reflectionText, setReflectionText] = useState(entry.reflection)
   const [imgPath, setImgPath] = useState(entry.img_path)
 
