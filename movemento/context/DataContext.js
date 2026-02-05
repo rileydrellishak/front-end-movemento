@@ -31,9 +31,9 @@ const DataProvider = ({ children }) => {
   const convertEntryFromAPI = (entryAPI) => {
     const newEntry = {
       ...entryAPI,
-      movements: entryAPI.movements.map(movement => movement.id),
-      moodsBefore: entryAPI.moods_before.map(moodBefore => moodBefore.id),
-      moodsAfter: entryAPI.moods_after.map(moodAfter => moodAfter.id),
+      movements: entryAPI.movements.map(movement => Number(movement.id)),
+      moodsBefore: entryAPI.moods_before.map(moodBefore => Number(moodBefore.id)),
+      moodsAfter: entryAPI.moods_after.map(moodAfter => Number(moodAfter.id)),
     }
     delete newEntry['moods_before'];
     delete newEntry['moods_after'];
