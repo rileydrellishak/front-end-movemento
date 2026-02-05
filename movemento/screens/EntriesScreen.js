@@ -13,19 +13,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const EntriesScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
-  const { selectedUser, entriesCache, setEntriesCache, entries, setEntries } = useData();
-  const [fetched, setFetched] = useState(new Set())
+  const { selectedUser, entries, setEntries } = useData();
 
   const handleDeleteEntry = (entry_id) => {
-    setEntries(prevEntries => {
-      const updated = prevEntries.filter(entry => entry.id !== entry_id)
-      setEntriesCache(prev => ({
-        ...prev,
-        [selectedUser.id]: updated
-      }))
-      return updated
-    })
-  }
+    setEntries(entries.filter(entry => entry.id !== entry_id))
+  };
 
   const handleEditEntryButton = (entry) => {
     navigation.navigate('EditEntryScreen', { entry: entry })
