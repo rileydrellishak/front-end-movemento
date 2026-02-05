@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView } from 'react-native'
+import { View, Text, Pressable, ScrollView, Alert } from 'react-native'
 import { useState } from 'react'
 import ButtonStyles from '../styles/Buttons'
 import ContainerStyles from '../styles/Containers'
@@ -11,10 +11,16 @@ import SelectableButtonsContainer from '../components/containers/SelectableButto
 import movements from '../data/movements'
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
+import SaveChangesButton from '../components/buttons/SaveChangesButton'
+import { updateJournalEntryAPI } from '../api/utilities'
+import { useJournalEntry } from '../context/JournalEntryContext'
+import { useNavigation } from '@react-navigation/native'
 
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
-  const { useJournalEntry } = useData();
+  const navigation = useNavigation()
+  const { updateEntry } = useJournalEntry();
+  const {entries, setEntries} = useData();
   const [movementsExpanded, setMovementsExpanded] = useState(true)
   const [moodsExpanded, setMoodsExpanded] = useState(true)
   const [reflectionExpanded, setReflectionExpanded] = useState(true)
@@ -23,6 +29,46 @@ const EditEntryScreen = ({ route }) => {
   const [selectedMoodsAfter, setSelectedMoodsAfter] = useState(entry.moodsAfter)
   const [reflectionText, setReflectionText] = useState(entry.reflection)
   const [imgPath, setImgPath] = useState(entry.img_path)
+
+  const updateEntries = (updatedEntry) => {
+    setEntries(prev => [
+      ...prev,
+      updateEntry
+    ])
+  }
+
+  const confirmSave = () => {
+        Alert.alert(
+          'Entry Saved',
+          '',
+          [
+            {
+              text: 'Go Home',
+              onPress: () => {
+                navigation.popToTop();
+              }
+            }
+          ]
+        )
+      }
+  
+  const handleSaveChanges = async () => {
+    console.log('clicked the button')
+    const updatedFields = {
+      movements: selectedMovements,
+      moods_before: selectedMoodsBefore,
+      moods_after: selectedMoodsAfter
+    }
+    updateEntry({...entry, ...updatedFields})
+
+    try {
+    const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, updatedFields)
+    updateEntries(savedEntry)
+    confirmSave()
+    } catch (error) {
+      console.error('err in handle save changes: ', error)
+    }
+  }
 
   return (
     <ScrollView style={[ScreenStyles.editEntries]}>
@@ -47,9 +93,7 @@ const EditEntryScreen = ({ route }) => {
         </List.Accordion>
         <EditPhotoAccordion/>
       </List.Section>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.save]}>
-        <Text>save changes</Text>
-      </Pressable>
+      <SaveChangesButton saveChanges={handleSaveChanges}/>
     </ScrollView>
   )
 }

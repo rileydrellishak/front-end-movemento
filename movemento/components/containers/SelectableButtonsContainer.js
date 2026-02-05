@@ -6,14 +6,11 @@ import ButtonStyles from '../../styles/Buttons';
 import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
-
-    console.log('selectedIds:', selectedIds, typeof selectedIds[0])
-
   const handlePress = (id) => {
     if (selectedIds.includes(id)) {
       setSelectedIds(selectedIds.filter(selectedId => selectedId !== id))
     } else {
-      setSelectedIds([...selectedIds, Number(id)])
+      setSelectedIds([...selectedIds, id])
     }
   }
 

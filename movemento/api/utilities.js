@@ -45,6 +45,7 @@ const deleteJournalEntryAPI = (user_id, entry_id) => {
 
 const updateJournalEntryAPI = (user_id, entry_id, updates) => {
   return axios.patch(`${kBaseURL}/users/${user_id}/entries/${entry_id}`, updates)
+  .then(response => response.data)
   .catch(error => console.log(error))
 }
 
