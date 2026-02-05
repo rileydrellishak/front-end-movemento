@@ -4,13 +4,9 @@ import ButtonStyles from '../../styles/Buttons';
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
 import { useState } from 'react';
 import EditEntryButton from '../buttons/EditEntryButton';
-import { getPhotoForJournalEntryAPI } from '../../api/utilities';
 import EntryImage from './EntryImage';
 
 const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
-  const OCI_READ_PAR_URL = process.env.EXPO_PUBLIC_ORI_READ_PAR_URL
-  const imageURL = `${OCI_READ_PAR_URL}/${entry.img_path}`
-  
   const objectNames = (obj) => {
     return obj.name
   }
@@ -40,52 +36,3 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
   )
 }
 export default Entry;
-
-// {
-//     "created_at": "2026-01-20T14:53:20.234146+00:00",
-//     "id": 5,
-//     "img_path": null,
-//     "moods_after": [
-//       {
-//         "energy": "low",
-//         "id": 8,
-//         "name": "Tired",
-//         "slug": "tired",
-//         "valence": "neutral"
-//       },
-//       {
-//         "energy": "medium",
-//         "id": 9,
-//         "name": "Neutral",
-//         "slug": "neutral",
-//         "valence": "neutral"
-//       }
-//     ],
-//     "moods_before": [
-//       {
-//         "energy": "low",
-//         "id": 8,
-//         "name": "Tired",
-//         "slug": "tired",
-//         "valence": "neutral"
-//       }
-//     ],
-//     "movements": [
-//       {
-//         "category": "sports",
-//         "id": 6,
-//         "is_outdoor": false,
-//         "name": "Boxing",
-//         "slug": "boxing"
-//       },
-//       {
-//         "category": "cardio",
-//         "id": 12,
-//         "is_outdoor": false,
-//         "name": "Dance",
-//         "slug": "dance"
-//       }
-//     ],
-//     "reflection": "I am tired",
-//     "user_id": 3
-// }

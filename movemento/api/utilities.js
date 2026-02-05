@@ -77,16 +77,4 @@ const postPhotoForJournalEntryAPI = (entry_id, file) => {
   })
 }
 
-const getPhotoForJournalEntryAPI = (entry_id) => {
-  return axios.get(`${kBaseURL}/entries/${entry_id}/photo`, { responseType: 'blob'})
-  .then(response => {
-    const photoBlob = response.data
-    const imageURL = URL.createObjectURL(new Blob(photoBlob))
-  })
-  .catch(error => {
-    console.error('Photo fetch failed: ', error.response.status, error.response.data)
-    throw error
-  })
-}
-
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest, getPhotoForJournalEntryAPI };
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest };
