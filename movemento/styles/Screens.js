@@ -17,11 +17,11 @@ const ScreenStyles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     paddingBottom: 30,
-    paddingTop: 30,
-    marginTop: 30,
+    paddingTop: 10,
+    // marginTop: 30,
     marginBottom: 30,
-    borderColor: 'red',
-    borderWidth: 4
+    borderColor: 'white',
+    borderWidth: 1
   }
 })
 
