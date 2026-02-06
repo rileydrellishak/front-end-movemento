@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import ButtonStyles from '../styles/Buttons';
 import * as ImagePicker from 'expo-image-picker'
 import { useData } from '../context/DataContext'
-import { createJournalEntryAPI, photoPostRequest } from '../api/utilities'
+import { createJournalEntryAPI, photoPostRequest, convertEntryFromAPI } from '../api/utilities'
 
 const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
@@ -57,8 +57,17 @@ const ReflectionScreen = ({ navigation }) => {
   }
 
   const saveEntry = async () => {
-    const newEntry = await createJournalEntryAPI(entry)
-    const postedPhoto = await photoPostRequest(photoURI, newEntry.id)
+    const newEntryAPI = await createJournalEntryAPI(entry)
+    
+    let postedPhoto = null
+    if (photoURI) {
+      postedPhoto = await photoPostRequest(photoURI, newEntryAPI.id)
+    }
+    const newEntry = convertEntryFromAPI(newEntryAPI)
+    
+    if (postedPhoto) {
+      newEntry.img_path = postedPhoto.img_path
+    }
     updateEntries(newEntry)
     confirmSave(newEntry)
   }

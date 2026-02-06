@@ -38,6 +38,19 @@ const getAllJournalEntriesForUserAPI = (user_id) => {
   .catch(error => console.log(error))
 }
 
+const convertEntryFromAPI = (entryAPI) => {
+    const newEntry = {
+      ...entryAPI,
+      movements: entryAPI.movements.map(movement => Number(movement.id)),
+      moodsBefore: entryAPI.moods_before.map(moodBefore => Number(moodBefore.id)),
+      moodsAfter: entryAPI.moods_after.map(moodAfter => Number(moodAfter.id)),
+    }
+    delete newEntry['moods_before'];
+    delete newEntry['moods_after'];
+
+    return newEntry
+  }
+
 const deleteJournalEntryAPI = (user_id, entry_id) => {
   return axios.delete(`${kBaseURL}/users/${user_id}/entries/${entry_id}`)
   .catch(error => console.log(error))
@@ -78,4 +91,4 @@ const postPhotoForJournalEntryAPI = (entry_id, file) => {
   })
 }
 
-export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest };
+export { convertMovementFromAPI, convertUserFromAPI, getAllModelsAPI, createJournalEntryAPI, getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI, photoPostRequest, convertEntryFromAPI };

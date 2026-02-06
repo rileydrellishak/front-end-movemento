@@ -29,7 +29,7 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
       <Text>Moods before: {moodsBeforeNames}</Text>
       <Text>Moods after: {moodsAfterNames}</Text>
       <Text>Reflection: {entry.reflection}</Text>
-      <EntryImage url={entry.img_path}/>
+      {!!entry.img_path && <EntryImage url={entry.img_path}/>}
       <EditEntryButton entry={entry}/>
       <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
     </View>
