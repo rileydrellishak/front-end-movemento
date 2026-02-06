@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import ButtonStyles from '../styles/Buttons'
 import { useData } from '../context/DataContext'
 import ScreenStyles from '../styles/Screens'
-import { List } from 'react-native-paper'
+import { ActivityIndicator, List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
@@ -13,7 +13,10 @@ import { useJournalEntry } from '../context/JournalEntryContext'
 import { useNavigation } from '@react-navigation/native'
 import EditMoodsAccordion from '../components/containers/EditMoodsAccordion'
 import EditReflectionAccordion from '../components/containers/EditReflectionAccordion'
-
+import SavingAlert from '../components/LoadingIndicator'
+import LoadingIndicator from '../components/LoadingIndicator'
+import ActivityIndicatorStyles from '../styles/ActivityIndicators'
+import Spinner from 'react-native-loading-spinner-overlay'
 
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
@@ -28,9 +31,9 @@ const EditEntryScreen = ({ route }) => {
   const [selectedMoodsAfter, setSelectedMoodsAfter] = useState(entry.moodsAfter)
   const [reflectionText, setReflectionText] = useState(entry.reflection)
   const [imgPath, setImgPath] = useState(entry.img_path)
+  const [loading, setLoading] = useState(false)
 
   const updateEntries = (updatedEntry) => {
-    console.log(updatedEntry)
     const updatedEntriesArray = entries.map((entry, id) => {
       if (id === updatedEntry.id) {
         return updatedEntry
@@ -45,7 +48,7 @@ const EditEntryScreen = ({ route }) => {
           '',
           [
             {
-              text: 'Go Home',
+              text: 'Go to Entries',
               onPress: () => {
                 navigation.popToTop();
               }
@@ -55,6 +58,7 @@ const EditEntryScreen = ({ route }) => {
       }
   
   const handleSaveChanges = async () => {
+    setLoading(true)
     console.log('clicked the button')
     entry.movements = selectedMovements
     entry.moodsBefore = selectedMoodsBefore
@@ -63,6 +67,7 @@ const EditEntryScreen = ({ route }) => {
     try {
       const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, entry)
       updateEntries(entry)
+      setLoading(false)
       confirmSave()
     } catch (error) {
       console.error('err in handle save changes: ', error)
@@ -71,7 +76,7 @@ const EditEntryScreen = ({ route }) => {
 
   return (
     <ScrollView style={[ScreenStyles.editEntries]}>
-
+      <Spinner visible={loading} textContent={'Saving...'} textStyle={{ color: 'white' }}/>
       <Text>
         the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}
       </Text>

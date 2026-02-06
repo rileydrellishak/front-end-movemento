@@ -7,6 +7,7 @@ import ButtonStyles from '../styles/Buttons';
 import * as ImagePicker from 'expo-image-picker'
 import { useData } from '../context/DataContext'
 import { createJournalEntryAPI, photoPostRequest, convertEntryFromAPI } from '../api/utilities'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
@@ -14,6 +15,7 @@ const ReflectionScreen = ({ navigation }) => {
   const [reflectionText, setReflectionText] = useState('')
   const { selectedUser, entries, setEntries } = useData();
   const [newEntryId, setNewEntryId] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
       if (reflectionText) {
@@ -57,6 +59,7 @@ const ReflectionScreen = ({ navigation }) => {
   }
 
   const saveEntry = async () => {
+    setLoading(true)
     const newEntryAPI = await createJournalEntryAPI(entry)
     
     let postedPhoto = null
@@ -69,11 +72,13 @@ const ReflectionScreen = ({ navigation }) => {
       newEntry.img_path = postedPhoto.img_path
     }
     updateEntries(newEntry)
+    setLoading(false)
     confirmSave(newEntry)
   }
   
   return(
     <View>
+      <Spinner visible={loading} textContent={'Saving...'} textStyle={{ color: 'white' }}/>
       <ReflectionTextInput
         reflectionText={reflectionText}
         setReflectionText={setReflectionText}

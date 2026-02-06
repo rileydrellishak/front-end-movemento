@@ -57,7 +57,8 @@ const ContainerStyles = StyleSheet.create({
   image: {
     width: 120,
     height: 120
-  }
+  },
+
 })
 
 export default ContainerStyles;

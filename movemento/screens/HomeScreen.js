@@ -10,6 +10,9 @@ import { useJournalEntry } from '../context/JournalEntryContext'
 import TextStyles from '../styles/Text';
 import ScreenStyles from '../styles/Screens';
 
+import LoadingIndicator from '../components/LoadingIndicator';
+import Spinner from 'react-native-loading-spinner-overlay'
+
 const HomeScreen = ({ navigation }) => {
   const { loading, users, selectedUser, setSelectedUser } = useData();
   const { updateEntry } = useJournalEntry();
@@ -21,9 +24,11 @@ const HomeScreen = ({ navigation }) => {
   }, [selectedUser]);
   
   if (loading) {
-    return <Text style={TextStyles.title}>loading...</Text>
+    return (
+      <Spinner visible={loading} textContent={'Loading...'} textStyle={{ color: 'white' }}/>
+    )
   }
-  
+
   const handleNext = () => {
     navigation.navigate('CreateEntryModal');
   }

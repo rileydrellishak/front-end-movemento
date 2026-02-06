@@ -10,7 +10,7 @@ const ScreenStyles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
-    
+    justifyContent: 'space-around',
   },
 
   editEntries: {
