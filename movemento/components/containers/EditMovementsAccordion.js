@@ -1,9 +1,4 @@
-import { View, Text, Pressable, ScrollView } from 'react-native'
-import { useState } from 'react'
-import ButtonStyles from '../../styles/Buttons'
-import ContainerStyles from '../../styles/Containers'
-import { useData } from '../../context/DataContext'
-import ReflectionTextInput from '../ReflectionTextInput'
+import { Text } from 'react-native'
 import ScreenStyles from '../../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';

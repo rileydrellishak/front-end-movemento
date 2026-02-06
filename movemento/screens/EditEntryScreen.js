@@ -1,9 +1,7 @@
 import { View, Text, Pressable, ScrollView, Alert } from 'react-native'
 import { useState, useEffect } from 'react'
 import ButtonStyles from '../styles/Buttons'
-import ContainerStyles from '../styles/Containers'
 import { useData } from '../context/DataContext'
-import ReflectionTextInput from '../components/ReflectionTextInput'
 import ScreenStyles from '../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,15 +11,18 @@ import SaveChangesButton from '../components/buttons/SaveChangesButton'
 import { updateJournalEntryAPI } from '../api/utilities'
 import { useJournalEntry } from '../context/JournalEntryContext'
 import { useNavigation } from '@react-navigation/native'
+import EditMoodsAccordion from '../components/containers/EditMoodsAccordion'
+import EditReflectionAccordion from '../components/containers/EditReflectionAccordion'
+
 
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
   const navigation = useNavigation()
   const { updateEntry } = useJournalEntry();
   const {entries, setEntries} = useData();
-  const [movementsExpanded, setMovementsExpanded] = useState(true)
-  const [moodsExpanded, setMoodsExpanded] = useState(true)
-  const [reflectionExpanded, setReflectionExpanded] = useState(true)
+  const [movementsExpanded, setMovementsExpanded] = useState(false)
+  const [moodsExpanded, setMoodsExpanded] = useState(false)
+  const [reflectionExpanded, setReflectionExpanded] = useState(false)
   const [selectedMovements, setSelectedMovements] = useState(entry.movements)
   const [selectedMoodsBefore, setSelectedMoodsBefore] = useState(entry.moodsBefore)
   const [selectedMoodsAfter, setSelectedMoodsAfter] = useState(entry.moodsAfter)
@@ -35,7 +36,6 @@ const EditEntryScreen = ({ route }) => {
         return updatedEntry
       } return entry
     })
-    console.log(updatedEntriesArray)
     setEntries(updatedEntriesArray)
   }
 
@@ -71,29 +71,41 @@ const EditEntryScreen = ({ route }) => {
 
   return (
     <ScrollView style={[ScreenStyles.editEntries]}>
-      <Text>the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}</Text>
-      <Text>the object being sent as updates looks like...</Text>
+
+      <Text>
+        the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}
+      </Text>
+
       <List.Section title='Accordions!'>
+        
         <EditMovementsAccordion 
           selectedMovements={selectedMovements}
           setSelectedMovements={setSelectedMovements}
           movementsExpanded={movementsExpanded}
           setMovementsExpanded={setMovementsExpanded}/>
 
-        <List.Accordion title='Select Moods'
-          left={props => <List.Icon {...props} icon='emoticon-happy-outline'/>}
-          expanded={moodsExpanded}
-          onPress={() => setMoodsExpanded(!moodsExpanded)}
+        <EditMoodsAccordion 
+          selectedMoodsBefore={selectedMoodsBefore}
+          setSelectedMoodsBefore={setSelectedMoodsBefore}
+          selectedMoodsAfter={selectedMoodsAfter}
+          setSelectedMoodsAfter={setSelectedMoodsAfter}
+          moodsExpanded={moodsExpanded}
+          setMoodsExpanded={setMoodsExpanded}
         />
-        <List.Accordion title='Reflection'
-          left={props => <List.Icon {...props} icon='thought-bubble'/>}
-          expanded={reflectionExpanded}
-          onPress={() => setReflectionExpanded(!reflectionExpanded)}>
-            <ReflectionTextInput reflectionText={reflectionText} setReflectionText={setReflectionText}/>
-        </List.Accordion>
+
+        <EditReflectionAccordion 
+          reflectionText={reflectionText}
+          setReflectionText={setReflectionText}
+          reflectionExpanded={reflectionExpanded}
+          setReflectionExpanded={setReflectionExpanded}
+        />
+
         <EditPhotoAccordion/>
+
       </List.Section>
+
       <SaveChangesButton saveChanges={handleSaveChanges}/>
+
     </ScrollView>
   )
 }
