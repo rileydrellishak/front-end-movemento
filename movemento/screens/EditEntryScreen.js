@@ -105,7 +105,11 @@ const EditEntryScreen = ({ route }) => {
           setReflectionExpanded={setReflectionExpanded}
         />
 
-        <EditPhotoAccordion/>
+        <EditPhotoAccordion
+          imgPath={imgPath}
+          setImgPath={setImgPath}
+          
+        />
 
       </List.Section>
 

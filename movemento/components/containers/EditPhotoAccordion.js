@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView } from 'react-native'
+import { View, Text, Pressable, ScrollView, Image } from 'react-native'
 import { useState } from 'react'
 import ButtonStyles from '../../styles/Buttons'
 import ContainerStyles from '../../styles/Containers'
@@ -7,14 +7,44 @@ import ReflectionTextInput from '../ReflectionTextInput'
 import ScreenStyles from '../../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SelectableButtonsContainer from './SelectableButtonsContainer' //({ variant, data, selectedIds=[], setSelectedIds })
-import movements from '../../data/movements'
+import EntryImage from './EntryImage'
+import * as ImagePicker from 'expo-image-picker'
 
-const EditPhotoAccordion = () => {
+const EditPhotoAccordion = ({ imgPath, setImgPath }) => {
+  const handleAddPhoto = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      quality: 0.8,
+      allowsEditing: true,
+    })
+
+    if (!result.canceled) {
+      setImgPath(result.assets[0].uri);
+    }
+  }
+
   return (
-    <List.Accordion title='Select photo'
-    left={props => <List.Icon {...props} icon='camera'/>}>
-      <Text>select new photo</Text>
+    <List.Accordion 
+      title='Select photo'
+      left={props => <List.Icon {...props} icon='camera'/>}
+    >
+      <Pressable
+        style={[ButtonStyles.base, ButtonStyles.debugging]}
+        onPress={handleAddPhoto}>
+          <Text>{imgPath ? 'change photo': 'add photo'}</Text>
+      </Pressable>
+
+      {imgPath && (
+        <View>
+          <Pressable
+            style={[ButtonStyles.base, ButtonStyles.debugging]}
+            onPress={() => setImgPath('')}
+          >
+              <Text>remove photo</Text>
+          </Pressable>
+          <Image source={{ uri: imgPath }} style={{ width: 120, height: 120, borderRadius: 8}}/>
+        </View>
+      )}
     </List.Accordion>
   )
 }
