@@ -22,7 +22,7 @@ const convertUserFromAPI = (userAPI) => {
     ...userAPI,
     journalEntries: userAPI.journal_entries
   };
-  delete userAPI.journal_entries;
+  delete newUser.journal_entries;
   return newUser;
 }
 
@@ -45,6 +45,7 @@ const deleteJournalEntryAPI = (user_id, entry_id) => {
 
 const updateJournalEntryAPI = (user_id, entry_id, updates) => {
   return axios.patch(`${kBaseURL}/users/${user_id}/entries/${entry_id}`, updates)
+  .then(response => response.data)
   .catch(error => console.log(error))
 }
 

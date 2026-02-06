@@ -82,7 +82,7 @@ const ReflectionScreen = ({ navigation }) => {
         <Image source={{ uri: photoURI }} style={{ width: 120, height: 120, borderRadius: 8}}/>
         </>
       )}
-      <SaveEntryButton navigation={navigation} entry={entry} resetEntry={resetEntry} saveEntry={saveEntry}/>
+      <SaveEntryButton saveEntry={saveEntry}/>
     </View>
   )
 }

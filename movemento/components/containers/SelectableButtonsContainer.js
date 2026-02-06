@@ -6,11 +6,12 @@ import ButtonStyles from '../../styles/Buttons';
 import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
-
-  const handleSelect = (id) => {
-    setSelectedIds((prev) => 
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    )
+  const handlePress = (id) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter(selectedId => selectedId !== id))
+    } else {
+      setSelectedIds([...selectedIds, id])
+    }
   }
 
   const buttons = data.map(({ id, name, slug }) => {
@@ -21,7 +22,7 @@ const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelected
         name={name}
         variant={variant}
         isSelected={selectedIds.includes(id)}
-        onSelect={() => handleSelect(id)}
+        onSelect={() => handlePress(id)}
       />
     )
   })

@@ -9,11 +9,10 @@ import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectableButtonsContainer from './SelectableButtonsContainer' //({ variant, data, selectedIds=[], setSelectedIds })
 import movements from '../../data/movements'
+import {findNames} from '../../helpers'
 
 const EditMovementsAccordion = ({ selectedMovements, setSelectedMovements, movementsExpanded, setMovementsExpanded }) => {
-  const selectedMovementIds = selectedMovements.map(({ id }) => {
-    return id
-  })
+
   return (
     <List.Accordion 
       title='Select Movements'
@@ -21,11 +20,11 @@ const EditMovementsAccordion = ({ selectedMovements, setSelectedMovements, movem
       expanded={movementsExpanded}
       onPress={() => setMovementsExpanded(!movementsExpanded)}
     >
-      <Text>selected movements: {selectedMovementIds}</Text>
+      <Text>selected movements: {findNames(selectedMovements, movements).join(', ')}</Text>
       <SelectableButtonsContainer 
         variant='movements'
         data={movements}
-        selectedIds={selectedMovementIds}
+        selectedIds={selectedMovements}
         setSelectedIds={setSelectedMovements}
       />
     </List.Accordion>

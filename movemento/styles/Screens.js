@@ -16,7 +16,10 @@ const ScreenStyles = StyleSheet.create({
   editEntries: {
     backgroundColor: 'white',
     flex: 1,
-    paddingBottom: 20,
+    paddingBottom: 30,
+    paddingTop: 30,
+    marginTop: 30,
+    marginBottom: 30,
     borderColor: 'red',
     borderWidth: 4
   }
