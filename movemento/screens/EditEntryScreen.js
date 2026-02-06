@@ -1,5 +1,5 @@
 import { View, Text, Pressable, ScrollView, Alert } from 'react-native'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ButtonStyles from '../styles/Buttons'
 import ContainerStyles from '../styles/Containers'
 import { useData } from '../context/DataContext'
@@ -7,8 +7,6 @@ import ReflectionTextInput from '../components/ReflectionTextInput'
 import ScreenStyles from '../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer' //({ variant, data, selectedIds=[], setSelectedIds })
-import movements from '../data/movements'
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
 import SaveChangesButton from '../components/buttons/SaveChangesButton'
@@ -31,10 +29,14 @@ const EditEntryScreen = ({ route }) => {
   const [imgPath, setImgPath] = useState(entry.img_path)
 
   const updateEntries = (updatedEntry) => {
-    setEntries(prev => [
-      ...prev,
-      updateEntry
-    ])
+    console.log(updatedEntry)
+    const updatedEntriesArray = entries.map((entry, id) => {
+      if (id === updatedEntry.id) {
+        return updatedEntry
+      } return entry
+    })
+    console.log(updatedEntriesArray)
+    setEntries(updatedEntriesArray)
   }
 
   const confirmSave = () => {
@@ -54,17 +56,14 @@ const EditEntryScreen = ({ route }) => {
   
   const handleSaveChanges = async () => {
     console.log('clicked the button')
-    const updatedFields = {
-      movements: selectedMovements,
-      moods_before: selectedMoodsBefore,
-      moods_after: selectedMoodsAfter
-    }
-    updateEntry({...entry, ...updatedFields})
-
+    entry.movements = selectedMovements
+    entry.moodsBefore = selectedMoodsBefore
+    entry.moodsAfter = selectedMoodsAfter
+    entry.reflection = reflectionText
     try {
-    const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, updatedFields)
-    updateEntries(savedEntry)
-    confirmSave()
+      const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, entry)
+      updateEntries(entry)
+      confirmSave()
     } catch (error) {
       console.error('err in handle save changes: ', error)
     }
@@ -73,6 +72,7 @@ const EditEntryScreen = ({ route }) => {
   return (
     <ScrollView style={[ScreenStyles.editEntries]}>
       <Text>the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}</Text>
+      <Text>the object being sent as updates looks like...</Text>
       <List.Section title='Accordions!'>
         <EditMovementsAccordion 
           selectedMovements={selectedMovements}
@@ -89,7 +89,7 @@ const EditEntryScreen = ({ route }) => {
           left={props => <List.Icon {...props} icon='thought-bubble'/>}
           expanded={reflectionExpanded}
           onPress={() => setReflectionExpanded(!reflectionExpanded)}>
-            <ReflectionTextInput reflectionText={entry.reflection}/>
+            <ReflectionTextInput reflectionText={reflectionText} setReflectionText={setReflectionText}/>
         </List.Accordion>
         <EditPhotoAccordion/>
       </List.Section>
