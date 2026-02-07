@@ -1,6 +1,4 @@
-import { View, Text, Pressable, Image } from 'react-native'
-import ContainerStyles from '../../styles/Containers'
-import ButtonStyles from '../../styles/Buttons';
+import { View, Text, Image } from 'react-native'
 import DeleteEntryButton from '../buttons/DeleteEntryButton';
 import { useState } from 'react';
 import EditEntryButton from '../buttons/EditEntryButton';
@@ -22,7 +20,7 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry, loading, setLoadin
   const displayTime = dateObj.toLocaleString(undefined, {hour: 'numeric', minute: 'numeric'})
 
   return (
-    <View style={[ContainerStyles.entry]}>
+    <View>
       <Text>{displayDate}</Text>
       <Text>{displayTime}</Text>
       <Text>Movements: {movementNames}</Text>

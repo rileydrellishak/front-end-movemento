@@ -1,6 +1,5 @@
-import { Pressable, Text, Alert } from 'react-native'
-import ButtonStyles from '../../styles/Buttons'
-import TextStyles from '../../styles/Text';
+import { Alert } from 'react-native'
+import { Button, Text } from 'react-native-paper'
 import { deleteJournalEntryAPI } from '../../api/utilities'
 
 const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEntry }) => {
@@ -28,12 +27,11 @@ const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEnt
   }
 
   return (
-    <Pressable
+    <Button
       onPress={confirmDelete}
-      style={[ButtonStyles.base, ButtonStyles.debugging]}
     >
       <Text>delete Entry</Text>
-    </Pressable>
+    </Button>
   )
 };
 

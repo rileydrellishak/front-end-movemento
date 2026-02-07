@@ -1,10 +1,7 @@
-import { View, Text, Pressable, ScrollView, Alert } from 'react-native'
+import { View, Text, ScrollView, Alert } from 'react-native'
 import { useState, useEffect } from 'react'
-import ButtonStyles from '../styles/Buttons'
 import { useData } from '../context/DataContext'
-import ScreenStyles from '../styles/Screens'
-import { ActivityIndicator, List } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { List } from 'react-native-paper'
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
 import SaveChangesButton from '../components/buttons/SaveChangesButton'
@@ -13,9 +10,6 @@ import { useJournalEntry } from '../context/JournalEntryContext'
 import { useNavigation } from '@react-navigation/native'
 import EditMoodsAccordion from '../components/containers/EditMoodsAccordion'
 import EditReflectionAccordion from '../components/containers/EditReflectionAccordion'
-import SavingAlert from '../components/LoadingIndicator'
-import LoadingIndicator from '../components/LoadingIndicator'
-import ActivityIndicatorStyles from '../styles/ActivityIndicators'
 import Spinner from 'react-native-loading-spinner-overlay'
 
 const EditEntryScreen = ({ route }) => {
@@ -78,7 +72,7 @@ const EditEntryScreen = ({ route }) => {
   }
 
   return (
-    <ScrollView style={[ScreenStyles.editEntries]}>
+    <ScrollView>
       <Spinner visible={loading} textContent={'Saving...'} textStyle={{ color: 'white' }}/>
       <Text>
         the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}

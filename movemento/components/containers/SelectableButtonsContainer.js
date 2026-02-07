@@ -1,8 +1,6 @@
-import ContainerStyles from '../../styles/Containers';
 import SelectableButton from '../buttons/SelectableButton';
 import { useData } from '../../context/DataContext';
 import { View } from 'react-native'
-import ButtonStyles from '../../styles/Buttons';
 import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
@@ -28,7 +26,7 @@ const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelected
   })
   
   return (
-    <View style={ContainerStyles.base}>
+    <View>
       {buttons}
     </View>
   )

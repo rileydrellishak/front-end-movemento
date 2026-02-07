@@ -1,9 +1,9 @@
-import { View, Text, Pressable, Image, Alert } from 'react-native'
+import { View, Text, Image, Alert } from 'react-native'
 import ReflectionTextInput from '../components/ReflectionTextInput';
+import { Button } from 'react-native-paper'
 import SaveEntryButton from '../components/buttons/SaveEntryButton';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
-import ButtonStyles from '../styles/Buttons';
 import * as ImagePicker from 'expo-image-picker'
 import { useData } from '../context/DataContext'
 import { createJournalEntryAPI, photoPostRequest, convertEntryFromAPI } from '../api/utilities'
@@ -83,16 +83,17 @@ const ReflectionScreen = ({ navigation }) => {
         reflectionText={reflectionText}
         setReflectionText={setReflectionText}
       />
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}
+      <Button
       onPress={handleAddPhoto}
       >
         <Text>{photoURI ? 'change photo': 'add photo'}</Text>
-      </Pressable>
+      </Button>
       {photoURI && (
         <>
-        <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => setPhotoURI('')}>
+        <Button
+          onPress={() => setPhotoURI('')}>
           <Text>remove photo</Text>
-        </Pressable>
+        </Button>
         <Image source={{ uri: photoURI }} style={{ width: 120, height: 120, borderRadius: 8}}/>
         </>
       )}

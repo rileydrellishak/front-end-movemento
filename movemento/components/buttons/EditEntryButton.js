@@ -1,6 +1,5 @@
 import { Pressable, Text } from "react-native"
-import ButtonStyles from "../../styles/Buttons"
-import TextStyles from "../../styles/Text"
+import { Button } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 
 const EditEntryButton = ({ entry }) => {
@@ -11,9 +10,9 @@ const EditEntryButton = ({ entry }) => {
   }
 
   return (
-    <Pressable style={[ButtonStyles.base, ButtonStyles.edit, ButtonStyles.debugging]} onPress={handlePress}>
-      <Text style={TextStyles.edit}>Edit</Text>
-    </Pressable>
+    <Button onPress={handlePress}>
+      <Text>Edit</Text>
+    </Button>
   )
 }
 

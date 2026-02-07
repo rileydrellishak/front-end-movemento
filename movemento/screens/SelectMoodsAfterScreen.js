@@ -1,4 +1,5 @@
-import { ScrollView, View, Text, Pressable } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
+import { Button } from 'react-native-paper'
 import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useJournalEntry } from '../context/JournalEntryContext';
@@ -28,12 +29,11 @@ const SelectMoodsAfterScreen = ({ navigation }) => {
         data={moods}
         selectedIds={selectedIds}
         setSelectedIds={setSelectedIds}/>
-      <Pressable
+      <Button
         onPress={handleNext}
-        style={[ButtonStyles.base, ButtonStyles.next]}
       >
         <Text>go to the reflection screen</Text>
-      </Pressable>
+      </Button>
     </ScrollView>
   )
 }

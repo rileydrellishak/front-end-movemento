@@ -1,4 +1,5 @@
 import { ScrollView, View, Text, Pressable } from 'react-native'
+import { Button } from 'react-native-paper'
 import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useData } from '../context/DataContext';
@@ -29,12 +30,11 @@ const SelectMoodsBeforeScreen = ({ navigation }) => {
         data={moods}
         selectedIds={selectedIds}
         setSelectedIds={setSelectedIds}/>
-      <Pressable
+      <Button
         onPress={handleNext}
-        style={[ButtonStyles.base, ButtonStyles.next]}
       >
         <Text>go to the moods after screen</Text>
-      </Pressable>
+      </Button>
     </ScrollView>
   )
 }

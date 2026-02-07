@@ -1,7 +1,6 @@
-import { ScrollView, View, Text, Pressable } from 'react-native'
-import ButtonStyles from '../styles/Buttons';
+import { ScrollView, View, Text } from 'react-native'
+import { Button } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
-import ContainerStyles from '../styles/Containers';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
@@ -36,9 +35,9 @@ const SelectMovementsScreen = ({ navigation }) => {
 
   return(
     <ScrollView>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={() => navigation.navigate('Reflection')}>
+      <Button onPress={() => navigation.navigate('Reflection')}>
         <Text>jump to reflection page</Text>
-      </Pressable>
+      </Button>
       <Text>pick movements</Text>
       <FilterMovements search={search} setSearch={setSearch} />
       <SelectableButtonsContainer
@@ -47,12 +46,11 @@ const SelectMovementsScreen = ({ navigation }) => {
         setSelectedIds={setSelectedIds}
         variant='movements'
       />
-      <Pressable
+      <Button
         onPress={handleNext}
-        style={[ButtonStyles.base, ButtonStyles.next]}
       >
         <Text>go to moods before screen</Text>
-      </Pressable>
+      </Button>
     </ScrollView>
   )
 }

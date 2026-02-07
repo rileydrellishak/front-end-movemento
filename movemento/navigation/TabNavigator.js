@@ -1,13 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './HomeStack';
 import EntriesStack from './EntriesStack';
-import CalendarStack from './CalendarStack';
 import Entypo from '@expo/vector-icons/Entypo';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { useTheme } from 'react-native-paper'
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const theme = useTheme();
+  
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -22,7 +23,7 @@ const TabNavigator = () => {
             iconName = focused ? 'pencil' : 'pencil';
             return <Entypo name={iconName} size={size} color={color} />
           }
-        }, tabBarActiveTintColor: 'red',
+        }, tabBarActiveTintColor: theme.colors.primary,
           tabBarInactiveTintColor: 'gray'
       })}
     >

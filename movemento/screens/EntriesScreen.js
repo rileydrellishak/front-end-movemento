@@ -1,11 +1,7 @@
-import { View, Text, Pressable } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
+import { View } from 'react-native'
 import EntriesContainer from '../components/containers/EntriesContainer';
-import { useState, useEffect, useCallback } from 'react'
-import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI } from '../api/utilities';
+import { useState } from 'react'
 import { useData } from '../context/DataContext';
-import TextStyles from '../styles/Text'
-import ContainerStyles from '../styles/Containers'
 import EntryCalendar from '../components/EntryCalendar';
 import ScreenStyles from '../styles/Screens';
 import { SafeAreaView } from 'react-native-safe-area-context';

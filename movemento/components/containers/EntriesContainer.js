@@ -1,5 +1,4 @@
 import { ScrollView, Text } from 'react-native'
-import ContainerStyles from '../../styles/Containers';
 import Entry from './Entry';
 
 const EntriesContainer = ({ loading, setLoading, handleEditEntryButton, handleDeleteEntry, data }) => {
@@ -17,7 +16,7 @@ const EntriesContainer = ({ loading, setLoading, handleEditEntryButton, handleDe
     )
   })
   return (
-    <ScrollView style={ContainerStyles.entries}>
+    <ScrollView>
       {renderEntries}
     </ScrollView>
   )

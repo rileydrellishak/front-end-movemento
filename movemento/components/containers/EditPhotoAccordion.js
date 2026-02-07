@@ -1,6 +1,6 @@
-import { View, Text, Pressable, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image } from 'react-native'
+import { Button } from 'react-native-paper'
 import { useState } from 'react'
-import ButtonStyles from '../../styles/Buttons'
 import ContainerStyles from '../../styles/Containers'
 import { useData } from '../../context/DataContext'
 import ReflectionTextInput from '../ReflectionTextInput'
@@ -28,20 +28,18 @@ const EditPhotoAccordion = ({ imgPath, setImgPath }) => {
       title='Select photo'
       left={props => <List.Icon {...props} icon='camera'/>}
     >
-      <Pressable
-        style={[ButtonStyles.base, ButtonStyles.debugging]}
+      <Button
         onPress={handleAddPhoto}>
           <Text>{imgPath ? 'change photo': 'add photo'}</Text>
-      </Pressable>
+      </Button>
 
       {imgPath && (
         <View>
-          <Pressable
-            style={[ButtonStyles.base, ButtonStyles.debugging]}
+          <Button
             onPress={() => setImgPath('')}
           >
               <Text>remove photo</Text>
-          </Pressable>
+          </Button>
           <Image source={{ uri: imgPath }} style={{ width: 120, height: 120, borderRadius: 8}}/>
         </View>
       )}

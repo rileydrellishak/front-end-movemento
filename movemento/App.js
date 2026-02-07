@@ -12,7 +12,7 @@ export default function App() {
       <DataProvider>
         <JournalEntryProvider>
           <NavigationContainer theme={LightTheme}>
-            <RootNavigator />
+            <RootNavigator theme={LightTheme}/>
           </NavigationContainer>
         </JournalEntryProvider>
       </DataProvider>

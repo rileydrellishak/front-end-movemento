@@ -1,6 +1,5 @@
-import { ScrollView, View, Text, Pressable } from 'react-native'
-import ButtonStyles from '../styles/Buttons';
-import ContainerStyles from '../styles/Containers';
+import { View } from 'react-native'
+import { Button, Text } from 'react-native-paper'
 import { useEffect, useState } from 'react';
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -38,11 +37,11 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={ScreenStyles.home}>
+    <View>
       <CreateEntryButton onPress={handleNext}/>
-      <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]} onPress={handleGoBack}>
+      <Button onPress={handleGoBack}>
         <Text>go back and change user</Text>
-      </Pressable>
+      </Button>
       <Text>The currently selected user is {selectedUser.name}</Text>
     </View>
   )

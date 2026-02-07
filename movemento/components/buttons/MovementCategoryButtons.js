@@ -3,7 +3,7 @@ import ButtonStyles from '../../styles/Buttons'
 
 const MovementCategoryButtons = ({ name }) => {
   return (
-    <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
+    <Pressable>
       <Text>{name}</Text>
     </Pressable>
   )
