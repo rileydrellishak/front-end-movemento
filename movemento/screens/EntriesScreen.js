@@ -19,7 +19,7 @@ const EntriesScreen = ({ navigation }) => {
   }
 
   return(
-    <View style={{flex: 1}}>
+    <View style={{flex: 5}}>
       <Spinner visible={loading} textContent={'Deleting...'} textStyle={{ color: 'white' }}/>
       <EntryCalendar />
       <EntriesContainer

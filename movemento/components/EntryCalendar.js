@@ -2,7 +2,7 @@ import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
 import { View } from 'react-native'
 const EntryCalendar = () => {
   return (
-    <View>
+    <View style={{height: 90}}>
       <CalendarProvider date={new Date().toISOString()} onDayPress={(day) => console.log('Day pressed:', day)}>
           <WeekCalendar firstDay={1}/>
       </CalendarProvider>
