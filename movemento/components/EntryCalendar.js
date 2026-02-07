@@ -1,9 +1,8 @@
 import { CalendarProvider, WeekCalendar } from 'react-native-calendars'
 import { View } from 'react-native'
-import ContainerStyles from '../styles/Containers'
 const EntryCalendar = () => {
   return (
-    <View style={ContainerStyles.calendar}>
+    <View>
       <CalendarProvider date={new Date().toISOString()} onDayPress={(day) => console.log('Day pressed:', day)}>
           <WeekCalendar firstDay={1}/>
       </CalendarProvider>

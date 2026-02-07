@@ -1,7 +1,5 @@
 import { Pressable, Text } from 'react-native'
 import { Button } from 'react-native-paper'
-import ButtonStyles from '../../styles/Buttons';
-import TextStyles from '../../styles/Text';
 import { useState } from 'react'
 
 const SelectableButton = ({ variant, name, onSelect, isSelected }) => {

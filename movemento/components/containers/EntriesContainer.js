@@ -16,7 +16,7 @@ const EntriesContainer = ({ loading, setLoading, handleEditEntryButton, handleDe
     )
   })
   return (
-    <ScrollView>
+    <ScrollView style={{flex: 1}}>
       {renderEntries}
     </ScrollView>
   )

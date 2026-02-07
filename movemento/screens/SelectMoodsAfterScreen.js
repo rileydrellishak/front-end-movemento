@@ -1,6 +1,5 @@
 import { ScrollView, View, Text } from 'react-native'
 import { Button } from 'react-native-paper'
-import ButtonStyles from '../styles/Buttons';
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react'

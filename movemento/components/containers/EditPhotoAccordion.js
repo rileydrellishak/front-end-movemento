@@ -1,10 +1,8 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import { Button } from 'react-native-paper'
 import { useState } from 'react'
-import ContainerStyles from '../../styles/Containers'
 import { useData } from '../../context/DataContext'
 import ReflectionTextInput from '../ReflectionTextInput'
-import ScreenStyles from '../../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import EntryImage from './EntryImage'

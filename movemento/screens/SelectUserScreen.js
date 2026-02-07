@@ -1,5 +1,4 @@
 import { View, Text, Pressable } from 'react-native'
-import ButtonStyles from '../styles/Buttons'
 import SelectUserContainer from '../components/containers/SelectUserContainer';
 import { useState, useEffect } from 'react'
 import { useData } from '../context/DataContext'
@@ -21,7 +20,7 @@ const SelectUserScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Pressable onPress={handleGoHome} style={[ButtonStyles.base, ButtonStyles.next]}>
+      <Pressable onPress={handleGoHome}>
         <Text>click here to go to the home screen</Text>
       </Pressable>
       <SelectUserContainer

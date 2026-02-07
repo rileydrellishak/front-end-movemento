@@ -1,5 +1,4 @@
 import { Pressable, Text } from 'react-native'
-import ButtonStyles from '../../styles/Buttons'
 
 const MovementCategoryButtons = ({ name }) => {
   return (

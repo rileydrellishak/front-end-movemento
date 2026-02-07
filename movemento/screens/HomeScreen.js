@@ -5,11 +5,6 @@ import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
-
-import TextStyles from '../styles/Text';
-import ScreenStyles from '../styles/Screens';
-
-import LoadingIndicator from '../components/LoadingIndicator';
 import Spinner from 'react-native-loading-spinner-overlay'
 
 const HomeScreen = ({ navigation }) => {

@@ -3,7 +3,6 @@ import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState } from 'react'
 import { useData } from '../context/DataContext';
 import EntryCalendar from '../components/EntryCalendar';
-import ScreenStyles from '../styles/Screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay'
 
@@ -20,7 +19,7 @@ const EntriesScreen = ({ navigation }) => {
   }
 
   return(
-    <View style={ScreenStyles.entries}>
+    <View style={{flex: 1}}>
       <Spinner visible={loading} textContent={'Deleting...'} textStyle={{ color: 'white' }}/>
       <EntryCalendar />
       <EntriesContainer
