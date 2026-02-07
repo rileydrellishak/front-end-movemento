@@ -9,7 +9,7 @@ import movements from '../../data/movements'
 import moods from '../../data/moods'
 import { findNames } from '../../helpers';
 
-const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
+const Entry = ({ entry, handleEditEntryButton, onDeleteEntry, loading, setLoading }) => {
   if (!entry) return null
 
   const movementNames = findNames(entry.movements, movements).join(', ')
@@ -31,7 +31,7 @@ const Entry = ({ entry, handleEditEntryButton, onDeleteEntry }) => {
       <Text>Reflection: {entry.reflection}</Text>
       {!!entry.img_path && <EntryImage url={entry.img_path}/>}
       <EditEntryButton entry={entry}/>
-      <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry}/>
+      <DeleteEntryButton user_id={entry.user_id} entry_id={entry.id} onDeleteEntry={onDeleteEntry} loading={loading} setLoading={setLoading}/>
     </View>
   )
 }
