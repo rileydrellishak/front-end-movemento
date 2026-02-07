@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
 import SaveChangesButton from '../components/buttons/SaveChangesButton'
-import { updateJournalEntryAPI } from '../api/utilities'
+import { updateJournalEntryAPI, photoPostRequest } from '../api/utilities'
 import { useJournalEntry } from '../context/JournalEntryContext'
 import { useNavigation } from '@react-navigation/native'
 import EditMoodsAccordion from '../components/containers/EditMoodsAccordion'
@@ -64,8 +64,11 @@ const EditEntryScreen = ({ route }) => {
     entry.moodsBefore = selectedMoodsBefore
     entry.moodsAfter = selectedMoodsAfter
     entry.reflection = reflectionText
+    entry.img_path = imgPath
     try {
       const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, entry)
+      const updatedImgPath = await photoPostRequest(entry.img_path, entry.id)
+      entry.img_path = updatedImgPath.img_path
       updateEntries(entry)
       setLoading(false)
       confirmSave()

@@ -9,10 +9,10 @@ import ContainerStyles from '../styles/Containers'
 import EntryCalendar from '../components/EntryCalendar';
 import ScreenStyles from '../styles/Screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import Spinner from 'react-native-loading-spinner-overlay'
 
 const EntriesScreen = ({ navigation }) => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const { selectedUser, entries, setEntries } = useData();
 
   const handleDeleteEntry = (entry_id) => {
@@ -23,21 +23,16 @@ const EntriesScreen = ({ navigation }) => {
     navigation.navigate('EditEntryScreen', { entry: entry })
   }
 
-  // if (loading) {
-  //   return (
-  //     <View style={[ContainerStyles.base, ContainerStyles.loading]}>
-  //       <Text style={TextStyles.loading}>Loading entries...</Text>
-  //     </View>
-  //   )
-  // }
-
   return(
     <View style={ScreenStyles.entries}>
+      <Spinner visible={loading} textContent={'Deleting...'} textStyle={{ color: 'white' }}/>
       <EntryCalendar />
       <EntriesContainer
         handleEditEntryButton={handleEditEntryButton}
         handleDeleteEntry={handleDeleteEntry}
-        data={entries}/>
+        data={entries}
+        loading={loading}
+        setLoading={setLoading}/>
     </View>
   )
 }

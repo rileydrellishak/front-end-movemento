@@ -3,8 +3,9 @@ import ButtonStyles from '../../styles/Buttons'
 import TextStyles from '../../styles/Text';
 import { deleteJournalEntryAPI } from '../../api/utilities'
 
-const DeleteEntryButton = ({ user_id, entry_id, onDeleteEntry }) => {
+const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEntry }) => {
   const handleDelete = async () => {
+    setLoading(true)
     try {
       await deleteJournalEntryAPI(user_id, entry_id);
       onDeleteEntry?.(entry_id)
@@ -12,7 +13,7 @@ const DeleteEntryButton = ({ user_id, entry_id, onDeleteEntry }) => {
     } catch (error) {
       console.error('delete failed', error);
       Alert.alert('Delete failed', '', [{text: 'Close'}])
-    }
+    } setLoading(false)
   }
 
   const confirmDelete = () => {
