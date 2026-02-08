@@ -1,13 +1,11 @@
-import { ScrollView, View, Dimensions } from 'react-native'
-import { Button, useTheme, Text, IconButton } from 'react-native-paper'
+import { ScrollView, View, Dimensions, StyleSheet } from 'react-native'
+import { Button, useTheme, Text } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
 import FilterMovements from '../components/FilterMovements';
 import FilteringButtonsContainer from '../components/containers/FilteringButtonsContainer';
-import Entypo from '@expo/vector-icons/Entypo';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SelectMovementsScreen = ({ navigation }) => {
@@ -47,23 +45,25 @@ const SelectMovementsScreen = ({ navigation }) => {
   const screenHeight = Dimensions.get('window').height;
 
   return(
-    <SafeAreaView style={{ flex: 1, padding: 10, paddingBottom: 20 }}>
-      <ScrollView>
-        <View style={{}}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
           <Text variant='titleLarge'>How did you move today?</Text>
-          <Text variant='titleMedium'>Select movements</Text>
+          <Text variant='titleMedium' style={styles.subtitle}>Select movements</Text>
           <FilterMovements search={search} setSearch={setSearch} />
           <Button
             onPress={() => setSelectedIds([])}
-            buttonColor={theme.colors.error}
-            labelStyle={{ textAlign: 'center'}}
-            style={{width: 'auto'}}
+            mode='outlined'
+            textColor={theme.colors.error}
+            labelStyle={styles.clearLabel}
+            style={styles.clearButton}
+            contentStyle={styles.clearContent}
+            icon='close-circle-outline'
           >
-            <Text style={{color: theme.colors.onError, textAlign: 'center'}}>Clear selected movements</Text>
+            Clear Selected Movements
           </Button>
         </View>
-        <View style={{ }}>
-        
+        <View style={styles.list}>
           <SelectableButtonsContainer
             data={filteredMovements}
             selectedIds={selectedIds}
@@ -71,21 +71,45 @@ const SelectMovementsScreen = ({ navigation }) => {
             variant='movements'
           />
         </View>
-        <View style={{ }}>
-          <Button
-            onPress={handleNext}
-            buttonColor={theme.colors.tertiary}
-            textColor={theme.colors.onTertiary}
-            labelStyle={{fontWeight: 'bold'}}
-            icon='arrow-right'
-            contentStyle={{flexDirection: 'row-reverse'}}
-          >
-            go to moods before screen
-          </Button>
-        </View>
       </ScrollView>
+      <View style={[styles.footer, { backgroundColor: theme.colors.surface, borderTopColor: theme.colors.outline }]}>
+        <Button
+          onPress={handleNext}
+          buttonColor={theme.colors.tertiary}
+          textColor={theme.colors.onTertiary}
+          labelStyle={styles.nextLabel}
+          icon='arrow-right'
+          contentStyle={styles.nextContent}
+        >
+          Next: Select Moods Before
+        </Button>
+      </View>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1 },
+  scrollContent: { padding: 16, paddingBottom: 32, },
+  header: { marginBottom: 12 },
+  subtitle: { marginTop: 4, marginBottom: 12, opacity: 0.8 },
+  clearButton: { marginTop: 8, borderRadius: 999, alignSelf: 'center' },
+  clearLabel: { textAlign: 'center', fontSize: 12, lineHeight: 16 },
+  clearContent: { height: 36, paddingHorizontal: 12 },
+  list: { marginVertical: 8 },
+  footer: {
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#e6e6e6',
+    backgroundColor: 'white',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  nextLabel: { fontWeight: 'bold' },
+  nextContent: { flexDirection: 'row-reverse' },
+})
 
 export default SelectMovementsScreen;

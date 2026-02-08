@@ -1,6 +1,6 @@
 import SelectableButton from '../buttons/SelectableButton';
 import { useData } from '../../context/DataContext';
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
@@ -26,12 +26,21 @@ const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelected
   })
   
   return (
-    <View
-      style={{ paddingTop: 20, paddingBottom: 20}}
-      contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap'}}>
+    <View style={styles.container}>
       {buttons}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'space-evenly'
+  },
+})
 
 export default SelectableButtonsContainer;

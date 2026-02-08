@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Button, useTheme } from 'react-native-paper'
 import { useState } from 'react'
 
@@ -36,15 +36,16 @@ const SelectableButton = ({ variant, name, onSelect, isSelected }) => {
     }
   }
   return (
-    <View >
+    <View style={styles.wrapper}>
       <Button
         onPress={onSelect}
         buttonColor={buttonColor(variant, isSelected)}
-        mode={'contained-tonal'}
+        mode='contained-tonal'
         textColor={textColor(variant, isSelected)}
-        style={{borderRadius: 10}}
-        labelStyle={{ textAlign: 'center' }}
-        contentStyle={{ paddingHorizontal: 0 }}
+        style={styles.chip}
+        labelStyle={styles.chipLabel}
+        contentStyle={styles.chipContent}
+        compact
       >
         {name}
       </Button>
@@ -53,5 +54,12 @@ const SelectableButton = ({ variant, name, onSelect, isSelected }) => {
 }
 
 export default SelectableButton;
+
+const styles = StyleSheet.create({
+  wrapper: { width: '48%', marginBottom: 8 },
+  chip: { borderRadius: 999, width: '100%' },
+  chipLabel: { textAlign: 'center', fontSize: 13, lineHeight: 16, textTransform: 'capitalize' },
+  chipContent: { paddingHorizontal: 12, height: 40, justifyContent: 'center' },
+})
 
 // either movements or moods for button styles
