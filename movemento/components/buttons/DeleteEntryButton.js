@@ -1,8 +1,9 @@
 import { Alert } from 'react-native'
-import { Button, Text } from 'react-native-paper'
+import { Button, Text, useTheme } from 'react-native-paper'
 import { deleteJournalEntryAPI } from '../../api/utilities'
 
 const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEntry }) => {
+  const theme = useTheme()
   const handleDelete = async () => {
     setLoading(true)
     try {
@@ -29,8 +30,13 @@ const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEnt
   return (
     <Button
       onPress={confirmDelete}
+      buttonColor={theme.colors.error}
+      textColor={theme.colors.onError}
+      icon='trash-can'
+      contentStyle={{flexDirection: 'row-reverse'}}
+      mode='contained-tonal'
     >
-      <Text>delete Entry</Text>
+      Delete Entry
     </Button>
   )
 };
