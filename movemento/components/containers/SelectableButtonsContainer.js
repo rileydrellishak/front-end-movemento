@@ -1,6 +1,6 @@
 import SelectableButton from '../buttons/SelectableButton';
 import { useData } from '../../context/DataContext';
-import { ScrollView } from 'react-native'
+import { View } from 'react-native'
 import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
@@ -26,11 +26,11 @@ const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelected
   })
   
   return (
-    <ScrollView
-      style={{flex: 1}}
-      contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap', padding: 20}}>
+    <View
+      style={{ paddingTop: 20, paddingBottom: 20}}
+      contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap'}}>
       {buttons}
-    </ScrollView>
+    </View>
   )
 }
 

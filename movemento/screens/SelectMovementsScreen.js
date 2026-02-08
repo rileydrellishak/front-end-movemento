@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native'
+import { ScrollView, View, Dimensions } from 'react-native'
 import { Button, useTheme, Text, IconButton } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useJournalEntry } from '../context/JournalEntryContext';
@@ -8,6 +8,7 @@ import FilterMovements from '../components/FilterMovements';
 import FilteringButtonsContainer from '../components/containers/FilteringButtonsContainer';
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SelectMovementsScreen = ({ navigation }) => {
   const theme = useTheme()
@@ -43,52 +44,47 @@ const SelectMovementsScreen = ({ navigation }) => {
     } return categories
   }, [])
 
-  return(
-    <View style={{ 
-        flex: 4, 
-        padding: 5, 
-        margin: 5, 
-        backgroundColor: theme.colors.background,
-      }}
-      contentContainerStyle={{
-        alignContent: 'center',
-      }}>
-      <View style={{flex: 1, justifyContent: 'space-evenly'}}>
-        <Text variant='titleLarge'>How did you move today?</Text>
-        <Text variant='titleMedium'>Select movements</Text>
-        <FilterMovements search={search} setSearch={setSearch} />
+  const screenHeight = Dimensions.get('window').height;
 
-        <Button
-          onPress={() => setSelectedIds([])}
-          buttonColor={theme.colors.error}
-          labelStyle={{ textAlign: 'center'}}
-          style={{width: 'auto'}}
-        >
-          <Text style={{color: theme.colors.onError, flexShrink: 1, textAlign: 'center'}}>Clear selected movements</Text>
-        </Button>
-      </View>
-      <View style={{flex: 1}}>
+  return(
+    <SafeAreaView style={{ flex: 1, padding: 10, paddingBottom: 20 }}>
+      <ScrollView>
+        <View style={{}}>
+          <Text variant='titleLarge'>How did you move today?</Text>
+          <Text variant='titleMedium'>Select movements</Text>
+          <FilterMovements search={search} setSearch={setSearch} />
+          <Button
+            onPress={() => setSelectedIds([])}
+            buttonColor={theme.colors.error}
+            labelStyle={{ textAlign: 'center'}}
+            style={{width: 'auto'}}
+          >
+            <Text style={{color: theme.colors.onError, textAlign: 'center'}}>Clear selected movements</Text>
+          </Button>
+        </View>
+        <View style={{ }}>
         
-        <SelectableButtonsContainer
-          data={filteredMovements}
-          selectedIds={selectedIds}
-          setSelectedIds={setSelectedIds}
-          variant='movements'
-        />
-      </View>
-      <View style={{flex: 1}}>
-        <Button
-          onPress={handleNext}
-          buttonColor={theme.colors.tertiary}
-          textColor={theme.colors.onTertiary}
-          labelStyle={{fontWeight: 'bold'}}
-          icon='arrow-right'
-          contentStyle={{flexDirection: 'row-reverse'}}
-        >
-          go to moods before screen
-        </Button>
-      </View>
-    </View>
+          <SelectableButtonsContainer
+            data={filteredMovements}
+            selectedIds={selectedIds}
+            setSelectedIds={setSelectedIds}
+            variant='movements'
+          />
+        </View>
+        <View style={{ }}>
+          <Button
+            onPress={handleNext}
+            buttonColor={theme.colors.tertiary}
+            textColor={theme.colors.onTertiary}
+            labelStyle={{fontWeight: 'bold'}}
+            icon='arrow-right'
+            contentStyle={{flexDirection: 'row-reverse'}}
+          >
+            go to moods before screen
+          </Button>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

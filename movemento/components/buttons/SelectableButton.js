@@ -36,7 +36,7 @@ const SelectableButton = ({ variant, name, onSelect, isSelected }) => {
     }
   }
   return (
-    <View style={{alignSelf: 'flex-start', marginRight: 8, marginTop: 8}}>
+    <View >
       <Button
         onPress={onSelect}
         buttonColor={buttonColor(variant, isSelected)}
