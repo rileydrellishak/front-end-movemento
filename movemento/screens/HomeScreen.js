@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { Button, Text } from 'react-native-paper'
+import { Button, Text, useTheme } from 'react-native-paper'
 import { useEffect, useState } from 'react';
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import { useJournalEntry } from '../context/JournalEntryContext'
 import Spinner from 'react-native-loading-spinner-overlay'
 
 const HomeScreen = ({ navigation }) => {
+  const theme = useTheme()
   const { loading, users, selectedUser, setSelectedUser } = useData();
   const { updateEntry } = useJournalEntry();
   
@@ -32,10 +33,10 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View>
+    <View style={{backgroundColor: theme.colors.background, flex: 1}}>
       <CreateEntryButton onPress={handleNext}/>
       <Button onPress={handleGoBack}>
-        <Text>go back and change user</Text>
+        <Text style={{ color: theme.colors.onPrimaryContainer}}>go back and change user</Text>
       </Button>
       <Text>The currently selected user is {selectedUser.name}</Text>
     </View>

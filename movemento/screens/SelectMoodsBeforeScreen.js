@@ -1,5 +1,5 @@
-import { ScrollView, View, Text, Pressable } from 'react-native'
-import { Button } from 'react-native-paper'
+import { ScrollView, View, Pressable } from 'react-native'
+import { Button, Text, useTheme } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext';
@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import moods from '../data/moods'
 
 const SelectMoodsBeforeScreen = ({ navigation }) => {
+  const theme = useTheme()
   const { updateEntry } = useJournalEntry();
 
   const [selectedIds, setSelectedIds] = useState([])
@@ -22,8 +23,17 @@ const SelectMoodsBeforeScreen = ({ navigation }) => {
   }
 
   return(
-    <ScrollView>
-      <Text>the before moods</Text>
+    <ScrollView style={{ 
+        flex: .95, 
+        padding: 5, 
+        margin: 5, 
+        backgroundColor: theme.colors.background,
+      }}
+      contentContainerStyle={{
+        alignContent: 'center',
+      }}>
+      <Text variant='titleLarge'>Moods Before</Text>
+      <Text variant='titleMedium'>How did you feel before moving?</Text>
       <SelectableButtonsContainer
         variant='moods'
         data={moods}
@@ -31,8 +41,13 @@ const SelectMoodsBeforeScreen = ({ navigation }) => {
         setSelectedIds={setSelectedIds}/>
       <Button
         onPress={handleNext}
+        buttonColor={theme.colors.tertiary}
+        textColor={theme.colors.onTertiary}
+        labelStyle={{fontWeight: 'bold'}}
+        icon='arrow-right'
+        contentStyle={{flexDirection: 'row-reverse'}}
       >
-        <Text>go to the moods after screen</Text>
+        go to moods after screen
       </Button>
     </ScrollView>
   )

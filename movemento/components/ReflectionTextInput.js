@@ -7,6 +7,9 @@ const ReflectionTextInput = ({ reflectionText, setReflectionText}) => {
       placeholder='Enter your reflection here'
       onChangeText={setReflectionText}
       value={reflectionText}
+      mode={'outlined'}
+      multiline={true}
+      style={{height: 200}}
     />
   )
 }

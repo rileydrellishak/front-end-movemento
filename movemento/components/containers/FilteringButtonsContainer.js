@@ -4,11 +4,16 @@ import MovementCategoryButtons from '../buttons/MovementCategoryButtons';
 const FilteringButtonsContainer = ({ categories }) => {
   const categoryButtons = categories.map(cat => {
     return (
-      <MovementCategoryButtons name={cat}/>
+      <MovementCategoryButtons key={cat} name={cat}/>
     )
   })
   return (
-    <View style={ContainerStyles.base}>{categoryButtons}</View>
+    <View
+      style={{flex: 1}}
+      contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap', padding: 20}}
+    >
+      {categoryButtons}
+    </View>
   )
 }
 

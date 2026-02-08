@@ -1,9 +1,14 @@
-import { SearchBar } from '@rneui/themed'
+import { Searchbar } from 'react-native-paper'
 import { useState } from 'react'
 
 const FilterMovements = ({ search, setSearch }) => {
   return (
-    <SearchBar placeholer='Search for movements' onChangeText={setSearch} value={search} lightTheme={true} round={true}/>
+    <Searchbar 
+      placeholder='Search'
+      onChangeText={setSearch}
+      value={search}
+      mode={'bar'}
+    />
   )
 }
 export default FilterMovements;
