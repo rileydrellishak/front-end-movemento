@@ -3,18 +3,19 @@ import { useTheme } from 'react-native-paper'
 import { View } from 'react-native'
 const EntryCalendar = ({ entries }) => {
   const theme = useTheme();
-  const entryDates = entries.map((e) => {
+
+  const entryDateStrings = entries.map((e) => {
     return e.created_at
   })
 
-  const formatDateToCustom = (dateString) => {
+  const formattedDates = (dateString) => {
     const dateObj = new Date(dateString)
     return dateObj.toISOString().split('T')[0]
   }
 
-  const markedDates = entryDates.map(formatDateToCustom)
+  const entryDateTimes = entryDateStrings.map(formattedDates)
 
-  const markedDatesObjects = markedDates.reduce(
+  const markedDatesObjects = entryDateTimes.reduce(
     (objects, date) => {
       objects[date] = {
         startingDay: true,

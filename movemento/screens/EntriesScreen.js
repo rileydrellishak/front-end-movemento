@@ -11,12 +11,6 @@ const EntriesScreen = ({ navigation }) => {
   const theme = useTheme()
   const [loading, setLoading] = useState(false)
   const { selectedUser, entries, setEntries } = useData();
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(null)
-  const [items] = useState([
-    {label: 'Newest to oldest', value: 'desc'},
-    {label: 'Oldest to newest', value: 'asc'}
-  ])
 
   const handleDeleteEntry = (entry_id) => {
     setEntries(entries.filter(entry => entry.id !== entry_id))

@@ -7,6 +7,7 @@ import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
 import Spinner from 'react-native-loading-spinner-overlay'
 import EntryCalendar from '../components/EntryCalendar'
+import { normalizeDateStripTime, calculateStreak } from '../helpers/datetime';
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme()
@@ -43,6 +44,24 @@ const HomeScreen = ({ navigation }) => {
   const recentEntries = [...entries]
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     .slice(0, 2)
+
+  const datesWithoutTime = entries.map((e) => {
+    return e.created_at
+  })
+
+  const currentStreak = calculateStreak(datesWithoutTime)
+
+  const streakMessage = (streak) => {
+    if (streak < 1) {
+      return 'Today is a great day to start'
+    } if (streak < 2) {
+      return 'Great start'
+    } if (streak < 5) {
+      return 'Keep it up!'
+    } if (streak < 10) {
+      return 'You\'re on a roll!'
+    }
+  }
 
   return (
     <SafeAreaView
@@ -103,7 +122,8 @@ const HomeScreen = ({ navigation }) => {
             color='orange'
             size={30}
           />
-          <Text style={styles.summaryValue}>blank day streak - keep it up!</Text>
+          <Text variant='titleMedium'>{currentStreak} day streak</Text>
+          <Text variant='titleSmall'>{streakMessage(currentStreak)}</Text>
         </Surface>
       </ScrollView>
     </SafeAreaView>
