@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext'
 import Spinner from 'react-native-loading-spinner-overlay'
+import EntryCalendar from '../components/EntryCalendar'
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme()
@@ -44,7 +45,10 @@ const HomeScreen = ({ navigation }) => {
     .slice(0, 2)
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: theme.colors.background }]}
+      edges={'left', 'right', 'bottom'}
+    >
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
           <Text variant='titleLarge'>Welcome, {selectedUser.name}!</Text>
@@ -85,28 +89,9 @@ const HomeScreen = ({ navigation }) => {
           ]}
           elevation={1}
         >
-          <Text style={[styles.cardTitle, { color: theme.colors.onSurfaceVariant }]}>Recent entries</Text>
-          {recentEntries.length === 0 ? (
-            <Text style={[styles.emptyText, { color: theme.colors.onSurfaceVariant }]}>No entries yet</Text>
-          ) : (
-            <View style={styles.recentList}>
-              {recentEntries.map((entry) => (
-                <View key={entry.id} style={styles.recentItem}>
-                  <Text style={styles.recentDate}>
-                    {new Date(entry.created_at).toLocaleDateString()}
-                  </Text>
-                  <Text style={[styles.recentMeta, { color: theme.colors.onSurfaceVariant }]}>
-                    {entry.movements?.length || 0} movements, {entry.moodsBefore?.length || 0} moods before
-                  </Text>
-                </View>
-              ))}
-            </View>
-          )}
+          <EntryCalendar entries={entries}/>
+          <Text>blank day streak</Text>
         </Surface>
-
-        <Button onPress={handleGoBack} mode='text' textColor={theme.colors.onSurfaceVariant}>
-          Change user
-        </Button>
       </ScrollView>
     </SafeAreaView>
   )
@@ -116,8 +101,8 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
-  scrollContent: { padding: 16, paddingBottom: 24 },
-  header: { marginBottom: 12 },
+  scrollContent: { padding: 16, paddingBottom: 24, },
+  header: { marginBottom: 12, },
   subtitle: { marginTop: 4, marginBottom: 12, opacity: 0.8 },
   primaryAction: { marginBottom: 12 },
   card: {
