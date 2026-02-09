@@ -1,6 +1,6 @@
-import { Image } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 
-const EntryImage = ({ url }) => {
+const EntryImage = ({ url, style }) => {
   if (!url) return null;
 
   const OCI_READ_PAR_URL = process.env.EXPO_PUBLIC_OCI_READ_PAR_URL
@@ -9,9 +9,19 @@ const EntryImage = ({ url }) => {
   return (
     <Image
       source={{ uri: imageURL }}
-      style={{ width: 120, height: 120, borderRadius: 8}}
+      style={[styles.image, style]}
     />
   )
 }
 
 export default EntryImage;
+
+const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    maxWidth: 320,
+    aspectRatio: 1,
+    borderRadius: 12,
+    alignSelf: 'center',
+  },
+})

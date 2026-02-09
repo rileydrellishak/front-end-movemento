@@ -1,14 +1,18 @@
-import { Pressable, Text } from "react-native"
-import { Alert } from 'react-native'
-import ButtonStyles from "../../styles/Buttons"
-import TextStyles from "../../styles/Text"
+import { Text } from "react-native"
+import { Button, useTheme } from 'react-native-paper'
 
 const SaveChangesButton = ({ saveChanges }) => {
+  const theme = useTheme()
 
   return (
-    <Pressable style={[ButtonStyles.base, ButtonStyles.save]} onPress={() => saveChanges()}>
-      <Text style={TextStyles.save}>Save Changes</Text>
-    </Pressable>
+    <Button
+      onPress={() => saveChanges()}
+      buttonColor={theme.colors.tertiary}
+      textColor={theme.colors.onTertiary}
+      labelStyle={{ fontWeight: 'bold' }}
+    >
+      <Text>Save Changes</Text>
+    </Button>
   )
 }
 

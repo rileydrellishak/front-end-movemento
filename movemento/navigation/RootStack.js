@@ -5,7 +5,7 @@ import EditEntryScreen from "../screens/EditEntryScreen";
 import SelectUserScreen from "../screens/SelectUserScreen";
 const RootStack = createNativeStackNavigator();
 
-const RootNavigator = () => {
+const RootNavigator = ({ theme }) => {
   return (
     <RootStack.Navigator>
       {/* <RootStack.Screen name='Login' component={SelectUserScreen}/> */}

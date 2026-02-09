@@ -1,11 +1,16 @@
 import { Pressable, Text } from 'react-native'
-import ButtonStyles from '../../styles/Buttons'
+import { Button } from 'react-native-paper'
 
 const MovementCategoryButtons = ({ name }) => {
   return (
-    <Pressable style={[ButtonStyles.base, ButtonStyles.debugging]}>
-      <Text>{name}</Text>
-    </Pressable>
+    <Button
+      style={{alignSelf: 'flex-start', marginRight: 8, marginTop: 8, flex: 1}}
+      labelStyle={{ textAlign: 'center' }}
+      contentStyle={{ paddingHorizontal: 12 }}
+      mode={'contained-tonal'}
+    >
+      {name}
+    </Button>
   )
 }
 

@@ -1,15 +1,14 @@
-import { Pressable, Text } from 'react-native'
-import ButtonStyles from '../../styles/Buttons'
-import TextStyles from '../../styles/Text';
+import { Button, Text, useTheme } from 'react-native-paper'
 
 const CreateEntryButton = ({ onPress }) => {
+  const theme = useTheme()
   return (
-    <Pressable
+    <Button
       onPress={onPress}
-      style={[ButtonStyles.base, ButtonStyles.next]}
+      style={{ backgroundColor: theme.colors.primary}}
     >
-      <Text style={[TextStyles.button, TextStyles.title]}>Create Entry</Text>
-    </Pressable>
+      <Text style={{ color: theme.colors.onPrimary}}>Create Entry</Text>
+    </Button>
   )
 };
 

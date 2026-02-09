@@ -1,17 +1,14 @@
-import { View, Text, Pressable } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
+import { View } from 'react-native'
 import EntriesContainer from '../components/containers/EntriesContainer';
-import { useState, useEffect, useCallback } from 'react'
-import { getAllJournalEntriesForUserAPI, deleteJournalEntryAPI, updateJournalEntryAPI } from '../api/utilities';
+import { useState } from 'react'
 import { useData } from '../context/DataContext';
-import TextStyles from '../styles/Text'
-import ContainerStyles from '../styles/Containers'
 import EntryCalendar from '../components/EntryCalendar';
-import ScreenStyles from '../styles/Screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay'
+import { useTheme } from 'react-native-paper'
 
 const EntriesScreen = ({ navigation }) => {
+  const theme = useTheme()
   const [loading, setLoading] = useState(false)
   const { selectedUser, entries, setEntries } = useData();
 
@@ -24,7 +21,7 @@ const EntriesScreen = ({ navigation }) => {
   }
 
   return(
-    <View style={ScreenStyles.entries}>
+    <View style={{backgroundColor: theme.colors.background, flex: 1}}>
       <Spinner visible={loading} textContent={'Deleting...'} textStyle={{ color: 'white' }}/>
       <EntryCalendar />
       <EntriesContainer

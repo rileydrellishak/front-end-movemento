@@ -1,5 +1,4 @@
 import { Text } from 'react-native'
-import ScreenStyles from '../../styles/Screens'
 import { List } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelectableButtonsContainer from './SelectableButtonsContainer' //({ variant, data, selectedIds=[], setSelectedIds })
