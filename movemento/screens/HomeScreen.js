@@ -45,17 +45,17 @@ const HomeScreen = ({ navigation }) => {
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     .slice(0, 2)
 
-  const datesWithoutTime = entries.map((e) => {
+  const dates = entries.map((e) => {
     return e.created_at
   })
 
-  const currentStreak = calculateStreak(datesWithoutTime)
+  const currentStreak = calculateStreak(dates)
 
   const streakMessage = (streak) => {
     if (streak < 1) {
-      return 'Today is a great day to start'
+      return 'Today is a great day to start!'
     } if (streak < 2) {
-      return 'Great start'
+      return 'Great start!'
     } if (streak < 5) {
       return 'Keep it up!'
     } if (streak < 10) {
@@ -113,17 +113,19 @@ const HomeScreen = ({ navigation }) => {
         <Surface
           style={[
             styles.card,
-            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline, alignItems:'center', }, styles.summaryRow, 
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline, alignItems:'center', flex: 1}, styles.summaryRow, 
           ]}
           elevation={1}
         >
           <Icon
             source='fire'
             color='orange'
-            size={30}
+            size={50}
           />
-          <Text variant='titleMedium'>{currentStreak} day streak</Text>
-          <Text variant='titleSmall'>{streakMessage(currentStreak)}</Text>
+          <View style={{flexGrow: 0.75}}>
+            <Text variant='titleLarge'>{currentStreak} day streak</Text>
+            <Text variant='titleSmall'>{streakMessage(currentStreak)}</Text>
+          </View>
         </Surface>
       </ScrollView>
     </SafeAreaView>

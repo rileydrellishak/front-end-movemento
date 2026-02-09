@@ -6,6 +6,7 @@ const normalizeDateStripTime = (dateTime) => {
   return date
 }
 
+// calculates the user's current streaks based on their entries array - checks consecutive days to see if the day before is the same as the date on the entry before
 const calculateStreak = (dateArray) => {
   if (!dateArray || dateArray.length === 0) {
     return 0;

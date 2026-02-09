@@ -30,22 +30,6 @@ const DataProvider = ({ children }) => {
     }
   }
 
-  const fetchEntries = async () => {
-    if (selectedUser) {
-      try {
-        const entries = await getAllJournalEntriesForUserAPI(selectedUser.id)
-        const newEntries = entries.map(convertEntryFromAPI)
-        setEntries(newEntries)
-      } catch (error) {
-        console.error('err fetching entries', error)
-      }
-    }
-  }
-
-  useEffect(() => {
-    fetchEntries();
-  }, [selectedUser])
-
   useEffect(() => {
     fetchData();
   }, [])
