@@ -20,7 +20,9 @@ const DataProvider = ({ children }) => {
 
       const entries = await getAllJournalEntriesForUserAPI(userToSelect.id)
       const newEntries = entries.map(convertEntryFromAPI)
-      setEntries(newEntries)
+      setEntries(newEntries.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at)
+      }))
     } catch (error) {
         console.error('err fetch', error)
     } finally {
