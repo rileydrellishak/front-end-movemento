@@ -1,5 +1,5 @@
 import { ScrollView, View, StyleSheet } from 'react-native'
-import { Button, Surface, Text, useTheme } from 'react-native-paper'
+import { Button, Surface, Text, useTheme, Icon } from 'react-native-paper'
 import { useEffect, useState } from 'react';
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -90,7 +90,20 @@ const HomeScreen = ({ navigation }) => {
           elevation={1}
         >
           <EntryCalendar entries={entries}/>
-          <Text>blank day streak</Text>
+        </Surface>
+        <Surface
+          style={[
+            styles.card,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline, alignItems:'center', }, styles.summaryRow, 
+          ]}
+          elevation={1}
+        >
+          <Icon
+            source='fire'
+            color='orange'
+            size={40}
+          />
+          <Text style={styles.summaryValue}>blank day streak - keep it up!</Text>
         </Surface>
       </ScrollView>
     </SafeAreaView>
@@ -104,7 +117,7 @@ const styles = StyleSheet.create({
   scrollContent: { padding: 16, paddingBottom: 24, },
   header: { marginBottom: 12, },
   subtitle: { marginTop: 4, marginBottom: 12, opacity: 0.8 },
-  primaryAction: { marginBottom: 12 },
+  primaryAction: { marginBottom: 12, },
   card: {
     padding: 16,
     borderRadius: 12,

@@ -18,7 +18,8 @@ const TabNavigator = () => {
           backgroundColor: theme.colors.secondary,
         },
         headerTitleStyle: {
-          marginBottom: 0
+          marginBottom: 0,
+          color: theme.colors.onSecondary
         },
         headerShadowVisible: false,
         tabBarIcon: ({ focused, color, size }) => {

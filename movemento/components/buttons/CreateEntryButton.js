@@ -5,9 +5,10 @@ const CreateEntryButton = ({ onPress }) => {
   return (
     <Button
       onPress={onPress}
-      style={{ backgroundColor: theme.colors.primary}}
+      style={{ backgroundColor: theme.colors.primary, height: 50, justifyContent: 'center'}}
+      labelStyle={{ color: theme.colors.onPrimary, fontSize: 18, fontWeight: 'bold'}}
     >
-      <Text style={{ color: theme.colors.onPrimary}}>Create Entry</Text>
+      Create Entry
     </Button>
   )
 };
