@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, Alert } from 'react-native'
+import { View, ScrollView, Alert, StyleSheet } from 'react-native'
 import { useState, useEffect } from 'react'
 import { useData } from '../context/DataContext'
-import { List } from 'react-native-paper'
+import { List, Text, useTheme } from 'react-native-paper'
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
 import EditPhotoAccordion from '../components/containers/EditPhotoAccordion'
 import SaveChangesButton from '../components/buttons/SaveChangesButton'
@@ -11,9 +11,11 @@ import { useNavigation } from '@react-navigation/native'
 import EditMoodsAccordion from '../components/containers/EditMoodsAccordion'
 import EditReflectionAccordion from '../components/containers/EditReflectionAccordion'
 import Spinner from 'react-native-loading-spinner-overlay'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
+  const theme = useTheme()
   const navigation = useNavigation()
   const { updateEntry } = useJournalEntry();
   const {entries, setEntries} = useData();
@@ -72,48 +74,94 @@ const EditEntryScreen = ({ route }) => {
   }
 
   return (
-    <ScrollView>
-      <Spinner visible={loading} textContent={'Saving...'} textStyle={{ color: 'white' }}/>
-      <Text>
-        the id for the currently being edited entry is {entry.id} and it belongs to user with id of {entry.user_id}
-      </Text>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Spinner visible={loading} textContent={'Saving...'} textStyle={{ color: 'white' }}/>
+        <View style={styles.header}>
+          <Text variant='titleLarge'>Edit Entry</Text>
+          <Text variant='titleMedium' style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}
+          >
+            Update movements, moods, reflection, and photo
+          </Text>
+        </View>
 
-      <List.Section title='Accordions!'>
-        
-        <EditMovementsAccordion 
-          selectedMovements={selectedMovements}
-          setSelectedMovements={setSelectedMovements}
-          movementsExpanded={movementsExpanded}
-          setMovementsExpanded={setMovementsExpanded}/>
+        <View
+          style={[
+            styles.sectionCard,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline },
+          ]}
+        >
+          <List.Section title='Details'>
+            <View style={[styles.sectionItem, { borderBottomColor: theme.colors.outlineVariant }]}>
+              <EditMovementsAccordion
+                selectedMovements={selectedMovements}
+                setSelectedMovements={setSelectedMovements}
+                movementsExpanded={movementsExpanded}
+                setMovementsExpanded={setMovementsExpanded}
+              />
+            </View>
 
-        <EditMoodsAccordion 
-          selectedMoodsBefore={selectedMoodsBefore}
-          setSelectedMoodsBefore={setSelectedMoodsBefore}
-          selectedMoodsAfter={selectedMoodsAfter}
-          setSelectedMoodsAfter={setSelectedMoodsAfter}
-          moodsExpanded={moodsExpanded}
-          setMoodsExpanded={setMoodsExpanded}
-        />
+            <View style={[styles.sectionItem, { borderBottomColor: theme.colors.outlineVariant }]}>
+              <EditMoodsAccordion
+                selectedMoodsBefore={selectedMoodsBefore}
+                setSelectedMoodsBefore={setSelectedMoodsBefore}
+                selectedMoodsAfter={selectedMoodsAfter}
+                setSelectedMoodsAfter={setSelectedMoodsAfter}
+                moodsExpanded={moodsExpanded}
+                setMoodsExpanded={setMoodsExpanded}
+              />
+            </View>
 
-        <EditReflectionAccordion 
-          reflectionText={reflectionText}
-          setReflectionText={setReflectionText}
-          reflectionExpanded={reflectionExpanded}
-          setReflectionExpanded={setReflectionExpanded}
-        />
+            <View style={[styles.sectionItem, { borderBottomColor: theme.colors.outlineVariant }]}>
+              <EditReflectionAccordion
+                reflectionText={reflectionText}
+                setReflectionText={setReflectionText}
+                reflectionExpanded={reflectionExpanded}
+                setReflectionExpanded={setReflectionExpanded}
+              />
+            </View>
 
-        <EditPhotoAccordion
-          imgPath={imgPath}
-          setImgPath={setImgPath}
-          
-        />
-
-      </List.Section>
-
-      <SaveChangesButton saveChanges={handleSaveChanges}/>
-
-    </ScrollView>
+            <View style={styles.sectionItemLast}>
+              <EditPhotoAccordion
+                imgPath={imgPath}
+                setImgPath={setImgPath}
+              />
+            </View>
+          </List.Section>
+        </View>
+      </ScrollView>
+      <View style={[styles.footer, { backgroundColor: theme.colors.surface, borderTopColor: theme.colors.outline }]}>
+        <SaveChangesButton saveChanges={handleSaveChanges}/>
+      </View>
+    </SafeAreaView>
   )
 }
 
 export default EditEntryScreen;
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1 },
+  scrollContent: { padding: 16, paddingBottom: 96 },
+  header: { marginBottom: 12 },
+  subtitle: { marginTop: 4, marginBottom: 12, opacity: 0.8 },
+  sectionCard: {
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingBottom: 4,
+  },
+  sectionItem: {
+    borderBottomWidth: 1,
+    paddingBottom: 4,
+  },
+  sectionItemLast: { paddingBottom: 4 },
+  footer: {
+    padding: 16,
+    borderTopWidth: 1,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+})

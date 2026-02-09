@@ -1,5 +1,5 @@
-import { View } from 'react-native'
-import { Button, Text, useTheme } from 'react-native-paper'
+import { ScrollView, View, StyleSheet } from 'react-native'
+import { Button, Surface, Text, useTheme } from 'react-native-paper'
 import { useEffect, useState } from 'react';
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +9,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme()
-  const { loading, users, selectedUser, setSelectedUser } = useData();
+  const { loading, users, selectedUser, setSelectedUser, entries } = useData();
   const { updateEntry } = useJournalEntry();
   
   useEffect(() => {
@@ -32,15 +32,113 @@ const HomeScreen = ({ navigation }) => {
     navigation.popToTop()
   }
 
+  const entryCount = entries.length
+  const latestEntry = entries.reduce((latest, current) => {
+    if (!latest) return current
+    return new Date(current.created_at) > new Date(latest.created_at) ? current : latest
+  }, null)
+  const latestDate = latestEntry ? new Date(latestEntry.created_at).toLocaleDateString() : 'No entries yet'
+
+  const recentEntries = [...entries]
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    .slice(0, 2)
+
   return (
-    <View style={{backgroundColor: theme.colors.background, flex: 1}}>
-      <CreateEntryButton onPress={handleNext}/>
-      <Button onPress={handleGoBack}>
-        <Text style={{ color: theme.colors.onPrimaryContainer}}>go back and change user</Text>
-      </Button>
-      <Text>The currently selected user is {selectedUser.name}</Text>
-    </View>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
+          <Text variant='titleLarge'>Welcome, {selectedUser.name}!</Text>
+          <Text variant='titleMedium' style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}
+          >
+            Ready for a new entry?
+          </Text>
+        </View>
+
+        <View style={styles.primaryAction}>
+          <CreateEntryButton onPress={handleNext} />
+        </View>
+
+        <Surface
+          style={[
+            styles.card,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline },
+          ]}
+          elevation={1}
+        >
+          <Text style={[styles.cardTitle, { color: theme.colors.onSurfaceVariant }]}>Summary</Text>
+          <View style={styles.summaryRow}>
+            <View style={styles.summaryItem}>
+              <Text style={styles.summaryValue}>{entryCount}</Text>
+              <Text style={[styles.summaryLabel, { color: theme.colors.onSurfaceVariant }]}>Total entries</Text>
+            </View>
+            <View style={styles.summaryItem}>
+              <Text style={styles.summaryValue}>{latestDate}</Text>
+              <Text style={[styles.summaryLabel, { color: theme.colors.onSurfaceVariant }]}>Last entry</Text>
+            </View>
+          </View>
+        </Surface>
+
+        <Surface
+          style={[
+            styles.card,
+            { backgroundColor: theme.colors.surface, borderColor: theme.colors.outline },
+          ]}
+          elevation={1}
+        >
+          <Text style={[styles.cardTitle, { color: theme.colors.onSurfaceVariant }]}>Recent entries</Text>
+          {recentEntries.length === 0 ? (
+            <Text style={[styles.emptyText, { color: theme.colors.onSurfaceVariant }]}>No entries yet</Text>
+          ) : (
+            <View style={styles.recentList}>
+              {recentEntries.map((entry) => (
+                <View key={entry.id} style={styles.recentItem}>
+                  <Text style={styles.recentDate}>
+                    {new Date(entry.created_at).toLocaleDateString()}
+                  </Text>
+                  <Text style={[styles.recentMeta, { color: theme.colors.onSurfaceVariant }]}>
+                    {entry.movements?.length || 0} movements, {entry.moodsBefore?.length || 0} moods before
+                  </Text>
+                </View>
+              ))}
+            </View>
+          )}
+        </Surface>
+
+        <Button onPress={handleGoBack} mode='text' textColor={theme.colors.onSurfaceVariant}>
+          Change user
+        </Button>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  safeArea: { flex: 1 },
+  scrollContent: { padding: 16, paddingBottom: 24 },
+  header: { marginBottom: 12 },
+  subtitle: { marginTop: 4, marginBottom: 12, opacity: 0.8 },
+  primaryAction: { marginBottom: 12 },
+  card: {
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    marginBottom: 12,
+  },
+  cardTitle: {
+    fontSize: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 0.4,
+    marginBottom: 8,
+  },
+  summaryRow: { flexDirection: 'row', justifyContent: 'space-between' },
+  summaryItem: { flex: 1 },
+  summaryValue: { fontSize: 18, fontWeight: 'bold' },
+  summaryLabel: { marginTop: 4 },
+  emptyText: { marginTop: 4 },
+  recentList: { gap: 8 },
+  recentItem: { paddingVertical: 4 },
+  recentDate: { fontWeight: 'bold' },
+  recentMeta: { marginTop: 2 },
+})
