@@ -101,7 +101,7 @@ const HomeScreen = ({ navigation }) => {
           <Icon
             source='fire'
             color='orange'
-            size={40}
+            size={30}
           />
           <Text style={styles.summaryValue}>blank day streak - keep it up!</Text>
         </Surface>

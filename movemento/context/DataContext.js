@@ -15,7 +15,7 @@ const DataProvider = ({ children }) => {
       const newUsers = users.map(convertUserFromAPI)
       setUsers(newUsers);
       
-      const userToSelect = users[8]
+      const userToSelect = users[9]
       setSelectedUser(userToSelect)
 
       const entries = await getAllJournalEntriesForUserAPI(userToSelect.id)

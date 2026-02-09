@@ -56,10 +56,28 @@ const deleteJournalEntryAPI = (user_id, entry_id) => {
   .catch(error => console.log(error))
 }
 
+const prepEntryUpdatesForAPI = (entry) => {
+  const entryForAPI = {
+    ...entry,
+    moods_before: entry.moodsBefore,
+    moods_after: entry.moodsAfter,
+    img_path: entry.imgPath
+  }
+  delete entryForAPI.moodsBefore;
+  delete entryForAPI.moodsAfter;
+  delete entryForAPI.imgPath
+
+  return entryForAPI
+}
+
 const updateJournalEntryAPI = (user_id, entry_id, updates) => {
-  return axios.patch(`${kBaseURL}/users/${user_id}/entries/${entry_id}`, updates)
+  const entryForAPI = prepEntryUpdatesForAPI(updates)
+  return axios.patch(`${kBaseURL}/users/${user_id}/entries/${entry_id}`, entryForAPI)
   .then(response => response.data)
-  .catch(error => console.log(error))
+  .catch(error => {
+    console.error(error)
+    throw error
+  })
 }
 
 const photoPostRequest = (photoURI, entry_id) => {

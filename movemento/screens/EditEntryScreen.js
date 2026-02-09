@@ -55,16 +55,16 @@ const EditEntryScreen = ({ route }) => {
   
   const handleSaveChanges = async () => {
     setLoading(true)
-    console.log('clicked the button')
     entry.movements = selectedMovements
     entry.moodsBefore = selectedMoodsBefore
     entry.moodsAfter = selectedMoodsAfter
     entry.reflection = reflectionText
-    entry.img_path = imgPath
     try {
       const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, entry)
-      const updatedImgPath = await photoPostRequest(entry.img_path, entry.id)
-      entry.img_path = updatedImgPath.img_path
+      if (imgPath) {
+        const updatedImgPath = await photoPostRequest(imgPath, entry.id)
+        entry.img_path = updatedImgPath.img_path
+      }
       updateEntries(entry)
       setLoading(false)
       confirmSave()
