@@ -1,6 +1,4 @@
-import { Text } from "react-native"
 import { Button, useTheme } from 'react-native-paper'
-import { Alert } from 'react-native'
 
 const SaveEntryButton = ({ saveEntry }) => {
   const theme = useTheme()

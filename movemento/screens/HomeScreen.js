@@ -1,24 +1,15 @@
 import { ScrollView, View, StyleSheet } from 'react-native'
-import { Button, Surface, Text, useTheme, Icon } from 'react-native-paper'
-import { useEffect, useState } from 'react';
+import { Surface, Text, useTheme, Icon } from 'react-native-paper'
 import CreateEntryButton from '../components/buttons/CreateEntryButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useData } from '../context/DataContext';
-import { useJournalEntry } from '../context/JournalEntryContext'
 import Spinner from 'react-native-loading-spinner-overlay'
 import EntryCalendar from '../components/EntryCalendar'
-import { normalizeDateStripTime, calculateStreak } from '../helpers/datetime';
+import { calculateStreak } from '../helpers/datetime';
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme()
-  const { loading, users, selectedUser, setSelectedUser, entries } = useData();
-  const { updateEntry } = useJournalEntry();
-  
-  useEffect(() => {
-    if (selectedUser?.id) {
-      updateEntry({ user_id: selectedUser.id })
-    }
-  }, [selectedUser]);
+  const { loading, selectedUser, entries } = useData();
   
   if (loading) {
     return (
@@ -30,20 +21,12 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('CreateEntryModal');
   }
 
-  const handleGoBack = () => {
-    navigation.popToTop()
-  }
-
   const entryCount = entries.length
   const latestEntry = entries.reduce((latest, current) => {
     if (!latest) return current
     return new Date(current.created_at) > new Date(latest.created_at) ? current : latest
   }, null)
   const latestDate = latestEntry ? new Date(latestEntry.created_at).toLocaleDateString() : 'No entries yet'
-
-  const recentEntries = [...entries]
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-    .slice(0, 2)
 
   const dates = entries.map((e) => {
     return e.created_at

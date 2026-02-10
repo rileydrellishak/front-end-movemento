@@ -1,7 +1,5 @@
 import SelectableButton from '../buttons/SelectableButton';
-import { useData } from '../../context/DataContext';
 import { View, StyleSheet } from 'react-native'
-import { useState } from 'react'
 
 const SelectableButtonsContainer = ({ variant, data, selectedIds=[], setSelectedIds }) => {
   const handlePress = (id) => {

@@ -1,4 +1,4 @@
-import { ScrollView, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import Entry from './Entry';
 
 const EntriesContainer = ({ loading, setLoading, handleEditEntryButton, handleDeleteEntry, data}) => {

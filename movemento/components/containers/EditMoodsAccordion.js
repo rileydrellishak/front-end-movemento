@@ -1,7 +1,6 @@
 import { Text } from 'react-native'
 import { List } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import SelectableButtonsContainer from './SelectableButtonsContainer' //({ variant, data, selectedIds=[], setSelectedIds })
+import SelectableButtonsContainer from './SelectableButtonsContainer'
 import moods from '../../data/moods'
 import {findNames} from '../../helpers'
 

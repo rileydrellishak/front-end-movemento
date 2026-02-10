@@ -1,7 +1,6 @@
 import { ScrollView, View, StyleSheet } from 'react-native'
 import { Button, Text, useTheme } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
-import { useData } from '../context/DataContext';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react'
 import moods from '../data/moods'
@@ -20,7 +19,7 @@ const SelectMoodsBeforeScreen = ({ navigation }) => {
     }, [selectedIds]);
   
   const handleNext = () => {
-    navigation.navigate('SelectMoodsAfter')
+    navigation.navigate('Select Moods After')
   }
 
   return(

@@ -1,5 +1,5 @@
 import { Alert } from 'react-native'
-import { Button, Text, useTheme } from 'react-native-paper'
+import { Button, useTheme } from 'react-native-paper'
 import { deleteJournalEntryAPI } from '../../api/utilities'
 
 const DeleteEntryButton = ({ loading, setLoading, user_id, entry_id, onDeleteEntry }) => {

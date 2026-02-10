@@ -1,4 +1,3 @@
-import { Pressable, Text } from 'react-native'
 import { Button } from 'react-native-paper'
 
 const MovementCategoryButtons = ({ name }) => {

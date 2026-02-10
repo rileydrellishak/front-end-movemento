@@ -1,4 +1,4 @@
-import { Button, Text, useTheme } from 'react-native-paper'
+import { Button, useTheme } from 'react-native-paper'
 
 const CreateEntryButton = ({ onPress }) => {
   const theme = useTheme()

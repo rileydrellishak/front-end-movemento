@@ -1,5 +1,5 @@
 import { View, ScrollView, Alert, StyleSheet } from 'react-native'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useData } from '../context/DataContext'
 import { List, Text, useTheme } from 'react-native-paper'
 import EditMovementsAccordion from '../components/containers/EditMovementsAccordion'
@@ -17,7 +17,6 @@ const EditEntryScreen = ({ route }) => {
   const { entry } = route.params
   const theme = useTheme()
   const navigation = useNavigation()
-  const { updateEntry } = useJournalEntry();
   const {entries, setEntries} = useData();
   const [movementsExpanded, setMovementsExpanded] = useState(false)
   const [moodsExpanded, setMoodsExpanded] = useState(false)
@@ -60,7 +59,7 @@ const EditEntryScreen = ({ route }) => {
     entry.moodsAfter = selectedMoodsAfter
     entry.reflection = reflectionText
     try {
-      const savedEntry = await updateJournalEntryAPI(entry.user_id, entry.id, entry)
+      await updateJournalEntryAPI(entry.user_id, entry.id, entry)
       if (imgPath) {
         const updatedImgPath = await photoPostRequest(imgPath, entry.id)
         entry.img_path = updatedImgPath.img_path

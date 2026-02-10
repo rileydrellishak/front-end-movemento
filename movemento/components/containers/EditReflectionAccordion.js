@@ -1,6 +1,5 @@
 import ReflectionTextInput from '../ReflectionTextInput'
 import { List } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const EditReflectionAccordion = ({ reflectionText, setReflectionText, reflectionExpanded, setReflectionExpanded }) => {
 

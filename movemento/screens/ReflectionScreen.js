@@ -15,8 +15,8 @@ const ReflectionScreen = ({ navigation }) => {
   const { entry, updateEntry, resetEntry } = useJournalEntry();
   const [photoURI, setPhotoURI] = useState('')
   const [reflectionText, setReflectionText] = useState('')
-  const { selectedUser, entries, setEntries } = useData();
-  const [newEntryId, setNewEntryId] = useState(null)
+  const { setEntries } = useData();
+
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -55,8 +55,8 @@ const ReflectionScreen = ({ navigation }) => {
 
   const updateEntries = (newEntry) => {
     setEntries(prev => [
-      ...prev,
-      newEntry
+      newEntry,
+      ...prev
     ])
   }
 

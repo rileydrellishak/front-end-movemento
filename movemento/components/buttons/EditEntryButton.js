@@ -1,4 +1,3 @@
-import { Pressable, Text } from "react-native"
 import { Button, useTheme } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 

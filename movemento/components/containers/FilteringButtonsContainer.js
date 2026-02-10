@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import MovementCategoryButtons from '../buttons/MovementCategoryButtons';
 
 const FilteringButtonsContainer = ({ categories }) => {

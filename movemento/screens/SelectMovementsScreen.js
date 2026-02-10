@@ -1,11 +1,10 @@
-import { ScrollView, View, Dimensions, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet } from 'react-native'
 import { Button, useTheme, Text } from 'react-native-paper'
 import SelectableButtonsContainer from '../components/containers/SelectableButtonsContainer';
 import { useJournalEntry } from '../context/JournalEntryContext';
 import { useState, useEffect } from 'react';
 import movements from '../data/movements'
 import FilterMovements from '../components/FilterMovements';
-import FilteringButtonsContainer from '../components/containers/FilteringButtonsContainer';
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SelectMovementsScreen = ({ navigation }) => {
@@ -21,11 +20,7 @@ const SelectMovementsScreen = ({ navigation }) => {
     }, [selectedIds]);
   
   const handleNext = () => {
-    navigation.navigate('SelectMoodsBefore')
-  }
-
-  const handleSearchChange = (event) => {
-    setSearch(event.target.value.toLowerCase())
+    navigation.navigate('Select Moods Before')
   }
 
   const filteredMovements = movements.filter(m => {
@@ -35,14 +30,6 @@ const SelectMovementsScreen = ({ navigation }) => {
       return m
     }
   })
-
-  const movementCategories = movements.reduce((categories, m) => {
-    if (!categories.includes(m.category)) {
-      categories.push(m.category)
-    } return categories
-  }, [])
-
-  const screenHeight = Dimensions.get('window').height;
 
   return(
     <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>

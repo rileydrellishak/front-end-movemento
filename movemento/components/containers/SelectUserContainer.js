@@ -1,7 +1,5 @@
 import { View, Text } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
-import { useState } from 'react'
-
 
 const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {  
   const pickerItems = 
@@ -12,7 +10,7 @@ const SelectUserContainer = ({ users, selectedUser, setSelectedUser }) => {
     })
   
   return (
-    <View style={ContainerStyles}>
+    <View>
       <Text>Select user</Text>
       <Picker
         selectedValue={selectedUser?.id}

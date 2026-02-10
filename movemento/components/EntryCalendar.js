@@ -1,6 +1,6 @@
-import { CalendarProvider, Calendar } from 'react-native-calendars'
+import { Calendar } from 'react-native-calendars'
 import { useTheme } from 'react-native-paper'
-import { View } from 'react-native'
+
 const EntryCalendar = ({ entries }) => {
   const theme = useTheme();
 

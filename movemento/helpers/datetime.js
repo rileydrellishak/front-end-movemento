@@ -2,7 +2,7 @@
 // helper to take a datetime and change it to yyyy/mm/dd
 const normalizeDateStripTime = (dateTime) => {
   const date = new Date(dateTime);
-  date.setUTCHours(0, 0, 0, 0);
+  date.setHours(0, 0, 0, 0);
   return date
 }
 
@@ -15,18 +15,18 @@ const calculateStreak = (dateArray) => {
   } const uniqueDates = [...new Set(dateArray.map(d => normalizeDateStripTime(d).getTime()))].sort((a, b) => b - a);
   
   const today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
   
   let streak = 0
   let currentDate = today
 
-  if (uniqueDates[0] != today.getTime() && uniqueDates[0] !== today.getMinutes() - 86400000) {
+  if (uniqueDates[0] !== today.getTime() && uniqueDates[0] !== today.getTime() - 86400000) {
     return 0;
   }
   for (let i = 0; i < uniqueDates.length; i++) {
     if (uniqueDates[i] === currentDate.getTime()) {
       streak++;
-      currentDate.setUTCDate(currentDate.getUTCDate() - 1);
+      currentDate.setDate(currentDate.getDate() - 1);
     } else {
       break
     } 

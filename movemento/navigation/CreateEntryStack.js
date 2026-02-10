@@ -9,9 +9,9 @@ const Stack = createNativeStackNavigator();
 const CreateEntryStack = () => {
   return (
     <Stack.Navigator initialRouteName='SelectMovements'>
-      <Stack.Screen name='SelectMovements' component={SelectMovementsScreen}/>
-      <Stack.Screen name='SelectMoodsBefore' component={SelectMoodsBeforeScreen}/>
-      <Stack.Screen name='SelectMoodsAfter' component={SelectMoodsAfterScreen}/>
+      <Stack.Screen name='Select Movements' component={SelectMovementsScreen}/>
+      <Stack.Screen name='Select Moods Before' component={SelectMoodsBeforeScreen}/>
+      <Stack.Screen name='Select Moods After' component={SelectMoodsAfterScreen}/>
       <Stack.Screen name='Reflection' component={ReflectionScreen}/>
     </Stack.Navigator>
   )

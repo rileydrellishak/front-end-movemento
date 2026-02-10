@@ -2,15 +2,13 @@ import { View } from 'react-native'
 import EntriesContainer from '../components/containers/EntriesContainer';
 import { useState } from 'react'
 import { useData } from '../context/DataContext';
-import EntryCalendar from '../components/EntryCalendar';
 import Spinner from 'react-native-loading-spinner-overlay'
-import { useTheme, Text } from 'react-native-paper'
-import DropDownPicker from 'react-native-dropdown-picker'
+import { useTheme } from 'react-native-paper'
 
 const EntriesScreen = ({ navigation }) => {
   const theme = useTheme()
   const [loading, setLoading] = useState(false)
-  const { selectedUser, entries, setEntries } = useData();
+  const { entries, setEntries } = useData();
 
   const handleDeleteEntry = (entry_id) => {
     setEntries(entries.filter(entry => entry.id !== entry_id))

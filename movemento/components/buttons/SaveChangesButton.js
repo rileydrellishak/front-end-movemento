@@ -1,4 +1,3 @@
-import { Text } from "react-native"
 import { Button, useTheme } from 'react-native-paper'
 
 const SaveChangesButton = ({ saveChanges }) => {
@@ -11,7 +10,7 @@ const SaveChangesButton = ({ saveChanges }) => {
       textColor={theme.colors.onTertiary}
       labelStyle={{ fontWeight: 'bold' }}
     >
-      <Text>Save Changes</Text>
+      Save Changes
     </Button>
   )
 }
