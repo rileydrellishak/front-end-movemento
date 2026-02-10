@@ -13,7 +13,7 @@ const EditMovementsAccordion = ({ selectedMovements, setSelectedMovements, movem
       expanded={movementsExpanded}
       onPress={() => setMovementsExpanded(!movementsExpanded)}
     >
-      <Text>selected movements: {findNames(selectedMovements, movements).join(', ')}</Text>
+      <Text>Selected movements: {findNames(selectedMovements, movements).join(', ')}</Text>
       <SelectableButtonsContainer 
         variant='movements'
         data={movements}

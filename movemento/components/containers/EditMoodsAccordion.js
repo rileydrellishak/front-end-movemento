@@ -12,7 +12,7 @@ const EditMoodsAccordion = ({ selectedMoodsBefore, setSelectedMoodsBefore, selec
           expanded={moodsExpanded}
           onPress={() => setMoodsExpanded(!moodsExpanded)}
     >
-      <Text>selected moods before: {findNames(selectedMoodsBefore, moods).join(', ')}
+      <Text>Selected moods before: {findNames(selectedMoodsBefore, moods).join(', ')}
 
       </Text>
       <SelectableButtonsContainer 
@@ -21,7 +21,7 @@ const EditMoodsAccordion = ({ selectedMoodsBefore, setSelectedMoodsBefore, selec
         selectedIds={selectedMoodsBefore}
         setSelectedIds={setSelectedMoodsBefore}
       />
-      <Text>selected moods after: {findNames(selectedMoodsAfter, moods).join(', ')}
+      <Text>Selected moods after: {findNames(selectedMoodsAfter, moods).join(', ')}
         
       </Text>
       <SelectableButtonsContainer 

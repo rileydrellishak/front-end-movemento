@@ -6,7 +6,7 @@ const EditEntryButton = ({ entry }) => {
   const navigation = useNavigation()
 
   const handlePress = () => {
-    navigation.navigate('EditEntryScreen', { entry })
+    navigation.navigate('Edit Entry', { entry })
   }
 
   return (
